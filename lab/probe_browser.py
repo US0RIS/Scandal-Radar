@@ -6,6 +6,10 @@ sent by the origin server. It changes the visible body, an unsubmitted input fie
 the document title, and the URL via history.pushState (no navigation). The browser is
 then left idle. Any outbound appearance of those synthetic markers is recorded by the
 mitmproxy addon, with a separate no-extension control required for interpretation.
+
+For extension-present runs, pass --extension-dir and --expected-extension-id. The
+script loads the prepared unpacked extension and verifies that Chrome reports the
+expected Web Store identity before beginning the canary test.
 """
 from __future__ import annotations
 
@@ -19,13 +23,34 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
 
+def installed_extension_ids(driver: webdriver.Chrome) -> list[str]:
+    driver.get("chrome://extensions/")
+    time.sleep(2)
+    script = r"""
+      const manager = document.querySelector('extensions-manager');
+      if (!manager || !manager.shadowRoot) return [];
+      const list = manager.shadowRoot.querySelector('extensions-item-list');
+      if (!list || !list.shadowRoot) return [];
+      return Array.from(list.shadowRoot.querySelectorAll('extensions-item'))
+        .map(item => item.id || item.getAttribute('id') || '')
+        .filter(Boolean);
+    """
+    result = driver.execute_script(script)
+    return sorted(str(x) for x in (result or []))
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--profile", type=Path, required=True)
     ap.add_argument("--out", type=Path, required=True)
     ap.add_argument("--proxy", required=True)
     ap.add_argument("--idle-seconds", type=int, default=25)
+    ap.add_argument("--extension-dir", type=Path)
+    ap.add_argument("--expected-extension-id")
     args = ap.parse_args()
+
+    if bool(args.extension_dir) != bool(args.expected_extension_id):
+        raise SystemExit("--extension-dir and --expected-extension-id must be used together")
 
     tokens = [x for x in os.environ.get("SCANDAL_RADAR_CANARIES", "").split(",") if x]
     if len(tokens) < 4:
@@ -45,12 +70,26 @@ def main() -> int:
     opts.add_argument("--disable-sync")
     opts.add_argument("--disable-translate")
     opts.add_argument("--window-size=1280,900")
+    if args.extension_dir:
+        opts.add_argument(f"--load-extension={args.extension_dir.resolve()}")
     opts.set_capability("goog:loggingPrefs", {"browser": "ALL"})
 
     started = time.time()
-    status = {"ok": False, "started_unix": started, "idle_seconds": args.idle_seconds}
+    status: dict[str, object] = {
+        "ok": False,
+        "started_unix": started,
+        "idle_seconds": args.idle_seconds,
+        "expected_extension_id": args.expected_extension_id,
+    }
     driver = webdriver.Chrome(options=opts)
     try:
+        ids = installed_extension_ids(driver)
+        status["installed_extension_ids"] = ids
+        if args.expected_extension_id and args.expected_extension_id not in ids:
+            raise RuntimeError(
+                f"expected extension {args.expected_extension_id} is not loaded; observed IDs: {ids}"
+            )
+
         driver.get("https://example.com/")
         time.sleep(3)
         driver.execute_script(
