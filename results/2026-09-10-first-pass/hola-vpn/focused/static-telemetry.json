@@ -1,0 +1,94 @@
+{
+  "all_required_matched": true,
+  "checks": {
+    "config_perr_endpoint": {
+      "file": "js/bg.conf.bundle.js",
+      "matched": true,
+      "offset": 290
+    },
+    "fix_report_active_full_url": {
+      "file": "js/bg.bg.bundle.js",
+      "matched": true,
+      "offset": 872901
+    },
+    "no_log_allowed_lookup": {
+      "file": "js/bg.bg.bundle.js",
+      "matched": true,
+      "offset": 1193721
+    },
+    "no_log_defaults_include_be_vpn_ok": {
+      "file": "js/bg.bg.bundle.js",
+      "matched": true,
+      "offset": 88424
+    },
+    "no_log_gate_exempts_allowed_event_ids": {
+      "file": "js/bg.bg.bundle.js",
+      "matched": true,
+      "offset": 1194661
+    },
+    "not_working_ui_calls_fix_report": {
+      "file": "js/507.bundle.js",
+      "matched": true,
+      "offset": 369672
+    },
+    "render_stats_called_after_init": {
+      "file": "js/458.bundle.js",
+      "matched": true,
+      "offset": 424984
+    },
+    "tpopup_event_has_full_url": {
+      "file": "js/507.bundle.js",
+      "matched": true,
+      "offset": 380570
+    },
+    "transport_posts_perr": {
+      "file": "js/bg.379.bundle.js",
+      "matched": true,
+      "offset": 57054
+    },
+    "transport_serializes_info": {
+      "file": "js/bg.379.bundle.js",
+      "matched": true,
+      "offset": 56929
+    },
+    "vpn_work_report_active_full_url": {
+      "file": "js/bg.bg.bundle.js",
+      "matched": true,
+      "offset": 875528
+    },
+    "vpn_work_report_event": {
+      "file": "js/bg.bg.bundle.js",
+      "matched": true,
+      "offset": 875528
+    },
+    "working_ui_calls_vpn_report": {
+      "file": "js/507.bundle.js",
+      "matched": true,
+      "offset": 369421
+    }
+  },
+  "extension_id_expected": "gkojfkhlekighikafcpjkiklfbnlmeio",
+  "files_sha256": {
+    "js/458.bundle.js": "76ef77fa2aad366b2c5a109d89557ee67a9f3b0b86af4bcc03b84cf9dc40873d",
+    "js/507.bundle.js": "ab8ff0f77968919f99e820b68b28bde402e5e6bed212c245aad42bf8e1cb2e3a",
+    "js/bg.379.bundle.js": "18b78d8e80e2f69a3d492b8e1ec4d2af5ba783a997307dcc0363f1c6a4a33fbd",
+    "js/bg.bg.bundle.js": "9bde350d3b3b0bc8c6b2b18a24d4cf96fa5ef7ef815471a7544c2f1c503d4e4c",
+    "js/bg.conf.bundle.js": "415dd6f6d348630a56913578e3128b324423e18d95f96999a709af49a0216bf0"
+  },
+  "host_permissions": [
+    "*://*/*"
+  ],
+  "manifest_version": 3,
+  "permissions": [
+    "proxy",
+    "webRequest",
+    "storage",
+    "tabs",
+    "webNavigation",
+    "cookies",
+    "scripting",
+    "webRequestAuthProvider",
+    "declarativeNetRequest"
+  ],
+  "version": "1.258.557"
+}

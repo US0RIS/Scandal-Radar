@@ -1,0 +1,20 @@
+{
+  "all_invoked_canaries_captured": false,
+  "all_runs_ok": false,
+  "expected_extension_id": "gkojfkhlekighikafcpjkiklfbnlmeio",
+  "headed": false,
+  "probe": "hola-controlled-transport",
+  "repetitions": 2,
+  "results": [
+    {
+      "error": "RuntimeError('Hola extension service worker did not start')",
+      "ok": false,
+      "run": 1
+    },
+    {
+      "error": "RuntimeError('Hola extension service worker did not start')",
+      "ok": false,
+      "run": 2
+    }
+  ]
+}

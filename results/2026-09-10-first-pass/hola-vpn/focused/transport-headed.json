@@ -1,0 +1,20 @@
+{
+  "all_invoked_canaries_captured": false,
+  "all_runs_ok": false,
+  "expected_extension_id": "gkojfkhlekighikafcpjkiklfbnlmeio",
+  "headed": true,
+  "probe": "hola-controlled-transport",
+  "repetitions": 2,
+  "results": [
+    {
+      "error": "Error('Worker.evaluate: ReferenceError: XMLHttpRequest is not defined\\n    at eval (eval at evaluate (:311:30), <anonymous>:3:27)\\n    at UtilityScript.evaluate (<anonymous>:318:18)\\n    at UtilityScript.<anonymous> (<anonymous>:1:44)')",
+      "ok": false,
+      "run": 1
+    },
+    {
+      "error": "Error('Worker.evaluate: ReferenceError: XMLHttpRequest is not defined\\n    at eval (eval at evaluate (:311:30), <anonymous>:3:27)\\n    at UtilityScript.evaluate (<anonymous>:318:18)\\n    at UtilityScript.<anonymous> (<anonymous>:1:44)')",
+      "ok": false,
+      "run": 2
+    }
+  ]
+}
