@@ -101,8 +101,6 @@ async def one_run(browser_type, extension_dir: Path, run_no: int, headed: bool) 
         if not identity.get("has_sender") or not identity.get("has_fetch"):
             raise RuntimeError(f"Production sender/fetch unavailable: {identity}")
 
-        # MV3 uses the bundled fetch-based ajax module. Spy on the service worker's
-        # global fetch without suppressing or rewriting requests.
         await worker.evaluate(
             """() => {
                 self.__scandal_radar_fetches = [];
@@ -126,8 +124,12 @@ async def one_run(browser_type, extension_dir: Path, run_no: int, headed: bool) 
             }"""
         )
 
-        page = context.pages[0] if context.pages else await context.new_page()
+        # Always create a dedicated target tab. Hola may open a first-install welcome
+        # page asynchronously; using context.pages[0] allowed that tab to steal focus in
+        # an earlier run and made the report contain Hola's own welcome URL.
+        page = await context.new_page()
         await page.goto(target, wait_until="domcontentloaded", timeout=30000)
+        await page.bring_to_front()
         active_url = await wait_active_url(worker, marker)
         if not active_url:
             raise RuntimeError("Hola did not expose the synthetic active URL in its tab state")
@@ -137,8 +139,13 @@ async def one_run(browser_type, extension_dir: Path, run_no: int, headed: bool) 
         passive_fetches = await worker.evaluate("() => self.__scandal_radar_fetches.slice()")
         passive_browser = list(browser_requests)
 
-        # Controlled internal invocation of the exact production function. This proves
-        # request assembly/transport, not the frequency of natural user triggering.
+        # Reassert target focus immediately before the controlled invocation. This
+        # removes the first-install welcome-tab race from the URL-bearing test.
+        await page.bring_to_front()
+        active_url_before_invocation = await wait_active_url(worker, marker, timeout_s=10.0)
+        if not active_url_before_invocation:
+            raise RuntimeError("Synthetic target was not active immediately before invocation")
+
         invoke_started = time.time()
         await worker.evaluate(
             """() => self.be_bg_main.be_rule.send_vpn_work_report({
@@ -181,6 +188,7 @@ async def one_run(browser_type, extension_dir: Path, run_no: int, headed: bool) 
             "marker": marker,
             "target_url": target,
             "active_url_observed_by_extension": active_url,
+            "active_url_before_invocation": active_url_before_invocation,
             "identity": identity,
             "passive_window_seconds": 8,
             "passive_perr_fetches": passive_fetches,
@@ -214,6 +222,9 @@ async def run(args) -> int:
             "all_runs_ok": all(r.get("ok") for r in results),
             "all_invoked_canaries_captured": all(
                 r.get("ok") and r.get("canary_in_instrumented_fetch") for r in results
+            ),
+            "all_invoked_browser_requests_captured": all(
+                r.get("ok") and r.get("canary_in_browser_request") for r in results
             ),
         }
         args.out.parent.mkdir(parents=True, exist_ok=True)
