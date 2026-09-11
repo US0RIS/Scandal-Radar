@@ -57,7 +57,7 @@ jobs:
           PY
           chmod +x /tmp/cft/chrome-linux64/chrome /tmp/cft/chromedriver-linux64/chromedriver
           echo "CFT_BINARY=/tmp/cft/chrome-linux64/chrome" >> "$GITHUB_ENV"
-          echo "/tmp/cft/chromedriver-linux64" >> "$GITHUB_PATH"
+          echo "CFT_DRIVER=/tmp/cft/chromedriver-linux64/chromedriver" >> "$GITHUB_ENV"
           /tmp/cft/chrome-linux64/chrome --version
           /tmp/cft/chromedriver-linux64/chromedriver --version
       - name: Record environment and canaries
@@ -106,6 +106,7 @@ jobs:
             --out "work/${{ matrix.slug }}/baseline-browser.json" \
             --proxy "http://127.0.0.1:8080" \
             --chrome-binary "$CFT_BINARY" \
+            --chromedriver "$CFT_DRIVER" \
             --idle-seconds 20
           kill $MPID 2>/dev/null || true
           wait $MPID 2>/dev/null || true
@@ -124,6 +125,7 @@ jobs:
             --out "work/${{ matrix.slug }}/extension-browser.json" \
             --proxy "http://127.0.0.1:8081" \
             --chrome-binary "$CFT_BINARY" \
+            --chromedriver "$CFT_DRIVER" \
             --extension-dir "$PWD/work/${{ matrix.slug }}/runtime-extension" \
             --expected-extension-id "${{ matrix.extension_id }}" \
             --idle-seconds 30
