@@ -49,13 +49,13 @@ CHECKS = {
         "js/507.bundle.js",
         r'E\.click_not_working=.*?E\.send_fix_it_report',
     ),
-    "transport_serializes_info": (
-        "js/bg.379.bundle.js",
-        r'data\.info=info;qs\.id=id',
+    "mv3_perr_send_serializes_info": (
+        "js/bg.bg.bundle.js",
+        r'function perr_send\(id,info,opt\).*?data\.info=info;qs\.id=id;opt=\{url:conf\.url_perr\+"/perr",qs,data,method:"POST",json:1\}',
     ),
-    "transport_posts_perr": (
-        "js/bg.379.bundle.js",
-        r'return post\(zescape\.uri\(E\.conf\.url_perr\+"/perr",qs\),data\)',
+    "mv3_ajax_uses_fetch": (
+        "js/bg.bg.bundle.js",
+        r'function do_fetch\(opt\).*?fetch\(url,\{method,body,signal:controller\.signal,headers',
     ),
     "tpopup_event_has_full_url": (
         "js/507.bundle.js",
