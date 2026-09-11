@@ -1,4 +1,5 @@
 {
+  "all_invoked_browser_requests_captured": false,
   "all_invoked_canaries_captured": false,
   "all_runs_ok": false,
   "expected_extension_id": "gkojfkhlekighikafcpjkiklfbnlmeio",
