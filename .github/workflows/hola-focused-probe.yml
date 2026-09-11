@@ -1,0 +1,133 @@
+name: Hola focused telemetry probe
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/hola-focused-probe.yml"
+      - "lab/analyze_hola_telemetry.py"
+      - "lab/probe_hola_transport.py"
+      - "lab/fetch_extension.py"
+      - "lab/prepare_unpacked_identity.py"
+
+permissions:
+  contents: write
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install Playwright Chromium
+        run: |
+          python -m pip install --disable-pip-version-check playwright
+          python -m playwright install --with-deps chromium
+
+      - name: Fetch exact current Hola Web Store package
+        run: |
+          set -euo pipefail
+          rm -rf work/hola-focused
+          mkdir -p work/hola-focused publish/hola-focused
+          python lab/fetch_extension.py \
+            --id gkojfkhlekighikafcpjkiklfbnlmeio \
+            --chrome-version 153.0.8010.36 \
+            --out work/hola-focused/package
+          python lab/prepare_unpacked_identity.py \
+            --crx work/hola-focused/package/gkojfkhlekighikafcpjkiklfbnlmeio.crx \
+            --unpacked work/hola-focused/package/unpacked \
+            --expected-id gkojfkhlekighikafcpjkiklfbnlmeio \
+            --out work/hola-focused/runtime-extension \
+            > publish/hola-focused/identity.json
+          cp work/hola-focused/package/SHA256.txt publish/hola-focused/SHA256.txt
+          cp work/hola-focused/package/static.json publish/hola-focused/static.json
+
+      - name: Assert static URL telemetry chain
+        run: |
+          python lab/analyze_hola_telemetry.py \
+            work/hola-focused/runtime-extension \
+            --out publish/hola-focused/static-telemetry.json
+
+      - name: Run controlled transport probe
+        id: transport
+        continue-on-error: true
+        run: |
+          set +e
+          python lab/probe_hola_transport.py \
+            --extension-dir work/hola-focused/runtime-extension \
+            --out publish/hola-focused/transport-headless.json \
+            --repetitions 2
+          STATUS=$?
+          if [ "$STATUS" -ne 0 ]; then
+            echo "Headless attempt failed; retrying headed under Xvfb" >&2
+            xvfb-run -a python lab/probe_hola_transport.py \
+              --extension-dir work/hola-focused/runtime-extension \
+              --out publish/hola-focused/transport-headed.json \
+              --repetitions 2 \
+              --headed
+            STATUS=$?
+          fi
+          echo "status=$STATUS" >> "$GITHUB_OUTPUT"
+          exit "$STATUS"
+
+      - name: Write focused result summary
+        if: always()
+        run: |
+          python - <<'PY'
+          import json, pathlib
+          p=pathlib.Path('publish/hola-focused')
+          st=json.loads((p/'static-telemetry.json').read_text())
+          identity=json.loads((p/'identity.json').read_text())
+          candidates=[p/'transport-headless.json',p/'transport-headed.json']
+          runs=[]
+          for f in candidates:
+              if f.exists():
+                  try: runs.append((f.name,json.loads(f.read_text())))
+                  except Exception: pass
+          good=[(n,r) for n,r in runs if r.get('all_runs_ok') and r.get('all_invoked_canaries_captured')]
+          passive=[]
+          for n,r in runs:
+              for x in r.get('results',[]):
+                  if x.get('passive_canary_observed'):
+                      passive.append({'file':n,'run':x.get('run')})
+          lines=[
+              '# Hola focused telemetry probe', '',
+              'This is a controlled research result, not an allegation of intent or illegality.', '',
+              f"- Extension ID reconstructed/expected: `{identity.get('derived_id')}`",
+              f"- Static telemetry assertions all matched: `{st.get('all_required_matched')}`",
+              f"- Successful controlled transport capture: `{bool(good)}`",
+              f"- Passive canary-bearing telemetry observations: `{len(passive)}`",
+              '',
+              'The controlled invocation calls the exact production `send_vpn_work_report` function inside the extension service worker after loading a synthetic active-tab URL. It validates request construction/transport but is not, by itself, a natural-user behavioral reproduction.',
+              '',
+              'A passive canary match, if present, is more significant and requires fresh-profile reproduction and controls before promotion under the evidence ladder.',
+          ]
+          (p/'README.md').write_text('\n'.join(lines)+'\n')
+          PY
+
+      - name: Upload full focused evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: hola-focused-evidence
+          path: |
+            publish/hola-focused
+            work/hola-focused/package/SHA256.txt
+          retention-days: 30
+
+      - name: Commit focused result
+        if: always()
+        run: |
+          set -euo pipefail
+          mkdir -p results/2026-09-10-first-pass/hola-vpn/focused
+          cp -R publish/hola-focused/* results/2026-09-10-first-pass/hola-vpn/focused/
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add results/2026-09-10-first-pass/hola-vpn/focused
+          git commit -m "Record focused Hola telemetry probe" || exit 0
+          git pull --rebase origin main
+          git push
