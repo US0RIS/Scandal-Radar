@@ -1,0 +1,212 @@
+name: First extension probes
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/first-extension-probes.yml"
+      - "lab/fetch_extension.py"
+      - "lab/probe_browser.py"
+      - "lab/prime_policy_extension.py"
+      - "lab/summarize_probe.py"
+      - "lab/mitm_addon.py"
+      - "lab/inspect_extension.py"
+
+permissions:
+  contents: write
+
+jobs:
+  probe:
+    name: Probe ${{ matrix.slug }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - slug: merlin-ai
+            name: Merlin AI
+            extension_id: camppjleccjaphfdbohjdohecfnoikec
+          - slug: hola-vpn
+            name: Hola VPN
+            extension_id: gkojfkhlekighikafcpjkiklfbnlmeio
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install probe dependencies
+        run: python -m pip install --disable-pip-version-check selenium mitmproxy
+      - name: Record environment and canaries
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "work/${{ matrix.slug }}" "publish/${{ matrix.slug }}"
+          google-chrome --version | tee "work/${{ matrix.slug }}/chrome-version.txt"
+          TOKENS=$(python - <<'PY'
+          import secrets
+          tags = ["URL", "BODY", "INPUT", "TITLE"]
+          print(",".join(f"SCANDAL_RADAR_{t}_{secrets.token_hex(12).upper()}" for t in tags))
+          PY
+          )
+          echo "SCANDAL_RADAR_CANARIES=$TOKENS" >> "$GITHUB_ENV"
+          echo "$TOKENS" > "work/${{ matrix.slug }}/canaries.txt"
+      - name: Fetch exact current CRX and run static audit
+        shell: bash
+        run: |
+          set -euo pipefail
+          VER=$(google-chrome --version | grep -oE '[0-9]+(\.[0-9]+){3}' | head -1)
+          python lab/fetch_extension.py \
+            --id "${{ matrix.extension_id }}" \
+            --chrome-version "$VER" \
+            --out "work/${{ matrix.slug }}/package"
+          cp "work/${{ matrix.slug }}/package/static.json" "publish/${{ matrix.slug }}/static.json"
+          cp "work/${{ matrix.slug }}/package/SHA256.txt" "publish/${{ matrix.slug }}/SHA256.txt"
+      - name: Run no-extension passive control
+        shell: bash
+        run: |
+          set -euo pipefail
+          export SCANDAL_RADAR_PROXY_LOG="$PWD/work/${{ matrix.slug }}/baseline-proxy.jsonl"
+          mitmdump -q -p 8080 -s lab/mitm_addon.py >"work/${{ matrix.slug }}/baseline-mitm.log" 2>&1 &
+          MPID=$!
+          trap 'kill $MPID 2>/dev/null || true' EXIT
+          sleep 3
+          xvfb-run -a python lab/probe_browser.py \
+            --profile "/tmp/scandal-radar-baseline-${{ matrix.slug }}" \
+            --out "work/${{ matrix.slug }}/baseline-browser.json" \
+            --proxy "http://127.0.0.1:8080" \
+            --idle-seconds 25
+          kill $MPID 2>/dev/null || true
+          wait $MPID 2>/dev/null || true
+          trap - EXIT
+          cp "work/${{ matrix.slug }}/baseline-browser.json" "publish/${{ matrix.slug }}/baseline-browser.json"
+      - name: Force-install official Web Store extension ID
+        shell: bash
+        run: |
+          set -euo pipefail
+          sudo mkdir -p /etc/opt/chrome/policies/managed
+          printf '%s\n' '{"ExtensionInstallForcelist":["${{ matrix.extension_id }};https://clients2.google.com/service/update2/crx"]}' \
+            | sudo tee /etc/opt/chrome/policies/managed/scandal-radar.json >/dev/null
+          set +e
+          xvfb-run -a python lab/prime_policy_extension.py \
+            --id "${{ matrix.extension_id }}" \
+            --profile "/tmp/scandal-radar-extension-${{ matrix.slug }}" \
+            --out "work/${{ matrix.slug }}/install-status.json" \
+            --timeout 75
+          PRIME_STATUS=$?
+          set -e
+          cp "work/${{ matrix.slug }}/install-status.json" "publish/${{ matrix.slug }}/install-status.json"
+          if [ "$PRIME_STATUS" -ne 0 ]; then
+            echo "Official policy install did not settle; dynamic result will be marked incomplete." | tee "work/${{ matrix.slug }}/install-warning.txt"
+          fi
+      - name: Run extension-present passive probe
+        shell: bash
+        run: |
+          set -euo pipefail
+          export SCANDAL_RADAR_PROXY_LOG="$PWD/work/${{ matrix.slug }}/extension-proxy.jsonl"
+          mitmdump -q -p 8081 -s lab/mitm_addon.py >"work/${{ matrix.slug }}/extension-mitm.log" 2>&1 &
+          MPID=$!
+          trap 'kill $MPID 2>/dev/null || true' EXIT
+          sleep 3
+          set +e
+          xvfb-run -a python lab/probe_browser.py \
+            --profile "/tmp/scandal-radar-extension-${{ matrix.slug }}" \
+            --out "work/${{ matrix.slug }}/extension-browser.json" \
+            --proxy "http://127.0.0.1:8081" \
+            --idle-seconds 30
+          PROBE_STATUS=$?
+          set -e
+          kill $MPID 2>/dev/null || true
+          wait $MPID 2>/dev/null || true
+          trap - EXIT
+          cp "work/${{ matrix.slug }}/extension-browser.json" "publish/${{ matrix.slug }}/extension-browser.json"
+          echo "$PROBE_STATUS" > "work/${{ matrix.slug }}/dynamic-exit-status.txt"
+      - name: Summarize differential observations
+        shell: bash
+        run: |
+          set -euo pipefail
+          python lab/summarize_probe.py \
+            --baseline "work/${{ matrix.slug }}/baseline-proxy.jsonl" \
+            --extension "work/${{ matrix.slug }}/extension-proxy.jsonl" \
+            --tokens "$SCANDAL_RADAR_CANARIES" \
+            --static "work/${{ matrix.slug }}/package/static.json" \
+            --out "publish/${{ matrix.slug }}/summary.json"
+          python - <<'PY'
+          import json, pathlib
+          slug = "${{ matrix.slug }}"
+          name = "${{ matrix.name }}"
+          p = pathlib.Path("publish") / slug
+          s = json.loads((p / "summary.json").read_text())
+          st = json.loads((p / "static.json").read_text())
+          ins = json.loads((p / "install-status.json").read_text())
+          lines = [
+              f"# {name} — first-pass test",
+              "",
+              "Status: automated static audit + passive differential canary test. This is not a finding of wrongdoing.",
+              "",
+              f"- Web Store version archived: `{st.get('version')}`",
+              f"- CRX SHA-256: `{st.get('crx_sha256')}`",
+              f"- Official-ID policy install succeeded: `{bool(ins.get('installed'))}`",
+              f"- Baseline requests observed: `{s.get('baseline_request_count')}`",
+              f"- Extension-present requests observed: `{s.get('extension_request_count')}`",
+              f"- Differential canary-bearing request events: `{len(s.get('differential_canary_request_events', []))}`",
+              f"- Hosts seen only with extension present: `{', '.join(s.get('hosts_only_seen_with_extension', [])) or 'none'}`",
+              "",
+              "## Interpretation boundary",
+              "",
+              "A canary-bearing differential request would be an E1 lead only and requires clean-profile reproduction and explanation of necessity. No canary match does not prove that no data was collected because some traffic may be pinned, encrypted above HTTP, or otherwise uninspectable.",
+          ]
+          (p / "README.md").write_text("\n".join(lines) + "\n")
+          PY
+      - name: Upload full evidence artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: evidence-${{ matrix.slug }}
+          path: work/${{ matrix.slug }}
+          retention-days: 30
+      - name: Upload publishable result
+        uses: actions/upload-artifact@v4
+        with:
+          name: publish-${{ matrix.slug }}
+          path: publish/${{ matrix.slug }}
+          retention-days: 30
+
+  publish:
+    name: Commit first-pass results
+    runs-on: ubuntu-latest
+    needs: probe
+    if: always()
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: publish-*
+          path: results/2026-09-10-first-pass
+          merge-multiple: false
+      - name: Normalize artifact directories
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/results
+          for d in results/2026-09-10-first-pass/publish-*; do
+            [ -d "$d" ] || continue
+            slug="${d##*/publish-}"
+            mkdir -p "/tmp/results/$slug"
+            cp -R "$d"/* "/tmp/results/$slug/" 2>/dev/null || true
+          done
+          rm -rf results/2026-09-10-first-pass
+          mkdir -p results/2026-09-10-first-pass
+          cp -R /tmp/results/* results/2026-09-10-first-pass/ 2>/dev/null || true
+      - name: Commit results
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add results/2026-09-10-first-pass
+          if git diff --cached --quiet; then
+            echo "No result files to commit"
+            exit 0
+          fi
+          git commit -m "Record first Merlin and Hola extension probes"
+          git push
