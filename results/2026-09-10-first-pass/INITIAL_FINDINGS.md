@@ -6,11 +6,11 @@ This document records leads, not allegations. No item below is above E1 under th
 
 ## Executive result
 
-The strongest lead from the first pass is **Hola VPN's public disclosure language**. Its current Chrome Web Store overview says it does not log browsing activity and that its analytics do not collect browsing history or details about websites/services visited. The same Web Store listing's privacy disclosure says the extension handles **Web history**, and Hola's current privacy-policy page says Log Data may include the web pages a user visits and time spent on them. This is a documentary discrepancy that deserves behavioral testing; it is not yet proof of undisclosed collection.
+The strongest lead from the first pass is **Hola VPN's browsing-data disclosure language plus a concrete URL-bearing telemetry path in the exact current extension package**. Its current Chrome Web Store overview says its analytics do not collect browsing history or details about websites/services visited. The same Web Store listing's privacy disclosure identifies **Web history** as handled data, and Hola's April 14, 2026 privacy policy specifically states that log data obtained through the browser extension may include browsing history. Static inspection of v1.258.557 additionally shows ordinary supported UI paths that construct telemetry containing the active tab's full URL and serialize it to Hola's `perr.hola.org` endpoint. This materially strengthens the lead, but it remains E1 until the behavior is captured and reproduced under controls.
 
 Merlin AI's exact current package contains a Give Freely integration with feature-gated code capable of sending Google search-result context and active-domain events. However, the live `merlinprod` Give Freely configuration captured in this investigation does **not** currently enable the relevant `countAppearances`, `anonymousActiveDomainLogging`, or `partnerSerpBox` flags. The code capability is therefore a lead about configuration/history and disclosure, not evidence that Merlin is presently transmitting routine browsing/search activity.
 
-The attempted automated passive canary experiment is **incomplete**. An initial run appeared to show zero canary transmission, but post-run validation proved that the extensions were not actually installed in those browser profiles. That result was rejected. Subsequent runs reconstructed the original Web Store IDs from the CRX3 signing keys, but the GitHub-hosted Chrome-for-Testing process failed at the no-extension baseline before extension logic executed. No behavioral conclusion is drawn from those failures.
+The attempted automated passive canary experiment is **incomplete**. An initial run appeared to show zero canary transmission, but post-run validation proved that the extensions were not actually installed in those browser profiles. That result was rejected. Subsequent Chrome-for-Testing attempts failed at the no-extension baseline before extension logic executed. No behavioral conclusion is drawn from those failures. A separate focused Hola Playwright probe has now been added to isolate passive behavior from controlled invocation of the production telemetry sender.
 
 ## Frozen packages
 
@@ -28,9 +28,9 @@ The attempted automated passive canary experiment is **incomplete**. An initial 
 - CRX SHA-256: `1a0b25c190053040c87d0a71d0df8e5751237d470920511f5062925f9c5e6a65`
 - Exact CRX3 publisher key was successfully reconstructed to the expected Web Store ID for controlled unpacked testing.
 
-## Lead HOLA-01 — disclosure mismatch about browsing history
+## Lead HOLA-01 — browsing-data disclosure vs URL-bearing telemetry
 
-**Status: E1 documentary anomaly.**
+**Status: strong E1 documentary/static-code anomaly. Dynamic reproduction pending.**
 
 Current public sources:
 
@@ -39,35 +39,50 @@ Current public sources:
   - Analytics description states that analytics tools do not collect browsing history or details about websites/services visited.
   - The same listing's privacy panel identifies `Web history` among handled data categories.
 - Hola privacy policy: https://hola.org/legal/privacy
-  - The Log Data section says data may include IP address, operating system, browser type, web pages visited, time spent on those pages, and access times/dates.
+  - Last updated April 14, 2026.
+  - The Log Data section specifically states that log data obtained through the browser extension may include browsing history and access times/dates.
+- Hola browser-extension troubleshooting: https://hola.org/support/troubleshooting/extension
+  - Documents the normal product flow in which a user opens the extension on a site and, under “Is it working?”, can select “no, fix it”.
 
-Possible innocent explanations that must be tested before promotion:
+### Static observations from exact package v1.258.557
 
-1. The Web Store overview may use “log browsing activity” in a narrower sense than the privacy policy.
-2. The privacy policy may cover Hola products/services beyond this specific Chrome extension.
-3. `Web history` in the Chrome disclosure may reflect local processing necessary for VPN operation rather than server-side retention.
-4. The privacy policy may describe optional/error/diagnostic paths rather than routine browsing telemetry.
-
-Static package observations relevant to the next experiment:
+A reproducible checker now lives at `lab/analyze_hola_telemetry.py`.
 
 - Broad host permission: `*://*/*`.
-- Relevant extension permissions include `proxy`, `webRequest`, `tabs`, `webNavigation`, `cookies`, `scripting`, and related networking APIs.
-- The background code maintains active-tab URL state and limited per-tab host history for VPN operation.
-- The package contains a remote diagnostic/event mechanism targeting `https://perr.hola.org/client_cgi/perr`.
-- Some diagnostic call sites are structurally capable of attaching URL fields.
-- Importantly, a prominent `be_vpn_ok` URL-bearing event is present in the package's static `no_log_perrs` defaults, so its existence must **not** be represented as evidence that routine active URLs are currently sent remotely.
+- Relevant permissions include `proxy`, `webRequest`, `tabs`, `webNavigation`, `cookies`, `scripting`, and related networking APIs.
+- The production configuration sets `url_perr` to `https://perr.hola.org/client_cgi`.
+- The background model exports its rule module as `self.be_bg_main.be_rule`.
+- `send_vpn_work_report()` constructs event `be_vpn_ok` and includes the current value of the extension's `active.url` field, i.e. the active tab's full URL, along with root URL, proxy country and other diagnostics.
+- The UI `click_working()` path calls `send_vpn_work_report()`.
+- The diagnostic `get_report()` used by `send_fix_it_report()` includes both `url` and `real_url` sourced from the active tab URL unless an explicit URL override is supplied.
+- The UI `click_not_working()` path ultimately calls `send_fix_it_report()`; Hola's own support page documents the corresponding “no, fix it” workflow.
+- The telemetry transport converts the info object to JSON, stores it in form field `info`, puts the event ID in the request query, and POSTs to `url_perr + '/perr'`.
+- A tpopup-render telemetry path also constructs a `be_tpopup_open` event with both root URL and full URL; the occurrence conditions for that popup have not yet been characterized well enough to describe it as routine passive browsing behavior.
+
+### Correction: `no_log_perrs` semantics
+
+An earlier version of this document incorrectly interpreted the presence of `be_vpn_ok` in `no_log_perrs` as evidence that the event was suppressed. The code shows the opposite semantics.
+
+The extension converts `conf.no_log_perrs` into an `allowed_perrs` lookup. Its no-log gate reports itself enabled for an event only when no-log mode is active **and the event is not in that lookup**. The common telemetry wrapper suppresses an event only when that gate is enabled. Therefore entries in `no_log_perrs` are exceptions that are still permitted through while no-log mode is active. `be_vpn_ok`, `be_ui_vpn_click_no_fix_it`, and `be_ui_vpn_click_no_fix_it_multi` are among those exceptions.
+
+This correction is important because the previous interpretation understated the URL-bearing telemetry path. It still does not establish how often those paths are naturally triggered or whether every attempted request reaches/gets retained by Hola.
+
+### What is established vs unknown
+
+**Established by static package inspection:** current production code has normal UI-triggered telemetry paths that place the active tab's full URL into a payload destined for `perr.hola.org/client_cgi/perr`.
+
+**Represented publicly:** the Web Store analytics language says browsing history and details about websites/services visited are not collected; the current Hola privacy policy separately says browser-extension Log Data may include browsing history.
+
+**Not yet established:** continuous/passive collection of every site, server-side retention of any particular URL-bearing event, behavior across all users/cohorts, or whether Hola considers the diagnostic events outside the scope of the Web Store's “analytics tools” statement.
 
 ### Next decisive HOLA-01 tests
 
-Run on a local real Chrome/Chromium environment where extension installation can be visually and programmatically verified:
-
-1. Disconnected baseline: synthetic URL/body/input/title canaries.
-2. Connected VPN mode on a supported destination.
-3. Applicable analytics/privacy settings on vs off.
-4. Successful VPN route vs connection/error path.
-5. CAPTCHA/error and payment-related flows only where they can be triggered safely with synthetic/test data.
-6. Specifically inspect requests to `perr.hola.org` and determine whether site URLs, URL-derived identifiers, search terms, or page content appear.
-7. Repeat any anomaly in a fresh profile before E2.
+1. Verify the official extension ID in a fresh executable Chromium profile.
+2. Browse a synthetic canary URL while the extension is installed but untouched; observe `perr.hola.org` during a passive window.
+3. Separately invoke the normal “working” and “no, fix it” flows and inspect the URL-bearing request body.
+4. Repeat successful observations in fresh profiles and compare against a no-extension control.
+5. Compare disconnected vs connected VPN state and any applicable privacy/analytics settings.
+6. Preserve raw request capture, exact version/hash, environment metadata and procedure before any E2 promotion.
 
 ## Lead MERLIN-01 — dormant Give Freely browsing/search telemetry capability
 
@@ -124,10 +139,12 @@ This may be explained by the privacy policy covering other Give Freely products/
 
 ## Dynamic-test integrity note
 
-The first automated passive probe produced a superficially reassuring zero-canary result. It was discarded because the workflow's post-check showed the official extensions had not actually been installed. We then added CRX3 identity reconstruction and explicit expected-ID verification. Current GitHub-hosted Chrome-for-Testing attempts fail during the **no-extension browser baseline** with `SessionNotCreatedException`, before either Merlin or Hola code executes. Consequently:
+The first automated passive probe produced a superficially reassuring zero-canary result. It was discarded because the workflow's post-check showed the official extensions had not actually been installed. We then added CRX3 identity reconstruction and explicit expected-ID verification. Chrome-for-Testing attempts failed during the **no-extension browser baseline** with `SessionNotCreatedException`, before either Merlin or Hola code executed. Consequently:
 
 - zero-canary results from the invalid run are not findings;
 - runner launch failures are not findings;
 - the static/documentary leads above are the only first-pass results currently promoted.
+
+A focused Hola Playwright workflow now records passive and controlled-invocation observations separately. Its controlled invocation calls the exact production sender only after verifying the official extension identity and a synthetic active-tab URL; that validates transport construction but will not be mischaracterized as natural-user triggering.
 
 This is intentional: Scandal Radar should prefer “incomplete test” over a false negative or false accusation.
