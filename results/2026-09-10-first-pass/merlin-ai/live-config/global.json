@@ -1,0 +1,1086 @@
+{
+  "enabled": true,
+  "apiConfigBaseUri": "https://api.givefreely.com",
+  "apiConfigCreateAnonymousUserPath": "api/v1/Users/anonymous",
+  "apiConfigGetAnonymousUserComissionsPath": "api/v2/Commission/users-by-external",
+  "apiConfig": {
+    "baseUri": "https://api.givefreely.com",
+    "createAnonymousUserPath": "api/v1/Users/anonymous",
+    "getAnonymousUserComissionsPath": "api/v2/Commission/users-by-external"
+  },
+  "externalUrls": {
+    "giveFreelyTermsAndConditions": "https://gvfr.ly/3PQBjWh",
+    "giveFreelyWhyAmISeeingThis": "https://gvfr.ly/42hH3iS"
+  },
+  "checkoutPopupDesignVersion": "v2",
+  "checkoutPopupMasterSwitch": false,
+  "checkoutPopupDonationSuccessAutoCloseInSeconds": 3,
+  "checkoutPopupEnabled": false,
+  "checkoutPopupMainCloseButtonVisible": false,
+  "gfDataUrl": "https://cdn.givefreely.com/gf-data.json",
+  "checkoutPopupSelectCharityButtonBgColor": "#2767C9",
+  "checkoutPopupSupressCloseButtonVisible": true,
+  "checkoutPopupDisplayNameInFooter": "",
+  "checkoutPopupNeverSuppressionAllowed": true,
+  "checkoutPopupMinLogLevel": "error",
+  "checkoutPopupActivateAndClose": true,
+  "popupEnabled": true,
+  "checkoutPopupActivateAndCloseSkipSuccess": true,
+  "dismissVisible": false,
+  "dataUrl": "https://www.wildlink.me/data",
+  "deviceUrl": "https://www.wildlink.me/webservice/v2/device",
+  "eventsUrl": "https://events.givefreely.com/popup",
+  "topRightAction": "donateclose",
+  "multiAffiliate": {
+    "feedRefreshInterval": 601,
+    "feedUrl": "https://prod.cdnwgf.com/feeds/substitalprod.unified-feed.json",
+    "activationUrl": "https://dysi5pkqytbglupanclfg2s26y0ijhln.lambda-url.us-east-1.on.aws/",
+    "preActivationUrl": "https://nbparppmcyde7v5nsqr54pzmwe0zhivh.lambda-url.us-east-1.on.aws/",
+    "prunePreActivationProviders": [],
+    "skipWildfirePruning": false
+  },
+  "merchantExclusions": [
+    {
+      "domain": "united.com",
+      "mutePopups": true,
+      "disableDomain": true
+    },
+    {
+      "domain": "asda.com",
+      "mutePopups": true,
+      "disableDomain": true
+    },
+    {
+      "domain": "tesco.com",
+      "mutePopups": true,
+      "disableDomain": true
+    },
+    {
+      "domain": "doordash.com",
+      "mutePopups": true,
+      "disableDomain": true
+    },
+    {
+      "domain": "etsy.com",
+      "mutePopups": true,
+      "disableDomain": true
+    },
+    {
+      "domain": "shopee.ph",
+      "mutePopups": true,
+      "disableDomain": true
+    },
+    {
+      "domain": "ubereats.com",
+      "mutePopups": true,
+      "disableDomain": true
+    },
+    {
+      "domain": "upwork.com",
+      "mutePopups": true,
+      "disableDomain": true
+    },
+    {
+      "domain": "hm.com",
+      "mutePopups": true,
+      "disableDomain": true
+    },
+    {
+      "disableDomain": true,
+      "domain": "staples.com",
+      "mutePopups": true
+    },
+    {
+      "domain": "sumup.com",
+      "mutePopups": true,
+      "disableDomain": true
+    },
+    {
+      "domain": "worldpay.com",
+      "mutePopups": true,
+      "disableDomain": true
+    },
+    {
+      "domain": "aeroplan.points.com",
+      "mutePopups": true,
+      "disableDomain": false
+    },
+    {
+      "domain": "storefront.points.com",
+      "mutePopups": true,
+      "disableDomain": false
+    },
+    {
+      "domain": "zoom.us",
+      "mutePopups": true,
+      "disableDomain": false
+    },
+    {
+      "domain": "xfinity.com",
+      "mutePopups": true,
+      "disableDomain": false
+    }
+  ],
+  "merchantPopupRules": [
+    {
+      "name": "Chicco Ukraine",
+      "domain": "chicco.com.ua",
+      "rules": [
+        {
+          "rule": "/order"
+        }
+      ]
+    },
+    {
+      "name": "Woolf HR",
+      "domain": "woolf.hr",
+      "rules": [
+        {
+          "rule": "/webshop/placanje"
+        }
+      ]
+    },
+    {
+      "name": "E-First Aid Supplies",
+      "domain": "e-firstaidsupplies.com",
+      "rules": [
+        {
+          "rule": "\\/BASK\\.html|\\/OCST\\.html"
+        }
+      ]
+    },
+    {
+      "name": "trip",
+      "domain": "trip.com",
+      "rules": [
+        {
+          "rule": "trip\\.com/hotels/booknew"
+        },
+        {
+          "rule": "trip\\.com/webapp/cashier"
+        }
+      ]
+    },
+    {
+      "name": "treblab",
+      "domain": "treblab.com",
+      "rules": [
+        {
+          "rule": "treblab\\.com.+securecheckout"
+        }
+      ]
+    },
+    {
+      "name": "stubhub",
+      "domain": "stubhub.com",
+      "rules": [
+        {
+          "rule": "stubhub\\.com.+buy"
+        }
+      ]
+    },
+    {
+      "name": "gap",
+      "domain": "gap.com",
+      "rules": [
+        {
+          "rule": "gap\\.com.+shopping-bag"
+        }
+      ]
+    },
+    {
+      "name": "axatravelinsurance",
+      "domain": "axatravelinsurance.com",
+      "rules": [
+        {
+          "rule": "sales\\.axatravelinsurance\\.com"
+        }
+      ]
+    },
+    {
+      "name": "bloomingdales",
+      "domain": "bloomingdales.com",
+      "rules": [
+        {
+          "rule": "bloomingdales\\.com/my/bag"
+        }
+      ]
+    },
+    {
+      "name": "Health Labs",
+      "domain": "healthlabs.com",
+      "rules": [
+        {
+          "rule": "\\/order(\\?|\\/|$)"
+        }
+      ]
+    },
+    {
+      "name": "1p Mobile",
+      "domain": "1pmobile.com",
+      "rules": [
+        {
+          "rule": "\\/order"
+        }
+      ]
+    },
+    {
+      "name": "Moneyspire",
+      "domain": "moneyspire.com",
+      "rules": [
+        {
+          "rule": "\\/purchase\\/"
+        }
+      ]
+    },
+    {
+      "name": "MyTEFL",
+      "domain": "mytefl.com",
+      "rules": [
+        {
+          "rule": "\\/enroll\\/"
+        }
+      ]
+    },
+    {
+      "name": "macys",
+      "domain": "macys.com",
+      "rules": [
+        {
+          "rule": "macys\\.com/my/bag"
+        }
+      ]
+    },
+    {
+      "name": "aliexpress",
+      "domain": "aliexpress.com",
+      "rules": [
+        {
+          "rule": "aliexpress\\.com/p/trade/confirm"
+        },
+        {
+          "rule": "aliexpress\\.us/p/trade/confirm"
+        }
+      ]
+    },
+    {
+      "name": "aliexpressus",
+      "domain": "aliexpress.us",
+      "rules": [
+        {
+          "rule": "aliexpress\\.com/p/trade/confirm"
+        },
+        {
+          "rule": "aliexpress\\.us/p/trade/confirm"
+        }
+      ]
+    },
+    {
+      "name": "sunglasses2u",
+      "domain": "sunglasses2u.com",
+      "rules": [
+        {
+          "rule": "sunglasses2u\\.com.+shopping-bag"
+        }
+      ]
+    },
+    {
+      "name": "thrivemarket",
+      "domain": "thrivemarket.com",
+      "rules": [
+        {
+          "rule": "thrivemarket\\.com.+payment"
+        }
+      ]
+    },
+    {
+      "name": "travelexinsurance",
+      "domain": "travelexinsurance.com",
+      "rules": [
+        {
+          "rule": "travelexinsurance\\.com.+paying"
+        }
+      ]
+    },
+    {
+      "name": "mrandmrssmith",
+      "domain": "mrandmrssmith.com",
+      "rules": [
+        {
+          "rule": "mrandmrssmith\\.com.+basket"
+        }
+      ]
+    },
+    {
+      "name": "tripadvisor",
+      "domain": "tripadvisor.com",
+      "rules": [
+        {
+          "rule": "tripadvisor\\.com.+ShoppingCart"
+        }
+      ]
+    },
+    {
+      "name": "advanceautoparts",
+      "domain": "advanceautoparts.com",
+      "rules": [
+        {
+          "rule": "advanceautoparts\\.com/web/OrderReview"
+        },
+        {
+          "rule": "advanceautoparts\\.com/.*OrderItemDisplay"
+        }
+      ]
+    },
+    {
+      "name": "dickssportinggoods",
+      "domain": "dickssportinggoods.com",
+      "rules": [
+        {
+          "rule": "dickssportinggoods\\.com.+OrderItemDisplay"
+        }
+      ]
+    },
+    {
+      "name": "mayoclinic.org",
+      "domain": "mayoclinic.org",
+      "rules": [
+        {
+          "rule": "^https://diet\\.mayoclinic\\.org/us/registration/\\?promotion=.*$"
+        },
+        {
+          "rule": "^https://diet\\.mayoclinic\\.org/us/registration/$"
+        }
+      ]
+    },
+    {
+      "name": "emirates.com",
+      "domain": "emirates.com",
+      "rules": [
+        {
+          "rule": "^https://www\\.emirates\\.com/booking/passenger-details/.*$"
+        },
+        {
+          "rule": "^https://payment\\.emirates\\.com/payment/.*$"
+        }
+      ]
+    },
+    {
+      "name": "singaporeair.com",
+      "domain": "singaporeair.com",
+      "rules": [
+        {
+          "rule": "^https://www\\.singaporeair\\.com/flightsearch/passengerDetail\\.form.*$"
+        },
+        {
+          "rule": "^https://www\\.singaporeair\\.com/payment/bookingPayment\\.form.*$"
+        }
+      ]
+    },
+    {
+      "name": "cathaypacific.com",
+      "domain": "cathaypacific.com",
+      "rules": [
+        {
+          "rule": "^https://book\\.cathaypacific\\.com/CathayPacificV3/dyn/air/booking/passenger.*$"
+        }
+      ]
+    },
+    {
+      "name": "kiwi.com",
+      "domain": "kiwi.com",
+      "rules": [
+        {
+          "rule": "^https://www\\.kiwi\\.com/.*/booking/.*$"
+        },
+        {
+          "rule": "^https://www\\.kiwi\\.com/en/booking/\\?.*$"
+        }
+      ]
+    },
+    {
+      "name": "choicehotels.com",
+      "domain": "choicehotels.com",
+      "rules": [
+        {
+          "rule": "^https://www\\.choicehotels\\.com/guestdata.*$"
+        }
+      ]
+    },
+    {
+      "name": "ebay.ca",
+      "domain": "ebay.ca",
+      "rules": [
+        {
+          "rule": "^https://cart\\.ebay\\.ca/.*$"
+        },
+        {
+          "rule": "^https://pay\\.ebay\\.ca/rgxo.*$"
+        }
+      ]
+    },
+    {
+      "name": "aerlingus.com",
+      "domain": "aerlingus.com",
+      "rules": [
+        {
+          "rule": "^https://www\\.aerlingus\\.com/app/make/passenger-info.*$"
+        },
+        {
+          "rule": "^https://www\\.aerlingus\\.com/app/make/purchase.*$"
+        }
+      ]
+    },
+    {
+      "name": "sixt.com",
+      "domain": "sixt.com",
+      "rules": [
+        {
+          "rule": "^https://www\\.sixt\\.com/betafunnel/#/offercheckout\\?.*$"
+        },
+        {
+          "rule": "^https://www\\.sixt\\.com/betafunnel/#/offercheckout\\?.*$"
+        }
+      ]
+    },
+    {
+      "name": "traveloka.com",
+      "domain": "traveloka.com",
+      "rules": [
+        {
+          "rule": "^https://www\\.traveloka\\.com/en-en/accommodation/booking/.*$"
+        },
+        {
+          "rule": "^https://www\\.traveloka\\.com/en-en/payment/v2/selection\\?invoiceId=.*$"
+        }
+      ]
+    },
+    {
+      "name": "holidayextras.com",
+      "domain": "holidayextras.com",
+      "rules": [
+        {
+          "rule": "^https://www\\.holidayextras\\.com/static/\\?selectProduct=hcp.*$"
+        },
+        {
+          "rule": "^https://www\\.holidayextras\\.com/static/resortTransfers.*$"
+        },
+        {
+          "rule": "^https://www\\.holidayextras\\.com/static/\\?selectProduct=lo.*$"
+        }
+      ]
+    },
+    {
+      "name": "tourradar.com",
+      "domain": "tourradar.com",
+      "rules": [
+        {
+          "rule": "^https://www\\.tourradar\\.com/book-now/.*$"
+        }
+      ]
+    },
+    {
+      "name": "flightnetwork.com",
+      "domain": "flightnetwork.com",
+      "rules": [
+        {
+          "rule": "^https://us-en\\.flightnetwork\\.com/rf/traveler-details.*$"
+        },
+        {
+          "rule": "^https://us-en\\.flightnetwork\\.com/rf/payment.*$"
+        }
+      ]
+    },
+    {
+      "name": "hawaiianairlines.com",
+      "domain": "hawaiianairlines.com",
+      "rules": [
+        {
+          "rule": "^https://shopping\\.hawaiianairlines\\.com/trip-summary.*$"
+        },
+        {
+          "rule": "^https://shopping\\.hawaiianairlines\\.com/review-and-pay.*$"
+        },
+        {
+          "rule": "^https://hawaiian\\.poweredbygps\\.com/HotelCheckout.*$"
+        }
+      ]
+    },
+    {
+      "name": "cheapoair.com",
+      "domain": "cheapoair.com",
+      "rules": [
+        {
+          "rule": "^https://www\\.cheapoair\\.com/air/review.*$"
+        },
+        {
+          "rule": "^https://www\\.cheapoair\\.com/air/book.*$"
+        }
+      ]
+    },
+    {
+      "name": "avianca.com",
+      "domain": "avianca.com",
+      "rules": [
+        {
+          "rule": "^https://www\\.avianca\\.com/es/booking/passengers/.*$"
+        },
+        {
+          "rule": "^https://payment\\.avianca\\.com/es/booking/payment/.*$"
+        }
+      ]
+    },
+    {
+      "name": "nationalcar.com",
+      "domain": "nationalcar.com",
+      "rules": [
+        {
+          "rule": "^https://www\\.nationalcar\\.com/en/reserve\\.html#/review.*$"
+        }
+      ]
+    },
+    {
+      "name": "fairmont.com",
+      "domain": "fairmont.com",
+      "rules": [
+        {
+          "rule": "^https://www\\.fairmont\\.com/reservations/en/complete-details/.*$"
+        }
+      ]
+    },
+    {
+      "name": "groupon.co.uk",
+      "domain": "groupon.co.uk",
+      "rules": [
+        {
+          "rule": "^https://www\\.groupon\\.co\\.uk/deals/.*/confirmation\\?pledge_id=.*$"
+        },
+        {
+          "rule": "^https://www\\.groupon\\.co\\.uk/deals/.*/confirmation\\?check_in=.*$"
+        }
+      ]
+    },
+    {
+      "name": "alamo.com",
+      "domain": "alamo.com",
+      "rules": [
+        {
+          "rule": "^https://www\\.alamo\\.com/en/reserve\\.html#/review.*$"
+        }
+      ]
+    },
+    {
+      "name": "eurowings.com",
+      "domain": "eurowings.com",
+      "rules": [
+        {
+          "rule": "^https://www\\.eurowings\\.com/en/booking/flights/flight-search\\.html.*$"
+        }
+      ]
+    },
+    {
+      "name": "sandals.com",
+      "domain": "sandals.com",
+      "rules": [
+        {
+          "rule": "^https://obe\\.sandals\\.com/guests/\\?subSessionId=.*$"
+        },
+        {
+          "rule": "^https://obe\\.sandals\\.com/payment/\\?subSessionId=.*$"
+        }
+      ]
+    },
+    {
+      "name": "holidaycottages.co.uk",
+      "domain": "holidaycottages.co.uk",
+      "rules": [
+        {
+          "rule": "^https://bookings\\.holidaycottages\\.co\\.uk/booking/email.*$"
+        },
+        {
+          "rule": "^https://booking\\.holidaycottages\\.co\\.uk/booking/step3.*$"
+        }
+      ]
+    },
+    {
+      "name": "minorhotels.com",
+      "domain": "minorhotels.com",
+      "rules": [
+        {
+          "rule": "^https://www\\.minor-hotels\\.com/it/booking/step1-rates\\?.*$"
+        },
+        {
+          "rule": "^https://securepayment\\.minor-hotels\\.com/checkout-prepayment\\?cbURL=.*$"
+        },
+        {
+          "rule": "https://www\\.minor-hotels\\.com/en/booking/step2-personal-data-prepaid\\?reservationId=.*$"
+        }
+      ]
+    },
+    {
+      "name": "hrs",
+      "domain": "hrs.com",
+      "rules": [
+        {
+          "rule": "hrs\\.com/.*book"
+        }
+      ]
+    },
+    {
+      "name": "nordvpn",
+      "domain": "nordvpn.com",
+      "rules": [
+        {
+          "rule": "nordvpn\\.com/.*pricing"
+        },
+        {
+          "rule": "nordvpn\\.com/.*payment"
+        }
+      ]
+    },
+    {
+      "name": "surfshark",
+      "domain": "surfshark.com",
+      "rules": [
+        {
+          "rule": "order\\.surfshark\\.com"
+        }
+      ]
+    },
+    {
+      "name": "hotel.de",
+      "domain": "hotel.de",
+      "rules": [
+        {
+          "rule": "hotel\\.de/.*/book"
+        }
+      ]
+    },
+    {
+      "name": "roomzzz",
+      "domain": "secure.roomzzz.com",
+      "rules": [
+        {
+          "rule": "secure\\.roomzzz\\.com/convert/site/Roomzzz.*/details\\.php"
+        }
+      ]
+    },
+    {
+      "name": "Exquisit DE",
+      "domain": "exquisit.de",
+      "rules": [
+        {
+          "rule": "/warenkorb"
+        },
+        {
+          "rule": "/kasse"
+        }
+      ]
+    },
+    {
+      "name": "Troph-e-shop",
+      "domain": "troph-e-shop.com",
+      "rules": [
+        {
+          "rule": "/warenkorb"
+        },
+        {
+          "rule": "/kasse"
+        }
+      ]
+    },
+    {
+      "name": "Xtrons Germany",
+      "domain": "xtronsgermany.de",
+      "rules": [
+        {
+          "rule": "/einkaufswagen"
+        },
+        {
+          "rule": "/zur-kasse"
+        }
+      ]
+    },
+    {
+      "name": "Comme à la TV",
+      "domain": "commealatv.com",
+      "rules": [
+        {
+          "rule": "/panier"
+        },
+        {
+          "rule": "/commande($|[^r])"
+        }
+      ]
+    },
+    {
+      "name": "Incapto",
+      "domain": "incapto.com",
+      "rules": [
+        {
+          "rule": "/carrito"
+        },
+        {
+          "rule": "/finalizar-compra"
+        }
+      ]
+    },
+    {
+      "name": "Pneumatici IT",
+      "domain": "pneumatici.it",
+      "rules": [
+        {
+          "rule": "/carrello"
+        },
+        {
+          "rule": "/check-out"
+        }
+      ]
+    },
+    {
+      "name": "Lapert CZ",
+      "domain": "lapert.cz",
+      "rules": [
+        {
+          "rule": "/kosik"
+        },
+        {
+          "rule": "/objednavka"
+        }
+      ]
+    },
+    {
+      "name": "Moje Lékárna",
+      "domain": "mojelekarna.cz",
+      "rules": [
+        {
+          "rule": "/kosik"
+        }
+      ]
+    },
+    {
+      "name": "Chicco Ukraine",
+      "domain": "chicco.com.ua",
+      "rules": [
+        {
+          "rule": "/order($|/|\\?|#)"
+        }
+      ]
+    },
+    {
+      "name": "Woolf HR",
+      "domain": "woolf.hr",
+      "rules": [
+        {
+          "rule": "/webshop/placanje"
+        }
+      ]
+    },
+    {
+      "name": "E-First Aid Supplies",
+      "domain": "e-firstaidsupplies.com",
+      "rules": [
+        {
+          "rule": "/BASK\\.html"
+        },
+        {
+          "rule": "/OCST\\.html"
+        }
+      ]
+    },
+    {
+      "name": "Sixt NL",
+      "domain": "sixt.nl",
+      "rules": [
+        {
+          "rule": "sixt\\.nl.*offercheckout"
+        }
+      ]
+    },
+    {
+      "name": "Quicken",
+      "domain": "quicken.com",
+      "rules": [
+        {
+          "rule": "cart\\.quicken\\.com"
+        }
+      ]
+    },
+    {
+      "name": "Oasis Hoteles",
+      "domain": "oasishoteles.com",
+      "rules": [
+        {
+          "rule": "oasishoteles\\.com/booking"
+        }
+      ]
+    },
+    {
+      "name": "JS Hotels",
+      "domain": "jshotels.com",
+      "rules": [
+        {
+          "rule": "jshotels\\.com/bookingstep"
+        }
+      ]
+    },
+    {
+      "name": "LateRooms",
+      "domain": "laterooms.com",
+      "rules": [
+        {
+          "rule": "laterooms\\.com/bookings"
+        }
+      ]
+    },
+    {
+      "name": "Villa Balbi",
+      "domain": "villabalbi.it",
+      "rules": [
+        {
+          "rule": "villabalbi\\.it.*/reservation"
+        }
+      ]
+    },
+    {
+      "name": "Quatro Rodas",
+      "domain": "quatrorodas.abril.com.br",
+      "rules": [
+        {
+          "rule": "quatrorodas\\.abril\\.com\\.br/assinar"
+        }
+      ]
+    },
+    {
+      "name": "Rental Property Refund",
+      "domain": "rentalpropertyrefund.com",
+      "rules": [
+        {
+          "rule": "rentalpropertyrefund\\.com.*/new-property"
+        }
+      ]
+    },
+    {
+      "name": "Tiptrans",
+      "domain": "tiptrans.com",
+      "rules": [
+        {
+          "rule": "tiptrans\\.com/clients/account.*priceplan"
+        }
+      ]
+    },
+    {
+      "name": "Best Western BE",
+      "domain": "bestwestern.be",
+      "rules": [
+        {
+          "rule": "bestwestern\\.be.*/booking-path"
+        }
+      ]
+    },
+    {
+      "name": "Mystrika",
+      "domain": "mystrika.com",
+      "rules": [
+        {
+          "rule": "mystrika\\.com/(billing|checkout)"
+        }
+      ]
+    },
+    {
+      "name": "MUD\\WTR",
+      "domain": "mudwtr.com",
+      "rules": [
+        {
+          "rule": "mudwtr\\.com/cart"
+        },
+        {
+          "rule": "mudwtr\\.com/.*[?&]cart=open"
+        }
+      ]
+    },
+    {
+      "name": "Footshop",
+      "domain": "footshop.sk",
+      "rules": [
+        {
+          "rule": "footshop\\.[a-z]+/[a-z]{2}/order"
+        }
+      ]
+    },
+    {
+      "name": "HomeServe FR",
+      "domain": "homeserve.fr",
+      "rules": [
+        {
+          "rule": "homeserve\\.fr/tunnel"
+        }
+      ]
+    },
+    {
+      "name": "Copa Marina",
+      "domain": "copamarina.com",
+      "rules": [
+        {
+          "rule": "copamarina\\.com/book/"
+        }
+      ]
+    },
+    {
+      "name": "Europ Assistance ES",
+      "domain": "europ-assistance.es",
+      "rules": [
+        {
+          "rule": "europ-assistance\\.es/funnel"
+        }
+      ]
+    },
+    {
+      "name": "EMU Australia",
+      "domain": "emuaustralia.com.au",
+      "rules": [
+        {
+          "rule": "emuaustralia\\.com\\.au/bag"
+        }
+      ]
+    },
+    {
+      "name": "Edax",
+      "domain": "edax.pl",
+      "rules": [
+        {
+          "rule": "edax\\.pl/basketedit\\.php"
+        },
+        {
+          "rule": "edax\\.pl/order1\\.php"
+        }
+      ]
+    },
+    {
+      "name": "McAfee HUP",
+      "domain": "mcafeehup.com",
+      "rules": [
+        {
+          "rule": "mcafeehup\\.com.*(?:scope=checkout|[?&]cart=)"
+        }
+      ]
+    },
+    {
+      "name": "Termly",
+      "domain": "termly.io",
+      "rules": [
+        {
+          "rule": "app\\.termly\\.io/user/sign-up.*info="
+        }
+      ]
+    },
+    {
+      "name": "TrackNotion",
+      "domain": "tracknotion.com",
+      "rules": [
+        {
+          "rule": "tracknotion\\.com/register\\?plan="
+        }
+      ]
+    },
+    {
+      "name": "Grow Fit Club",
+      "domain": "grow-fit.club",
+      "rules": [
+        {
+          "rule": "grow-fit\\.club/checkout"
+        }
+      ]
+    },
+    {
+      "name": "Brightside",
+      "domain": "brightside.com",
+      "rules": [
+        {
+          "rule": "brightside\\.com/intake/(payment|purchase)"
+        }
+      ]
+    },
+    {
+      "name": "Schildershop24 DE",
+      "domain": "schildershop24.de",
+      "rules": [
+        {
+          "rule": "action=(ShowCart|OrderStart)"
+        }
+      ]
+    },
+    {
+      "name": "Market MindShift",
+      "domain": "marketmindshift.com",
+      "rules": [
+        {
+          "rule": "\\/order(\\?|\\/|$)"
+        }
+      ]
+    },
+    {
+      "name": "Flytographer",
+      "domain": "flytographer.com",
+      "rules": [
+        {
+          "rule": "flytographer\\.com/(checkout|cart)"
+        }
+      ]
+    },
+    {
+      "name": "Hopegoo",
+      "domain": "hopegoo.com",
+      "rules": [
+        {
+          "rule": "hopegoo\\.com.*/hotelorder"
+        }
+      ]
+    },
+    {
+      "name": "MakeSpace",
+      "domain": "makespace.com",
+      "rules": [
+        {
+          "rule": "makespace\\.com/(book|checkout)"
+        }
+      ]
+    },
+    {
+      "name": "Go Visit Cancun",
+      "domain": "govisitcancun.com",
+      "rules": [
+        {
+          "rule": "govisitcancun\\.com/(checkout|cart|booking)"
+        }
+      ]
+    },
+    {
+      "name": "Energy Locals Retail",
+      "domain": "energylocalsretail.com.au",
+      "rules": [
+        {
+          "rule": "energylocalsretail\\.com\\.au/sign-up"
+        }
+      ]
+    },
+    {
+      "name": "Skillshare (affiliate)",
+      "domain": "skillshare.evyy.net",
+      "rules": [
+        {
+          "rule": "skillshare\\.evyy\\.net.*/checkout"
+        }
+      ]
+    }
+  ],
+  "customStandownPolicy": {},
+  "refreshInterval": 86400,
+  "configRefreshInterval": 3600,
+  "vanityBaseUrl": "https://wild.link",
+  "wfAppId": "267",
+  "wfSecret": "U2FsdGVkX19TBk0oN3V/l/OLdBzE6AvWUXoWSQ1a5oA=",
+  "backgroundMinLogLevel": "error",
+  "minVersion": "0.0.1",
+  "ignoredLanguages": []
+}

@@ -1,0 +1,77 @@
+{
+  "wfAppId": "556",
+  "wfSecret": "U2FsdGVkX1/lSr75bDCynH5H6f1z+8SDucQKc7UT6eI=",
+  "deviceUrl": "https://www.wildlink.me/webservice/v2/device",
+  "dataUrl": "https://www.wildlink.me/data",
+  "vanityBaseUrl": "https://wild.link",
+  "refreshInterval": 86400,
+  "configRefreshInterval": 43200,
+  "apiConfigBaseUri": "https://api.givefreely.com",
+  "apiConfig": {
+    "baseUri": "https://api.givefreely.com"
+  },
+  "containerStyle": {
+    "top": "calc(50% - 250px)",
+    "left": "calc(50% - 200px)",
+    "backdropColor": "rgba(180, 180, 180, 0.6)",
+    "showAsModal": false,
+    "clickAction": "ignore",
+    "customStyle": {
+      "top": "50%",
+      "left": "50%",
+      "transform": "translate(-50%,-50%)"
+    }
+  },
+  "comment-for-steve": "1.7.6 display is 640px wide and 475px tall.  Setting below should be 100px from top right corner",
+  "TOPRIGHTcontainerStyle": {
+    "backdropColor": "rgba(180, 180, 180, 0.6)",
+    "showAsModal": false,
+    "clickAction": "ignore",
+    "customStyle": {
+      "comment2": "somehow this works to put the box 1/2 inch from top right corner",
+      "top": "60px",
+      "right": "100px",
+      "oldtop": "342px",
+      "oldleft": "calc(100% - 420px)",
+      "oldtransform": "translate(-50%,-50%)"
+    }
+  },
+  "customLanguageDetection": [],
+  "externalUrls": {
+    "giveFreelyTermsAndConditions": "https://givefreely.com/charity-ad-terms",
+    "giveFreelyWhyAmISeeingThis": "https://givefreely.com/charity-ad-why?p=merlinprod"
+  },
+  "checkoutPopupMasterSwitch": true,
+  "multiAffiliate": {
+    "feedUrl": "https://prod.cdnwgf.com/feeds/merlinprod.unified-feed.json",
+    "feedRefreshInterval": 43200,
+    "activationUrl": "https://d3tngqzkvc7qp8.cloudfront.net/affiliate-link-gen",
+    "preActivationUrl": "https://d3tngqzkvc7qp8.cloudfront.net/preactivation",
+    "prunePreActivationProviders": [],
+    "skipWildfirePruning": false
+  },
+  "charities": {
+    "us": {
+      "1": {
+        "country": "us",
+        "ein": "822792979"
+      },
+      "2": {
+        "country": "us",
+        "ein": "620646012"
+      },
+      "3": {
+        "country": "us",
+        "ein": "131760110"
+      },
+      "4": {
+        "country": "us",
+        "ein": "133843435"
+      },
+      "5": {
+        "country": "us",
+        "ein": "060726487"
+      }
+    }
+  }
+}
