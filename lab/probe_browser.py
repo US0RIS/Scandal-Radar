@@ -23,6 +23,7 @@ from pathlib import Path
 
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
 
 
 def installed_extension_ids(driver: webdriver.Chrome) -> list[str]:
@@ -50,6 +51,7 @@ def main() -> int:
     ap.add_argument("--extension-dir", type=Path)
     ap.add_argument("--expected-extension-id")
     ap.add_argument("--chrome-binary", type=Path)
+    ap.add_argument("--chromedriver", type=Path)
     args = ap.parse_args()
 
     if bool(args.extension_dir) != bool(args.expected_extension_id):
@@ -74,6 +76,9 @@ def main() -> int:
     opts.add_argument("--no-default-browser-check")
     opts.add_argument("--disable-sync")
     opts.add_argument("--disable-translate")
+    opts.add_argument("--disable-dev-shm-usage")
+    opts.add_argument("--no-sandbox")
+    opts.add_argument("--disable-gpu")
     opts.add_argument("--window-size=1280,900")
     if args.extension_dir:
         opts.add_argument(f"--load-extension={args.extension_dir.resolve()}")
@@ -86,9 +91,12 @@ def main() -> int:
         "idle_seconds": args.idle_seconds,
         "expected_extension_id": args.expected_extension_id,
         "chrome_binary": str(args.chrome_binary) if args.chrome_binary else None,
+        "chromedriver": str(args.chromedriver) if args.chromedriver else None,
     }
-    driver = webdriver.Chrome(options=opts)
+    service = Service(executable_path=str(args.chromedriver.resolve())) if args.chromedriver else Service()
+    driver = None
     try:
+        driver = webdriver.Chrome(service=service, options=opts)
         status["browser_version"] = driver.capabilities.get("browserVersion")
         ids = installed_extension_ids(driver)
         status["installed_extension_ids"] = ids
@@ -127,10 +135,11 @@ def main() -> int:
         status["error"] = repr(exc)
     finally:
         status["finished_unix"] = time.time()
-        try:
-            driver.quit()
-        except Exception:
-            pass
+        if driver is not None:
+            try:
+                driver.quit()
+            except Exception:
+                pass
         args.out.write_text(json.dumps(status, indent=2, sort_keys=True) + "\n")
     return 0 if status["ok"] else 1
 
