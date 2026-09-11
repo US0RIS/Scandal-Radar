@@ -1,0 +1,358 @@
+{
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "all_frames": false,
+      "exclude_matches": [],
+      "js": [
+        "content-scripts/askMerlinSelection.js",
+        "content-scripts/blog-summarizer.js",
+        "content-scripts/floatingCTA.js",
+        "content-scripts/giveFreely.js",
+        "content-scripts/main.js"
+      ],
+      "matches": [
+        "<all_urls>"
+      ],
+      "run_at": "document_idle"
+    },
+    {
+      "all_frames": false,
+      "exclude_matches": [],
+      "js": [
+        "content-scripts/gmailStrip.js"
+      ],
+      "matches": [
+        "https://mail.google.com/*"
+      ],
+      "run_at": "document_idle"
+    },
+    {
+      "all_frames": false,
+      "exclude_matches": [],
+      "js": [
+        "content-scripts/linkedinStrip.js"
+      ],
+      "matches": [
+        "https://www.linkedin.com/*"
+      ],
+      "run_at": "document_idle"
+    },
+    {
+      "all_frames": false,
+      "exclude_matches": [],
+      "js": [
+        "content-scripts/twitterStrip.js"
+      ],
+      "matches": [
+        "https://twitter.com/*",
+        "https://x.com/*"
+      ],
+      "run_at": "document_idle"
+    },
+    {
+      "all_frames": false,
+      "exclude_matches": [],
+      "js": [
+        "content-scripts/youtube-pot.js"
+      ],
+      "matches": [
+        "*://*.youtube.com/*"
+      ],
+      "run_at": "document_start"
+    },
+    {
+      "all_frames": false,
+      "exclude_matches": [],
+      "js": [
+        "content-scripts/youtube.js"
+      ],
+      "matches": [
+        "*://*.youtube.com/*"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "crx_bytes": 4367783,
+  "crx_sha256": "037f314b67709ff39b701042e1b945a2cdabac7264a8ea72dde92715d2d88d41",
+  "extension_id": "camppjleccjaphfdbohjdohecfnoikec",
+  "externally_connectable": {
+    "matches": [
+      "*://*.getmerlin.in/*",
+      "*://*.foyer.work/*"
+    ]
+  },
+  "host_permissions": [
+    "https://*/*"
+  ],
+  "keyword_hits": {
+    "affiliate": 27,
+    "analytics": 128,
+    "commission": 20,
+    "cookies": 32,
+    "history": 307,
+    "scripting": 11,
+    "tabs": 268,
+    "telemetry": 5,
+    "tracking": 168,
+    "webRequest": 13
+  },
+  "manifest_path": "manifest.json",
+  "manifest_version": 3,
+  "name": "__MSG_extensionName__",
+  "optional_host_permissions": [
+    "<all_urls>"
+  ],
+  "optional_permissions": [
+    "identity"
+  ],
+  "permissions": [
+    "sidePanel",
+    "storage",
+    "contextMenus",
+    "tabs",
+    "alarms",
+    "webNavigation",
+    "webRequest",
+    "scripting"
+  ],
+  "remote_hosts_by_literal_url_frequency": [
+    [
+      "www.w3.org",
+      175
+    ],
+    [
+      "chevrotain.io",
+      20
+    ],
+    [
+      "react.dev",
+      14
+    ],
+    [
+      "github.com",
+      12
+    ],
+    [
+      "cdn.jsdelivr.net",
+      9
+    ],
+    [
+      "identitytoolkit.googleapis.com",
+      8
+    ],
+    [
+      "securetoken.googleapis.com",
+      7
+    ],
+    [
+      "developer.mozilla.org",
+      5
+    ],
+    [
+      "www.getmerlin.in",
+      4
+    ],
+    [
+      "`",
+      4
+    ],
+    [
+      "www.linkedin.com",
+      3
+    ],
+    [
+      "twitter.com",
+      3
+    ],
+    [
+      "fonts.googleapis.com",
+      3
+    ],
+    [
+      "www.youtube.com",
+      3
+    ],
+    [
+      "cdn.givefreely.com",
+      2
+    ],
+    [
+      "www.google-analytics.com",
+      2
+    ],
+    [
+      "*",
+      2
+    ],
+    [
+      "x.com",
+      2
+    ],
+    [
+      "mail.google.com",
+      2
+    ],
+    [
+      "json-schema.org",
+      2
+    ],
+    [
+      "localhost`,en={...bn,...yn};function",
+      2
+    ],
+    [
+      "bit.ly",
+      2
+    ],
+    [
+      "feedback.getmerlin.in`,`_blank`,`noopener,noreferrer`",
+      2
+    ],
+    [
+      "getmerlin.in",
+      2
+    ],
+    [
+      "example.com`",
+      2
+    ],
+    [
+      "localhost`,f={...yr,...vr};function",
+      1
+    ],
+    [
+      "clients2.google.com",
+      1
+    ],
+    [
+      "fonts.gstatic.com",
+      1
+    ],
+    [
+      "localhost`,bn={...pn,...nn};function",
+      1
+    ],
+    [
+      "localhost`,an={...wn,...cn};function",
+      1
+    ],
+    [
+      "cdn.getmerlin.in",
+      1
+    ],
+    [
+      "www.youtube.com`",
+      1
+    ],
+    [
+      "localhost`,fn={...kn,...on};function",
+      1
+    ],
+    [
+      "tailwindcss.com",
+      1
+    ],
+    [
+      "shop.app`",
+      1
+    ],
+    [
+      "localhost`,ki={...bi,...zi};function",
+      1
+    ],
+    [
+      "radix-ui.com",
+      1
+    ],
+    [
+      "www.google.com",
+      1
+    ],
+    [
+      "feedback.getmerlin.in",
+      1
+    ],
+    [
+      "www.ibm.com",
+      1
+    ],
+    [
+      "`+this.sliceserialize(e",
+      1
+    ],
+    [
+      "www.youtube.com`,title",
+      1
+    ],
+    [
+      "en.wikipedia.org",
+      1
+    ],
+    [
+      "langium.org",
+      1
+    ]
+  ],
+  "scanned_text_files": 469,
+  "version": "8.2.3",
+  "warning": "Static presence does not establish runtime behavior or endpoint ownership.",
+  "web_accessible_resources": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "resources": [
+        "logo-64x64.png"
+      ]
+    },
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "resources": [
+        "content-scripts/blog-summarizer.css"
+      ],
+      "use_dynamic_url": true
+    },
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "resources": [
+        "content-scripts/floatingCTA.css"
+      ],
+      "use_dynamic_url": true
+    },
+    {
+      "matches": [
+        "https://www.linkedin.com/*"
+      ],
+      "resources": [
+        "content-scripts/linkedinStrip.css"
+      ],
+      "use_dynamic_url": true
+    },
+    {
+      "matches": [
+        "https://twitter.com/*",
+        "https://x.com/*"
+      ],
+      "resources": [
+        "content-scripts/twitterStrip.css"
+      ],
+      "use_dynamic_url": true
+    },
+    {
+      "matches": [
+        "*://*.youtube.com/*"
+      ],
+      "resources": [
+        "content-scripts/youtube.css"
+      ],
+      "use_dynamic_url": true
+    }
+  ]
+}

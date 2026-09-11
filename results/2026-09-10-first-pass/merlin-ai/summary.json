@@ -1,0 +1,217 @@
+{
+  "baseline_canary_request_events": [],
+  "baseline_hosts": {
+    "accounts.google.com": 1,
+    "android.clients.google.com": 4,
+    "clients2.google.com": 1,
+    "content-autofill.googleapis.com": 1,
+    "example.com": 1,
+    "optimizationguide-pa.googleapis.com": 10,
+    "www.google.com": 4,
+    "www.gstatic.com": 3
+  },
+  "baseline_request_count": 25,
+  "content_scripts": [
+    {
+      "all_frames": false,
+      "exclude_matches": [],
+      "js": [
+        "content-scripts/askMerlinSelection.js",
+        "content-scripts/blog-summarizer.js",
+        "content-scripts/floatingCTA.js",
+        "content-scripts/giveFreely.js",
+        "content-scripts/main.js"
+      ],
+      "matches": [
+        "<all_urls>"
+      ],
+      "run_at": "document_idle"
+    },
+    {
+      "all_frames": false,
+      "exclude_matches": [],
+      "js": [
+        "content-scripts/gmailStrip.js"
+      ],
+      "matches": [
+        "https://mail.google.com/*"
+      ],
+      "run_at": "document_idle"
+    },
+    {
+      "all_frames": false,
+      "exclude_matches": [],
+      "js": [
+        "content-scripts/linkedinStrip.js"
+      ],
+      "matches": [
+        "https://www.linkedin.com/*"
+      ],
+      "run_at": "document_idle"
+    },
+    {
+      "all_frames": false,
+      "exclude_matches": [],
+      "js": [
+        "content-scripts/twitterStrip.js"
+      ],
+      "matches": [
+        "https://twitter.com/*",
+        "https://x.com/*"
+      ],
+      "run_at": "document_idle"
+    },
+    {
+      "all_frames": false,
+      "exclude_matches": [],
+      "js": [
+        "content-scripts/youtube-pot.js"
+      ],
+      "matches": [
+        "*://*.youtube.com/*"
+      ],
+      "run_at": "document_start"
+    },
+    {
+      "all_frames": false,
+      "exclude_matches": [],
+      "js": [
+        "content-scripts/youtube.js"
+      ],
+      "matches": [
+        "*://*.youtube.com/*"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "crx_sha256": "037f314b67709ff39b701042e1b945a2cdabac7264a8ea72dde92715d2d88d41",
+  "differential_canary_request_events": [],
+  "extension_canary_request_events": [],
+  "extension_hosts": {
+    "accounts.google.com": 1,
+    "android.clients.google.com": 2,
+    "content-autofill.googleapis.com": 1,
+    "example.com": 1,
+    "optimizationguide-pa.googleapis.com": 1,
+    "www.google.com": 4
+  },
+  "extension_request_count": 10,
+  "extension_version": "8.2.3",
+  "host_permissions": [
+    "https://*/*"
+  ],
+  "hosts_only_seen_with_extension": [],
+  "interpretation": "A differential canary event is a lead, not proof of improper collection. Browser referrers, first-run flows, vendor endpoints, and feature necessity must be ruled out. Absence of a canary match does not prove absence of collection because certificate pinning, encryption above HTTP, alternate transports, or unlogged fields may prevent inspection.",
+  "literal_remote_hosts_top25": [
+    [
+      "www.w3.org",
+      175
+    ],
+    [
+      "chevrotain.io",
+      20
+    ],
+    [
+      "react.dev",
+      14
+    ],
+    [
+      "github.com",
+      12
+    ],
+    [
+      "cdn.jsdelivr.net",
+      9
+    ],
+    [
+      "identitytoolkit.googleapis.com",
+      8
+    ],
+    [
+      "securetoken.googleapis.com",
+      7
+    ],
+    [
+      "developer.mozilla.org",
+      5
+    ],
+    [
+      "www.getmerlin.in",
+      4
+    ],
+    [
+      "`",
+      4
+    ],
+    [
+      "www.linkedin.com",
+      3
+    ],
+    [
+      "twitter.com",
+      3
+    ],
+    [
+      "fonts.googleapis.com",
+      3
+    ],
+    [
+      "www.youtube.com",
+      3
+    ],
+    [
+      "cdn.givefreely.com",
+      2
+    ],
+    [
+      "www.google-analytics.com",
+      2
+    ],
+    [
+      "*",
+      2
+    ],
+    [
+      "x.com",
+      2
+    ],
+    [
+      "mail.google.com",
+      2
+    ],
+    [
+      "json-schema.org",
+      2
+    ],
+    [
+      "localhost`,en={...bn,...yn};function",
+      2
+    ],
+    [
+      "bit.ly",
+      2
+    ],
+    [
+      "feedback.getmerlin.in`,`_blank`,`noopener,noreferrer`",
+      2
+    ],
+    [
+      "getmerlin.in",
+      2
+    ],
+    [
+      "example.com`",
+      2
+    ]
+  ],
+  "manifest_permissions": [
+    "sidePanel",
+    "storage",
+    "contextMenus",
+    "tabs",
+    "alarms",
+    "webNavigation",
+    "webRequest",
+    "scripting"
+  ]
+}

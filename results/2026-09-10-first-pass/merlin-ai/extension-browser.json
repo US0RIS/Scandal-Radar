@@ -1,0 +1,10 @@
+{
+  "browser_console": [],
+  "finished_unix": 1789098229.110546,
+  "idle_seconds": 30,
+  "injected_unix": 1789098199.1082695,
+  "ok": true,
+  "page_url_after_pushstate": "https://example.com/scandal-radar-probe?marker=SCANDAL_RADAR_URL_52A334A36E286C7B10484386",
+  "started_unix": 1789098194.9450724,
+  "title_after_injection": "SCANDAL_RADAR_TITLE_8583AC9CC37C9254DF12DE13"
+}
