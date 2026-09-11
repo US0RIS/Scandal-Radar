@@ -101,12 +101,13 @@ jobs:
           MPID=$!
           trap 'kill $MPID 2>/dev/null || true' EXIT
           sleep 2
-          xvfb-run -a python lab/probe_browser.py \
+          python lab/probe_browser.py \
             --profile "/tmp/scandal-radar-baseline-${{ matrix.slug }}" \
             --out "work/${{ matrix.slug }}/baseline-browser.json" \
             --proxy "http://127.0.0.1:8080" \
             --chrome-binary "$CFT_BINARY" \
             --chromedriver "$CFT_DRIVER" \
+            --headless \
             --idle-seconds 20
           kill $MPID 2>/dev/null || true
           wait $MPID 2>/dev/null || true
@@ -120,12 +121,13 @@ jobs:
           mitmdump -q -p 8081 -s lab/mitm_addon.py >"work/${{ matrix.slug }}/extension-mitm.log" 2>&1 &
           MPID=$!
           sleep 2
-          xvfb-run -a python lab/probe_browser.py \
+          python lab/probe_browser.py \
             --profile "/tmp/scandal-radar-extension-${{ matrix.slug }}" \
             --out "work/${{ matrix.slug }}/extension-browser.json" \
             --proxy "http://127.0.0.1:8081" \
             --chrome-binary "$CFT_BINARY" \
             --chromedriver "$CFT_DRIVER" \
+            --headless \
             --extension-dir "$PWD/work/${{ matrix.slug }}/runtime-extension" \
             --expected-extension-id "${{ matrix.extension_id }}" \
             --idle-seconds 30
