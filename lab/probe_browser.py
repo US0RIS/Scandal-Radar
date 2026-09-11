@@ -9,7 +9,9 @@ mitmproxy addon, with a separate no-extension control required for interpretatio
 
 For extension-present runs, pass --extension-dir and --expected-extension-id. The
 script loads the prepared unpacked extension and verifies that Chrome reports the
-expected Web Store identity before beginning the canary test.
+expected Web Store identity before beginning the canary test. A Chrome for Testing or
+Chromium binary may be supplied because branded Chrome releases can disable the
+--load-extension switch.
 """
 from __future__ import annotations
 
@@ -47,6 +49,7 @@ def main() -> int:
     ap.add_argument("--idle-seconds", type=int, default=25)
     ap.add_argument("--extension-dir", type=Path)
     ap.add_argument("--expected-extension-id")
+    ap.add_argument("--chrome-binary", type=Path)
     args = ap.parse_args()
 
     if bool(args.extension_dir) != bool(args.expected_extension_id):
@@ -61,6 +64,8 @@ def main() -> int:
     args.out.parent.mkdir(parents=True, exist_ok=True)
 
     opts = Options()
+    if args.chrome_binary:
+        opts.binary_location = str(args.chrome_binary.resolve())
     opts.add_argument(f"--user-data-dir={args.profile.resolve()}")
     opts.add_argument(f"--proxy-server={args.proxy}")
     opts.add_argument("--proxy-bypass-list=<-loopback>")
@@ -80,9 +85,11 @@ def main() -> int:
         "started_unix": started,
         "idle_seconds": args.idle_seconds,
         "expected_extension_id": args.expected_extension_id,
+        "chrome_binary": str(args.chrome_binary) if args.chrome_binary else None,
     }
     driver = webdriver.Chrome(options=opts)
     try:
+        status["browser_version"] = driver.capabilities.get("browserVersion")
         ids = installed_extension_ids(driver)
         status["installed_extension_ids"] = ids
         if args.expected_extension_id and args.expected_extension_id not in ids:
