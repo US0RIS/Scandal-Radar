@@ -52,6 +52,7 @@ def main() -> int:
     ap.add_argument("--expected-extension-id")
     ap.add_argument("--chrome-binary", type=Path)
     ap.add_argument("--chromedriver", type=Path)
+    ap.add_argument("--headless", action="store_true")
     args = ap.parse_args()
 
     if bool(args.extension_dir) != bool(args.expected_extension_id):
@@ -80,6 +81,8 @@ def main() -> int:
     opts.add_argument("--no-sandbox")
     opts.add_argument("--disable-gpu")
     opts.add_argument("--window-size=1280,900")
+    if args.headless:
+        opts.add_argument("--headless=new")
     if args.extension_dir:
         opts.add_argument(f"--load-extension={args.extension_dir.resolve()}")
     opts.set_capability("goog:loggingPrefs", {"browser": "ALL"})
@@ -92,6 +95,7 @@ def main() -> int:
         "expected_extension_id": args.expected_extension_id,
         "chrome_binary": str(args.chrome_binary) if args.chrome_binary else None,
         "chromedriver": str(args.chromedriver) if args.chromedriver else None,
+        "headless": args.headless,
     }
     service = Service(executable_path=str(args.chromedriver.resolve())) if args.chromedriver else Service()
     driver = None
