@@ -1,20 +1,602 @@
 {
   "all_invoked_canaries_captured": false,
-  "all_runs_ok": false,
+  "all_runs_ok": true,
   "expected_extension_id": "gkojfkhlekighikafcpjkiklfbnlmeio",
   "headed": true,
   "probe": "hola-controlled-transport",
   "repetitions": 2,
   "results": [
     {
-      "error": "Error('Worker.evaluate: ReferenceError: XMLHttpRequest is not defined\\n    at eval (eval at evaluate (:311:30), <anonymous>:3:27)\\n    at UtilityScript.evaluate (<anonymous>:318:18)\\n    at UtilityScript.<anonymous> (<anonymous>:1:44)')",
-      "ok": false,
-      "run": 1
+      "active_url_observed_by_extension": "https://example.com/?sr_marker=SCANDAL_RADAR_HOLA_1_632504A31EA412271FCC0973",
+      "canary_in_browser_request": false,
+      "canary_in_instrumented_fetch": false,
+      "controlled_invocation_unix": 1789100784.7915483,
+      "identity": {
+        "has_bg_main": true,
+        "has_fetch": true,
+        "has_rule": true,
+        "has_sender": true,
+        "runtime_id": "gkojfkhlekighikafcpjkiklfbnlmeio",
+        "version": "1.258.557"
+      },
+      "invoked_browser_requests": [
+        {
+          "method": "POST",
+          "post_data": "{\"info\":\"{\\\"src_country\\\":\\\"us\\\",\\\"url\\\":\\\"https://hola.org/welcome?ext_ver=1.258.557&uuid=b48ba6b74956dd3c84a7e15540f54769\\\",\\\"proxy_country\\\":\\\"us\\\",\\\"hola_uid\\\":null,\\\"src\\\":\\\"scandal-radar-controlled\\\",\\\"name\\\":\\\"example.com\\\",\\\"type\\\":\\\"site\\\"}\",\"ver\":\"1.258.557\",\"build\":\"version: 1.258.557\\nlocal_ts: Fri Sep 11 2026 04:26:24 GMT+0000 (Coordinated Universal Time)\\nsrc_country: US\\nlocale: en-US\\nlocales: en-US,en\\nmanifest_version: 1.258.557\\nmanifest_ver: 3\\nconf_stamp: 1788961167351\\nsvc_version: null\\nsvc_appid: \\ncampaign: \\nsvc_uuid: \\next.active: true\\next.suspended: \\next_conflict: false\\nis_premium: false\\nhola_uid_id: \\nsession_key: 1723498281\\nconf_ver: 45\\nab_test: test_limited_currencies_555_on,test_send_chrome_headers_off\\nactive_tab: 1322401322\\nunblocking_mode: tab\\nproduct_type: cws\\nid: gkojfkhlekighikafcpjkiklfbnlmeio\\nbrowser: chrome 151\\nbrowser_build: chrome\\nplatform: Linux x86_64\\nuser_agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36\\ninstall_ms: 12846\\ninstall_time: 0-1h\\nlast_install_ts: 1789100771947\\nsince_init_ms: 12859\\nsince_state_init_ms: 12859\",\"is_json\":1}",
+          "resource_type": "fetch",
+          "url": "https://perr.hola.org/client_cgi/perr?id=be_vpn_ok&ext_ver=1.258.557&product=cws&browser=chrome&uuid=b48ba6b74956dd3c84a7e15540f54769"
+        }
+      ],
+      "invoked_perr_fetches": [
+        {
+          "body": "{\"info\":\"{\\\"src_country\\\":\\\"us\\\",\\\"url\\\":\\\"https://hola.org/welcome?ext_ver=1.258.557&uuid=b48ba6b74956dd3c84a7e15540f54769\\\",\\\"proxy_country\\\":\\\"us\\\",\\\"hola_uid\\\":null,\\\"src\\\":\\\"scandal-radar-controlled\\\",\\\"name\\\":\\\"example.com\\\",\\\"type\\\":\\\"site\\\"}\",\"ver\":\"1.258.557\",\"build\":\"version: 1.258.557\\nlocal_ts: Fri Sep 11 2026 04:26:24 GMT+0000 (Coordinated Universal Time)\\nsrc_country: US\\nlocale: en-US\\nlocales: en-US,en\\nmanifest_version: 1.258.557\\nmanifest_ver: 3\\nconf_stamp: 1788961167351\\nsvc_version: null\\nsvc_appid: \\ncampaign: \\nsvc_uuid: \\next.active: true\\next.suspended: \\next_conflict: false\\nis_premium: false\\nhola_uid_id: \\nsession_key: 1723498281\\nconf_ver: 45\\nab_test: test_limited_currencies_555_on,test_send_chrome_headers_off\\nactive_tab: 1322401322\\nunblocking_mode: tab\\nproduct_type: cws\\nid: gkojfkhlekighikafcpjkiklfbnlmeio\\nbrowser: chrome 151\\nbrowser_build: chrome\\nplatform: Linux x86_64\\nuser_agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36\\ninstall_ms: 12846\\ninstall_time: 0-1h\\nlast_install_ts: 1789100771947\\nsince_init_ms: 12859\\nsince_state_init_ms: 12859\",\"is_json\":1}",
+          "method": "POST",
+          "ts": 1789100784793,
+          "url": "https://perr.hola.org/client_cgi/perr?id=be_vpn_ok&ext_ver=1.258.557&product=cws&browser=chrome&uuid=b48ba6b74956dd3c84a7e15540f54769"
+        }
+      ],
+      "marker": "SCANDAL_RADAR_HOLA_1_632504A31EA412271FCC0973",
+      "ok": true,
+      "parsed_invoked_events": [
+        {
+          "body": {
+            "build": "version: 1.258.557\nlocal_ts: Fri Sep 11 2026 04:26:24 GMT+0000 (Coordinated Universal Time)\nsrc_country: US\nlocale: en-US\nlocales: en-US,en\nmanifest_version: 1.258.557\nmanifest_ver: 3\nconf_stamp: 1788961167351\nsvc_version: null\nsvc_appid: \ncampaign: \nsvc_uuid: \next.active: true\next.suspended: \next_conflict: false\nis_premium: false\nhola_uid_id: \nsession_key: 1723498281\nconf_ver: 45\nab_test: test_limited_currencies_555_on,test_send_chrome_headers_off\nactive_tab: 1322401322\nunblocking_mode: tab\nproduct_type: cws\nid: gkojfkhlekighikafcpjkiklfbnlmeio\nbrowser: chrome 151\nbrowser_build: chrome\nplatform: Linux x86_64\nuser_agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36\ninstall_ms: 12846\ninstall_time: 0-1h\nlast_install_ts: 1789100771947\nsince_init_ms: 12859\nsince_state_init_ms: 12859",
+            "info": "{\"src_country\":\"us\",\"url\":\"https://hola.org/welcome?ext_ver=1.258.557&uuid=b48ba6b74956dd3c84a7e15540f54769\",\"proxy_country\":\"us\",\"hola_uid\":null,\"src\":\"scandal-radar-controlled\",\"name\":\"example.com\",\"type\":\"site\"}",
+            "is_json": 1,
+            "ver": "1.258.557"
+          },
+          "contains_marker": false,
+          "info": {
+            "hola_uid": null,
+            "name": "example.com",
+            "proxy_country": "us",
+            "src": "scandal-radar-controlled",
+            "src_country": "us",
+            "type": "site",
+            "url": "https://hola.org/welcome?ext_ver=1.258.557&uuid=b48ba6b74956dd3c84a7e15540f54769"
+          },
+          "method": "POST",
+          "url": "https://perr.hola.org/client_cgi/perr?id=be_vpn_ok&ext_ver=1.258.557&product=cws&browser=chrome&uuid=b48ba6b74956dd3c84a7e15540f54769"
+        }
+      ],
+      "passive_browser_requests": [
+        {
+          "method": "GET",
+          "post_data": null,
+          "resource_type": "fetch",
+          "url": "https://perr.hola.org/client_cgi/perr/conn_test"
+        },
+        {
+          "method": "POST",
+          "post_data": "{\"info\":\"{}\",\"ver\":\"1.258.557\",\"build\":\"version: 1.258.557\\nlocal_ts: Fri Sep 11 2026 04:26:16 GMT+0000 (Coordinated Universal Time)\\nsrc_country: undefined\\nlocale: en-US\\nlocales: en-US,en\\nmanifest_version: 1.258.557\\nmanifest_ver: 3\\nconf_stamp: 0\\next.active: false\\next.suspended: \\nconf_ver: 45\\nab_test: \\nactive_tab: 1322401321\\nunblocking_mode: tab\\nproduct_type: cws\\nid: gkojfkhlekighikafcpjkiklfbnlmeio\\nbrowser: chrome 151\\nbrowser_build: chrome\\nplatform: Linux x86_64\\nuser_agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36\\ninstall_ms: 4604\\ninstall_time: 0-1h\\nlast_install_ts: 1789100771947\\nsince_init_ms: 4617\\nsince_state_init_ms: 4617\",\"is_json\":1}",
+          "resource_type": "fetch",
+          "url": "https://perr.hola.org/client_cgi/perr?id=be_up&ext_ver=1.258.557&product=cws&browser=chrome&uuid=b48ba6b74956dd3c84a7e15540f54769"
+        },
+        {
+          "method": "POST",
+          "post_data": "{\"info\":\"{\\\"name\\\":\\\"hola\\\",\\\"check_name\\\":\\\"ccgi_check\\\",\\\"urls\\\":[\\\"client.hola.org/client_cgi/conn_test\\\"],\\\"mode\\\":\\\"parallel\\\"}\",\"ver\":\"1.258.557\",\"build\":\"version: 1.258.557\\nlocal_ts: Fri Sep 11 2026 04:26:16 GMT+0000 (Coordinated Universal Time)\\nsrc_country: undefined\\nlocale: en-US\\nlocales: en-US,en\\nmanifest_version: 1.258.557\\nmanifest_ver: 3\\nconf_stamp: 0\\next.active: false\\next.suspended: \\nconf_ver: 45\\nab_test: \\nactive_tab: 1322401321\\nunblocking_mode: tab\\nproduct_type: cws\\nid: gkojfkhlekighikafcpjkiklfbnlmeio\\nbrowser: chrome 151\\nbrowser_build: chrome\\nplatform: Linux x86_64\\nuser_agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36\\ninstall_ms: 4607\\ninstall_time: 0-1h\\nlast_install_ts: 1789100771947\\nsince_init_ms: 4620\\nsince_state_init_ms: 4620\",\"is_json\":1}",
+          "resource_type": "fetch",
+          "url": "https://perr.hola.org/client_cgi/perr?id=be_connectivity_check_success&ext_ver=1.258.557&product=cws&browser=chrome&uuid=b48ba6b74956dd3c84a7e15540f54769"
+        },
+        {
+          "method": "POST",
+          "post_data": "{\"info\":\"{\\\"new_mode\\\":\\\"ext\\\"}\",\"ver\":\"1.258.557\",\"build\":\"version: 1.258.557\\nlocal_ts: Fri Sep 11 2026 04:26:16 GMT+0000 (Coordinated Universal Time)\\nsrc_country: US\\nlocale: en-US\\nlocales: en-US,en\\nmanifest_version: 1.258.557\\nmanifest_ver: 3\\nconf_stamp: 0\\next.active: true\\next.suspended: \\next_conflict: false\\nsession_key: 1723498281\\nconf_ver: 45\\nab_test: \\nactive_tab: 1322401321\\nunblocking_mode: tab\\nproduct_type: cws\\nid: gkojfkhlekighikafcpjkiklfbnlmeio\\nbrowser: chrome 151\\nbrowser_build: chrome\\nplatform: Linux x86_64\\nuser_agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36\\ninstall_ms: 4771\\ninstall_time: 0-1h\\nlast_install_ts: 1789100771947\\nsince_init_ms: 4784\\nsince_state_init_ms: 4784\",\"is_json\":1}",
+          "resource_type": "fetch",
+          "url": "https://perr.hola.org/client_cgi/perr?id=be_mode_change&ext_ver=1.258.557&product=cws&browser=chrome&uuid=b48ba6b74956dd3c84a7e15540f54769"
+        },
+        {
+          "method": "POST",
+          "post_data": "{\"info\":\"{\\\"diff\\\":4711}\",\"ver\":\"1.258.557\",\"build\":\"version: 1.258.557\\nlocal_ts: Fri Sep 11 2026 04:26:16 GMT+0000 (Coordinated Universal Time)\\nsrc_country: US\\nlocale: en-US\\nlocales: en-US,en\\nmanifest_version: 1.258.557\\nmanifest_ver: 3\\nconf_stamp: 0\\next.active: true\\next.suspended: \\next_conflict: false\\nsession_key: 1723498281\\nconf_ver: 45\\nab_test: \\nactive_tab: 1322401321\\nunblocking_mode: tab\\nproduct_type: cws\\nid: gkojfkhlekighikafcpjkiklfbnlmeio\\nbrowser: chrome 151\\nbrowser_build: chrome\\nplatform: Linux x86_64\\nuser_agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36\\ninstall_ms: 4772\\ninstall_time: 0-1h\\nlast_install_ts: 1789100771947\\nsince_init_ms: 4785\\nsince_state_init_ms: 4785\",\"is_json\":1}",
+          "resource_type": "fetch",
+          "url": "https://perr.hola.org/client_cgi/perr?id=be_background_init_ok&ext_ver=1.258.557&product=cws&browser=chrome&uuid=b48ba6b74956dd3c84a7e15540f54769"
+        },
+        {
+          "method": "POST",
+          "post_data": "{\"info\":\"{\\\"name\\\":\\\"hola\\\",\\\"check_name\\\":\\\"perr_check\\\",\\\"urls\\\":[\\\"perr.hola.org/client_cgi/perr/conn_test\\\"],\\\"mode\\\":\\\"parallel\\\"}\",\"ver\":\"1.258.557\",\"build\":\"version: 1.258.557\\nlocal_ts: Fri Sep 11 2026 04:26:16 GMT+0000 (Coordinated Universal Time)\\nsrc_country: US\\nlocale: en-US\\nlocales: en-US,en\\nmanifest_version: 1.258.557\\nmanifest_ver: 3\\nconf_stamp: 0\\next.active: true\\next.suspended: \\next_conflict: false\\nsession_key: 1723498281\\nconf_ver: 45\\nab_test: \\nactive_tab: 1322401321\\nunblocking_mode: tab\\nproduct_type: cws\\nid: gkojfkhlekighikafcpjkiklfbnlmeio\\nbrowser: chrome 151\\nbrowser_build: chrome\\nplatform: Linux x86_64\\nuser_agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36\\ninstall_ms: 4810\\ninstall_time: 0-1h\\nlast_install_ts: 1789100771947\\nsince_init_ms: 4823\\nsince_state_init_ms: 4823\",\"is_json\":1}",
+          "resource_type": "fetch",
+          "url": "https://perr.hola.org/client_cgi/perr?id=be_connectivity_check_success&ext_ver=1.258.557&product=cws&browser=chrome&uuid=b48ba6b74956dd3c84a7e15540f54769"
+        },
+        {
+          "method": "POST",
+          "post_data": "{\"info\":\"{\\\"name\\\":\\\"hola\\\",\\\"check_name\\\":\\\"hola_check\\\",\\\"urls\\\":[\\\"hola.org/conn_test\\\"],\\\"mode\\\":\\\"parallel\\\"}\",\"ver\":\"1.258.557\",\"build\":\"version: 1.258.557\\nlocal_ts: Fri Sep 11 2026 04:26:16 GMT+0000 (Coordinated Universal Time)\\nsrc_country: US\\nlocale: en-US\\nlocales: en-US,en\\nmanifest_version: 1.258.557\\nmanifest_ver: 3\\nconf_stamp: 0\\next.active: true\\next.suspended: \\next_conflict: false\\nsession_key: 1723498281\\nconf_ver: 45\\nab_test: \\nactive_tab: 1322401321\\nunblocking_mode: tab\\nproduct_type: cws\\nid: gkojfkhlekighikafcpjkiklfbnlmeio\\nbrowser: chrome 151\\nbrowser_build: chrome\\nplatform: Linux x86_64\\nuser_agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36\\ninstall_ms: 4894\\ninstall_time: 0-1h\\nlast_install_ts: 1789100771947\\nsince_init_ms: 4907\\nsince_state_init_ms: 4907\",\"is_json\":1}",
+          "resource_type": "fetch",
+          "url": "https://perr.hola.org/client_cgi/perr?id=be_connectivity_check_success&ext_ver=1.258.557&product=cws&browser=chrome&uuid=b48ba6b74956dd3c84a7e15540f54769"
+        },
+        {
+          "method": "POST",
+          "post_data": "{\"info\":\"{\\\"name\\\":\\\"hola\\\",\\\"check_name\\\":\\\"ccgi_cdn_check\\\",\\\"urls\\\":[\\\"client-cdn4.hola.org/client_cgi/conn_test\\\"],\\\"mode\\\":\\\"parallel\\\"}\",\"ver\":\"1.258.557\",\"build\":\"version: 1.258.557\\nlocal_ts: Fri Sep 11 2026 04:26:16 GMT+0000 (Coordinated Universal Time)\\nsrc_country: US\\nlocale: en-US\\nlocales: en-US,en\\nmanifest_version: 1.258.557\\nmanifest_ver: 3\\nconf_stamp: 0\\nsvc_version: null\\nsvc_appid: \\ncampaign: \\nsvc_uuid: \\next.active: true\\next.suspended: \\next_conflict: false\\nsession_key: 1723498281\\nconf_ver: 45\\nab_test: \\nactive_tab: 1322401321\\nunblocking_mode: tab\\nproduct_type: cws\\nid: gkojfkhlekighikafcpjkiklfbnlmeio\\nbrowser: chrome 151\\nbrowser_build: chrome\\nplatform: Linux x86_64\\nuser_agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36\\ninstall_ms: 4950\\ninstall_time: 0-1h\\nlast_install_ts: 1789100771947\\nsince_init_ms: 4963\\nsince_state_init_ms: 4963\",\"is_json\":1}",
+          "resource_type": "fetch",
+          "url": "https://perr.hola.org/client_cgi/perr?id=be_connectivity_check_success&ext_ver=1.258.557&product=cws&browser=chrome&uuid=b48ba6b74956dd3c84a7e15540f54769"
+        },
+        {
+          "method": "POST",
+          "post_data": "{\"info\":\"{\\\"log_tail\\\":\\\"starting svc detection\\\\nsm exec callback undefined undefined\\\"}\",\"ver\":\"1.258.557\",\"build\":\"version: 1.258.557\\nlocal_ts: Fri Sep 11 2026 04:26:16 GMT+0000 (Coordinated Universal Time)\\nsrc_country: US\\nlocale: en-US\\nlocales: en-US,en\\nmanifest_version: 1.258.557\\nmanifest_ver: 3\\nconf_stamp: 0\\nsvc_version: null\\nsvc_appid: \\ncampaign: \\nsvc_uuid: \\next.active: true\\next.suspended: \\next_conflict: false\\nsession_key: 1723498281\\nconf_ver: 45\\nab_test: \\nactive_tab: 1322401321\\nunblocking_mode: tab\\nproduct_type: cws\\nid: gkojfkhlekighikafcpjkiklfbnlmeio\\nbrowser: chrome 151\\nbrowser_build: chrome\\nplatform: Linux x86_64\\nuser_agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36\\ninstall_ms: 4953\\ninstall_time: 0-1h\\nlast_install_ts: 1789100771947\\nsince_init_ms: 4966\\nsince_state_init_ms: 4966\",\"is_json\":1}",
+          "resource_type": "fetch",
+          "url": "https://perr.hola.org/client_cgi/perr?id=be_svc_monitor_exec.callback&ext_ver=1.258.557&product=cws&browser=chrome&uuid=b48ba6b74956dd3c84a7e15540f54769"
+        },
+        {
+          "method": "POST",
+          "post_data": "{\"info\":\"{\\\"log_tail\\\":\\\"starting svc detection\\\\nsm exec callback undefined undefined\\\\nsm exec callback undefined undefined\\\"}\",\"ver\":\"1.258.557\",\"build\":\"version: 1.258.557\\nlocal_ts: Fri Sep 11 2026 04:26:17 GMT+0000 (Coordinated Universal Time)\\nsrc_country: US\\nlocale: en-US\\nlocales: en-US,en\\nmanifest_version: 1.258.557\\nmanifest_ver: 3\\nconf_stamp: 1788961167351\\nsvc_version: null\\nsvc_appid: \\ncampaign: \\nsvc_uuid: \\next.active: true\\next.suspended: \\next_conflict: false\\nis_premium: false\\nhola_uid_id: \\nsession_key: 1723498281\\nconf_ver: 45\\nab_test: test_limited_currencies_555_on,test_send_chrome_headers_off\\nactive_tab: 1322401321\\nunblocking_mode: tab\\nproduct_type: cws\\nid: gkojfkhlekighikafcpjkiklfbnlmeio\\nbrowser: chrome 151\\nbrowser_build: chrome\\nplatform: Linux x86_64\\nuser_agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36\\ninstall_ms: 5105\\ninstall_time: 0-1h\\nlast_install_ts: 1789100771947\\nsince_init_ms: 5118\\nsince_state_init_ms: 5118\",\"is_json\":1}",
+          "resource_type": "fetch",
+          "url": "https://perr.hola.org/client_cgi/perr?id=be_svc_monitor_exec.callback&ext_ver=1.258.557&product=cws&browser=chrome&uuid=b48ba6b74956dd3c84a7e15540f54769"
+        },
+        {
+          "method": "POST",
+          "post_data": "{\"info\":\"{\\\"log_tail\\\":\\\"starting svc detection\\\\nsm exec callback undefined undefined\\\\nsm exec callback undefined undefined\\\\nsm exec callback undefined undefined\\\"}\",\"ver\":\"1.258.557\",\"build\":\"version: 1.258.557\\nlocal_ts: Fri Sep 11 2026 04:26:17 GMT+0000 (Coordinated Universal Time)\\nsrc_country: US\\nlocale: en-US\\nlocales: en-US,en\\nmanifest_version: 1.258.557\\nmanifest_ver: 3\\nconf_stamp: 1788961167351\\nsvc_version: null\\nsvc_appid: \\ncampaign: \\nsvc_uuid: \\next.active: true\\next.suspended: \\next_conflict: false\\nis_premium: false\\nhola_uid_id: \\nsession_key: 1723498281\\nconf_ver: 45\\nab_test: test_limited_currencies_555_on,test_send_chrome_headers_off\\nactive_tab: 1322401321\\nunblocking_mode: tab\\nproduct_type: cws\\nid: gkojfkhlekighikafcpjkiklfbnlmeio\\nbrowser: chrome 151\\nbrowser_build: chrome\\nplatform: Linux x86_64\\nuser_agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36\\ninstall_ms: 5106\\ninstall_time: 0-1h\\nlast_install_ts: 1789100771947\\nsince_init_ms: 5119\\nsince_state_init_ms: 5119\",\"is_json\":1}",
+          "resource_type": "fetch",
+          "url": "https://perr.hola.org/client_cgi/perr?id=be_svc_monitor_exec.callback&ext_ver=1.258.557&product=cws&browser=chrome&uuid=b48ba6b74956dd3c84a7e15540f54769"
+        },
+        {
+          "method": "POST",
+          "post_data": "{\"info\":\"{\\\"permissions\\\":[\\\"proxy\\\",\\\"webRequest\\\",\\\"storage\\\",\\\"tabs\\\",\\\"webNavigation\\\",\\\"cookies\\\",\\\"scripting\\\",\\\"webRequestAuthProvider\\\",\\\"declarativeNetRequest\\\"],\\\"new_uuid\\\":true}\",\"ver\":\"1.258.557\",\"build\":\"version: 1.258.557\\nlocal_ts: Fri Sep 11 2026 04:26:17 GMT+0000 (Coordinated Universal Time)\\nsrc_country: US\\nlocale: en-US\\nlocales: en-US,en\\nmanifest_version: 1.258.557\\nmanifest_ver: 3\\nconf_stamp: 1788961167351\\nsvc_version: null\\nsvc_appid: \\ncampaign: \\nsvc_uuid: \\next.active: true\\next.suspended: \\next_conflict: false\\nis_premium: false\\nhola_uid_id: \\nsession_key: 1723498281\\nconf_ver: 45\\nab_test: test_limited_currencies_555_on,test_send_chrome_headers_off\\nactive_tab: 1322401322\\nunblocking_mode: tab\\nproduct_type: cws\\nid: gkojfkhlekighikafcpjkiklfbnlmeio\\nbrowser: chrome 151\\nbrowser_build: chrome\\nplatform: Linux x86_64\\nuser_agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36\\ninstall_ms: 5147\\ninstall_time: 0-1h\\nlast_install_ts: 1789100771947\\nsince_init_ms: 5160\\nsince_state_init_ms: 5160\\nundefined: undefined\",\"is_json\":1}",
+          "resource_type": "fetch",
+          "url": "https://perr.hola.org/client_cgi/perr?id=be_install&ext_ver=1.258.557&product=cws&browser=chrome&uuid=b48ba6b74956dd3c84a7e15540f54769"
+        },
+        {
+          "method": "POST",
+          "post_data": "{\"info\":\"{\\\"test_name\\\":\\\"test_limited_currencies_555\\\",\\\"state\\\":{\\\"rand\\\":0.7902744334104476,\\\"ver\\\":1,\\\"value\\\":\\\"on\\\"}}\",\"ver\":\"1.258.557\",\"build\":\"version: 1.258.557\\nlocal_ts: Fri Sep 11 2026 04:26:17 GMT+0000 (Coordinated Universal Time)\\nsrc_country: US\\nlocale: en-US\\nlocales: en-US,en\\nmanifest_version: 1.258.557\\nmanifest_ver: 3\\nconf_stamp: 1788961167351\\nsvc_version: null\\nsvc_appid: \\ncampaign: \\nsvc_uuid: \\next.active: true\\next.suspended: \\next_conflict: false\\nis_premium: false\\nhola_uid_id: \\nsession_key: 1723498281\\nconf_ver: 45\\nab_test: test_limited_currencies_555_on,test_send_chrome_headers_off\\nactive_tab: 1322401322\\nunblocking_mode: tab\\nproduct_type: cws\\nid: gkojfkhlekighikafcpjkiklfbnlmeio\\nbrowser: chrome 151\\nbrowser_build: chrome\\nplatform: Linux x86_64\\nuser_agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36\\ninstall_ms: 5148\\ninstall_time: 0-1h\\nlast_install_ts: 1789100771947\\nsince_init_ms: 5161\\nsince_state_init_ms: 5161\",\"is_json\":1}",
+          "resource_type": "fetch",
+          "url": "https://perr.hola.org/client_cgi/perr?id=be_ab_test_selected&ext_ver=1.258.557&product=cws&browser=chrome&uuid=b48ba6b74956dd3c84a7e15540f54769"
+        },
+        {
+          "method": "POST",
+          "post_data": "{\"info\":\"{\\\"test_name\\\":\\\"test_send_chrome_headers\\\",\\\"state\\\":{\\\"rand\\\":0.6735004376088691,\\\"ver\\\":2,\\\"value\\\":\\\"off\\\"}}\",\"ver\":\"1.258.557\",\"build\":\"version: 1.258.557\\nlocal_ts: Fri Sep 11 2026 04:26:17 GMT+0000 (Coordinated Universal Time)\\nsrc_country: US\\nlocale: en-US\\nlocales: en-US,en\\nmanifest_version: 1.258.557\\nmanifest_ver: 3\\nconf_stamp: 1788961167351\\nsvc_version: null\\nsvc_appid: \\ncampaign: \\nsvc_uuid: \\next.active: true\\next.suspended: \\next_conflict: false\\nis_premium: false\\nhola_uid_id: \\nsession_key: 1723498281\\nconf_ver: 45\\nab_test: test_limited_currencies_555_on,test_send_chrome_headers_off\\nactive_tab: 1322401322\\nunblocking_mode: tab\\nproduct_type: cws\\nid: gkojfkhlekighikafcpjkiklfbnlmeio\\nbrowser: chrome 151\\nbrowser_build: chrome\\nplatform: Linux x86_64\\nuser_agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36\\ninstall_ms: 5149\\ninstall_time: 0-1h\\nlast_install_ts: 1789100771947\\nsince_init_ms: 5162\\nsince_state_init_ms: 5162\",\"is_json\":1}",
+          "resource_type": "fetch",
+          "url": "https://perr.hola.org/client_cgi/perr?id=be_ab_test_selected&ext_ver=1.258.557&product=cws&browser=chrome&uuid=b48ba6b74956dd3c84a7e15540f54769"
+        },
+        {
+          "method": "POST",
+          "post_data": "{\"info\":\"{\\\"name\\\":\\\"build_agents\\\",\\\"check_name\\\":\\\"agents_check\\\",\\\"mode\\\":\\\"syq\\\",\\\"host\\\":\\\"zagent2690.hola.org\\\"}\",\"ver\":\"1.258.557\",\"build\":\"version: 1.258.557\\nlocal_ts: Fri Sep 11 2026 04:26:17 GMT+0000 (Coordinated Universal Time)\\nsrc_country: US\\nlocale: en-US\\nlocales: en-US,en\\nmanifest_version: 1.258.557\\nmanifest_ver: 3\\nconf_stamp: 1788961167351\\nsvc_version: null\\nsvc_appid: \\ncampaign: \\nsvc_uuid: \\next.active: true\\next.suspended: \\next_conflict: false\\nis_premium: false\\nhola_uid_id: \\nsession_key: 1723498281\\nconf_ver: 45\\nab_test: test_limited_currencies_555_on,test_send_chrome_headers_off\\nactive_tab: 1322401322\\nunblocking_mode: tab\\nproduct_type: cws\\nid: gkojfkhlekighikafcpjkiklfbnlmeio\\nbrowser: chrome 151\\nbrowser_build: chrome\\nplatform: Linux x86_64\\nuser_agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36\\ninstall_ms: 5350\\ninstall_time: 0-1h\\nlast_install_ts: 1789100771947\\nsince_init_ms: 5363\\nsince_state_init_ms: 5363\",\"is_json\":1}",
+          "resource_type": "fetch",
+          "url": "https://perr.hola.org/client_cgi/perr?id=be_connectivity_check_failed_agent&ext_ver=1.258.557&product=cws&browser=chrome&uuid=b48ba6b74956dd3c84a7e15540f54769"
+        },
+        {
+          "method": "POST",
+          "post_data": "{\"info\":\"{\\\"name\\\":\\\"build_agents\\\",\\\"check_name\\\":\\\"agents_check\\\",\\\"mode\\\":\\\"syq\\\",\\\"urls\\\":[\\\"client.hola.org/client_cgi/conn_test\\\"],\\\"success\\\":\\\"https://client.hola.org/client_cgi/conn_test\\\"}\",\"ver\":\"1.258.557\",\"build\":\"version: 1.258.557\\nlocal_ts: Fri Sep 11 2026 04:26:17 GMT+0000 (Coordinated Universal Time)\\nsrc_country: US\\nlocale: en-US\\nlocales: en-US,en\\nmanifest_version: 1.258.557\\nmanifest_ver: 3\\nconf_stamp: 1788961167351\\nsvc_version: null\\nsvc_appid: \\ncampaign: \\nsvc_uuid: \\next.active: true\\next.suspended: \\next_conflict: false\\nis_premium: false\\nhola_uid_id: \\nsession_key: 1723498281\\nconf_ver: 45\\nab_test: test_limited_currencies_555_on,test_send_chrome_headers_off\\nactive_tab: 1322401322\\nunblocking_mode: tab\\nproduct_type: cws\\nid: gkojfkhlekighikafcpjkiklfbnlmeio\\nbrowser: chrome 151\\nbrowser_build: chrome\\nplatform: Linux x86_64\\nuser_agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36\\ninstall_ms: 5351\\ninstall_time: 0-1h\\nlast_install_ts: 1789100771947\\nsince_init_ms: 5364\\nsince_state_init_ms: 5364\",\"is_json\":1}",
+          "resource_type": "fetch",
+          "url": "https://perr.hola.org/client_cgi/perr?id=be_connectivity_check_success&ext_ver=1.258.557&product=cws&browser=chrome&uuid=b48ba6b74956dd3c84a7e15540f54769"
+        },
+        {
+          "method": "POST",
+          "post_data": "{\"info\":\"{\\\"agent\\\":{\\\"ip\\\":\\\"146.190.72.110\\\",\\\"port\\\":\\\"22224\\\",\\\"host\\\":\\\"zagent2690.su89-cdn.net\\\",\\\"fallback_rule\\\":\\\"zagent${n}.su89-cdn.net\\\"}}\",\"ver\":\"1.258.557\",\"build\":\"version: 1.258.557\\nlocal_ts: Fri Sep 11 2026 04:26:17 GMT+0000 (Coordinated Universal Time)\\nsrc_country: US\\nlocale: en-US\\nlocales: en-US,en\\nmanifest_version: 1.258.557\\nmanifest_ver: 3\\nconf_stamp: 1788961167351\\nsvc_version: null\\nsvc_appid: \\ncampaign: \\nsvc_uuid: \\next.active: true\\next.suspended: \\next_conflict: false\\nis_premium: false\\nhola_uid_id: \\nsession_key: 1723498281\\nconf_ver: 45\\nab_test: test_limited_currencies_555_on,test_send_chrome_headers_off\\nactive_tab: 1322401322\\nunblocking_mode: tab\\nproduct_type: cws\\nid: gkojfkhlekighikafcpjkiklfbnlmeio\\nbrowser: chrome 151\\nbrowser_build: chrome\\nplatform: Linux x86_64\\nuser_agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36\\ninstall_ms: 5351\\ninstall_time: 0-1h\\nlast_install_ts: 1789100771947\\nsince_init_ms: 5364\\nsince_state_init_ms: 5364\",\"is_json\":1}",
+          "resource_type": "fetch",
+          "url": "https://perr.hola.org/client_cgi/perr?id=be_agent_domain_fallback&ext_ver=1.258.557&product=cws&browser=chrome&uuid=b48ba6b74956dd3c84a7e15540f54769"
+        },
+        {
+          "method": "POST",
+          "post_data": null,
+          "resource_type": "xhr",
+          "url": "https://perr.hola.org/client_cgi/perr?id=www_welcome_loading&info=%7B%7D&uuid=b48ba6b74956dd3c84a7e15540f54769&ver=1.258.953&browser=chrome&build=version%3A+1.258.953%0Amakeflags%3A+%0Aproduct_type%3A+unknown%0Aid%3A+undefined%0Abrowser%3A+chrome%0Abrowser_build%3A+undefined%0Aplatform%3A+Linux+x86_64%0Auser_agent%3A+Mozilla%2F5.0+(X11%3B+Linux+x86_64)+AppleWebKit%2F537.36+(KHTML%2C+like+Gecko)+Chrome%2F151.0.0.0+Safari%2F537.36%0Aurl%3A+https%3A%2F%2Fhola.org%2Fwelcome%3Fext_ver%3D1.258.557%26uuid%3Db48ba6b74956dd3c84a7e15540f54769%0Areferrer%3A+%0Ah_visitor_id%3A+www-4a849b4d-978a-492f-ab28-54aa0bddd935%0Awww_visitor_id%3A+www-4a849b4d-978a-492f-ab28-54aa0bddd935"
+        },
+        {
+          "method": "POST",
+          "post_data": "{\"info\":\"{\\\"log_tail\\\":\\\"starting svc detection\\\\nsm exec callback undefined undefined\\\\nsm exec callback undefined undefined\\\\nsm exec callback undefined undefined\\\\nsm exec callback undefined undefined\\\"}\",\"ver\":\"1.258.557\",\"build\":\"version: 1.258.557\\nlocal_ts: Fri Sep 11 2026 04:26:17 GMT+0000 (Coordinated Universal Time)\\nsrc_country: US\\nlocale: en-US\\nlocales: en-US,en\\nmanifest_version: 1.258.557\\nmanifest_ver: 3\\nconf_stamp: 1788961167351\\nsvc_version: null\\nsvc_appid: \\ncampaign: \\nsvc_uuid: \\next.active: true\\next.suspended: \\next_conflict: false\\nis_premium: false\\nhola_uid_id: \\nsession_key: 1723498281\\nconf_ver: 45\\nab_test: test_limited_currencies_555_on,test_send_chrome_headers_off\\nactive_tab: 1322401322\\nunblocking_mode: tab\\nproduct_type: cws\\nid: gkojfkhlekighikafcpjkiklfbnlmeio\\nbrowser: chrome 151\\nbrowser_build: chrome\\nplatform: Linux x86_64\\nuser_agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36\\ninstall_ms: 5861\\ninstall_time: 0-1h\\nlast_install_ts: 1789100771947\\nsince_init_ms: 5874\\nsince_state_init_ms: 5874\",\"is_json\":1}",
+          "resource_type": "fetch",
+          "url": "https://perr.hola.org/client_cgi/perr?id=be_svc_monitor_exec.callback&ext_ver=1.258.557&product=cws&browser=chrome&uuid=b48ba6b74956dd3c84a7e15540f54769"
+        },
+        {
+          "method": "POST",
+          "post_data": "build=os%3A+linux%0Aplatform%3A+Linux+x86_64%0Azua%3A+Mozilla%2F5.0+(X11%3B+Linux+x86_64)+AppleWebKit%2F537.36+(KHTML%2C+like+Gecko)+Chrome%2F151.0.0.0+Safari%2F537.36%0Alocation_href%3A+https%3A%2F%2Fhola.org%2Fwelcome%3Fext_ver%3D1.258.557%26uuid%3Db48ba6b74956dd3c84a7e15540f54769%0Ah_visitor_id%3A+www-4a849b4d-978a-492f-ab28-54aa0bddd935%0Awww_visitor_id%3A+www-4a849b4d-978a-492f-ab28-54aa0bddd935%0Agdpr_agreed%3A+true%0Awww_version%3A+1.258.953%0Auser_type%3A+2%0Ainstall_ms%3A+5846%0Ahas_svc%3A+false%0Ahas_ext%3A+true%0Aproduct%3A+hola_vpn_win%0Ainstall_time%3A+0-1h%0Alast_install_ts%3A+1789100771947%0Atest_sdklp_afterdlui_001%3A+true%0Atest_onb_popup%3A+true%0Atest_checkout_text%3A+true%0Auits%3A+853%0Adoc_ts%3A+409%0Aeffective_type%3A+4g%0Adownlink%3A+10%0Ascreen%3A+lg%0Ascreen_width%3A+1280%0Ascreen_height%3A+720%0Atheme_name%3A+hola2023&info=%7B%22url%22%3A%22https%3A%2F%2Fhola.org%2Fwelcome%3Fext_ver%3D1.258.557%26uuid%3Db48ba6b74956dd3c84a7e15540f54769%22%2C%22referrer%22%3A%22%22%2C%22ext_info%22%3A%7B%22uuid%22%3A%22b48ba6b74956dd3c84a7e15540f54769%22%7D%2C%22ext%22%3Atrue%2C%22svc%22%3Afalse%7D&bt=&filehead=&is_json=1",
+          "resource_type": "fetch",
+          "url": "https://perr.hola.org/be_client_cgi/perr?uuid=b48ba6b74956dd3c84a7e15540f54769&tid=mtwgeras.xkt8g0&browser=chrome&id=www_welcome_visit&ver=1.258.953"
+        },
+        {
+          "method": "POST",
+          "post_data": "build=os%3A+linux%0Aplatform%3A+Linux+x86_64%0Azua%3A+Mozilla%2F5.0+(X11%3B+Linux+x86_64)+AppleWebKit%2F537.36+(KHTML%2C+like+Gecko)+Chrome%2F151.0.0.0+Safari%2F537.36%0Alocation_href%3A+https%3A%2F%2Fhola.org%2Fwelcome%3Fext_ver%3D1.258.557%26uuid%3Db48ba6b74956dd3c84a7e15540f54769%0Ah_visitor_id%3A+www-4a849b4d-978a-492f-ab28-54aa0bddd935%0Awww_visitor_id%3A+www-4a849b4d-978a-492f-ab28-54aa0bddd935%0Agdpr_agreed%3A+true%0Awww_version%3A+1.258.953%0Auser_type%3A+2%0Ainstall_ms%3A+5846%0Ahas_svc%3A+false%0Ahas_ext%3A+true%0Aproduct%3A+hola_vpn_win%0Atest_sdklp_afterdlui_001%3A+true%0Atest_onb_popup%3A+true%0Atest_checkout_text%3A+true%0Auits%3A+857%0Aeffective_type%3A+4g%0Adownlink%3A+10%0Ascreen%3A+lg%0Ascreen_width%3A+1280%0Ascreen_height%3A+720%0Atheme_name%3A+hola2023&info=%7B%22urls%22%3A%5B%7B%22id%22%3A%22util%22%2C%22types%22%3A%5B%22js%22%2C%22cdn4%22%5D%2C%22url%22%3A%22https%3A%2F%2Fcdn4.hola.org%2Fwww%2Flocale%2Fpub%2Flanguages_ext.js%3Fver%3D1.258.953%22%2C%22ms%22%3A112.29999999998836%2C%22pathname%22%3A%22%2Fwww%2Flocale%2Fpub%2Flanguages_ext.js%22%7D%5D%2C%22types%22%3A%7B%22js%22%3A%7B%22max%22%3A181.39999999996508%2C%22item%22%3A%7B%22types%22%3A%5B%22js%22%2C%22cdn4%22%5D%2C%22url%22%3A%22https%3A%2F%2Fcdn4.hola.org%2Fwww%2Fhola%2Fpub%2Fe3125fbed9fdd0473e02a1cdc45bf781.1.258.953.chunk.js%3Fver%3D1.258.953%22%2C%22ms%22%3A181.39999999996508%2C%22pathname%22%3A%22%2Fwww%2Fhola%2Fpub%2Fe3125fbed9fdd0473e02a1cdc45bf781.1.258.953.chunk.js%22%7D%7D%2C%22css%22%3A%7B%22max%22%3A4.900000000023283%2C%22item%22%3A%7B%22types%22%3A%5B%22css%22%2C%22cdn4%22%5D%2C%22url%22%3A%22https%3A%2F%2Fcdn4.hola.org%2Fwww%2Fhola%2Fpub%2Fpkg_www_hola_pub_pages_hola_org_welcome_module_less-pkg_www_hola_pub_pages_hola_org_welcome_e-9d4e5a.bundle.css%3Fver%3D1.258.953%22%2C%22ms%22%3A4.900000000023283%2C%22pathname%22%3A%22%2Fwww%2Fhola%2Fpub%2Fpkg_www_hola_pub_pages_hola_org_welcome_module_less-pkg_www_hola_pub_pages_hola_org_welcome_e-9d4e5a.bundle.css%22%7D%7D%2C%22cdn4%22%3A%7B%22max%22%3A4.900000000023283%2C%22item%22%3A%7B%22types%22%3A%5B%22css%22%2C%22cdn4%22%5D%2C%22url%22%3A%22https%3A%2F%2Fcdn4.hola.org%2Fwww%2Fhola%2Fpub%2Fpkg_www_hola_pub_pages_hola_org_welcome_module_less-pkg_www_hola_pub_pages_hola_org_welcome_e-9d4e5a.bundle.css%3Fver%3D1.258.953%22%2C%22ms%22%3A4.900000000023283%2C%22pathname%22%3A%22%2Fwww%2Fhola%2Fpub%2Fpkg_www_hola_pub_pages_hola_org_welcome_module_less-pkg_www_hola_pub_pages_hola_org_welcome_e-9d4e5a.bundle.css%22%7D%7D%7D%2C%22now%22%3A855.5%2C%22ext%22%3Atrue%2C%22svc%22%3Afalse%7D&bt=&filehead=&is_json=1",
+          "resource_type": "fetch",
+          "url": "https://perr.hola.org/be_client_cgi/perr?uuid=b48ba6b74956dd3c84a7e15540f54769&tid=mtwgeras.xkt8g0&browser=chrome&id=www_timing&ver=1.258.953"
+        },
+        {
+          "method": "POST",
+          "post_data": "build=os%3A+linux%0Aplatform%3A+Linux+x86_64%0Azua%3A+Mozilla%2F5.0+(X11%3B+Linux+x86_64)+AppleWebKit%2F537.36+(KHTML%2C+like+Gecko)+Chrome%2F151.0.0.0+Safari%2F537.36%0Alocation_href%3A+https%3A%2F%2Fhola.org%2Fwelcome%3Fext_ver%3D1.258.557%26uuid%3Db48ba6b74956dd3c84a7e15540f54769%0Ah_visitor_id%3A+www-4a849b4d-978a-492f-ab28-54aa0bddd935%0Awww_visitor_id%3A+www-4a849b4d-978a-492f-ab28-54aa0bddd935%0Agdpr_agreed%3A+true%0Awww_version%3A+1.258.953%0Auser_type%3A+2%0Ainstall_ms%3A+5846%0Ahas_svc%3A+false%0Ahas_ext%3A+true%0Aproduct%3A+hola_vpn_win%0Atest_sdklp_afterdlui_001%3A+true%0Atest_onb_popup%3A+true%0Atest_checkout_text%3A+true%0Auits%3A+859%0Aeffective_type%3A+4g%0Adownlink%3A+10%0Ascreen%3A+lg%0Ascreen_width%3A+1280%0Ascreen_height%3A+720%0Atheme_name%3A+hola2023&info=%7B%22ext%22%3Atrue%2C%22svc%22%3Afalse%7D&bt=&filehead=&is_json=1",
+          "resource_type": "fetch",
+          "url": "https://perr.hola.org/be_client_cgi/perr?uuid=b48ba6b74956dd3c84a7e15540f54769&tid=mtwgeras.xkt8g0&browser=chrome&id=www_cookie_consent_show&ver=1.258.953"
+        }
+      ],
+      "passive_canary_observed": false,
+      "passive_perr_fetches": [
+        {
+          "body": null,
+          "method": "GET",
+          "ts": 1789100776552,
+          "url": "https://perr.hola.org/client_cgi/perr/conn_test"
+        },
+        {
+          "body": "{\"info\":\"{}\",\"ver\":\"1.258.557\",\"build\":\"version: 1.258.557\\nlocal_ts: Fri Sep 11 2026 04:26:16 GMT+0000 (Coordinated Universal Time)\\nsrc_country: undefined\\nlocale: en-US\\nlocales: en-US,en\\nmanifest_version: 1.258.557\\nmanifest_ver: 3\\nconf_stamp: 0\\next.active: false\\next.suspended: \\nconf_ver: 45\\nab_test: \\nactive_tab: 1322401321\\nunblocking_mode: tab\\nproduct_type: cws\\nid: gkojfkhlekighikafcpjkiklfbnlmeio\\nbrowser: chrome 151\\nbrowser_build: chrome\\nplatform: Linux x86_64\\nuser_agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36\\ninstall_ms: 4604\\ninstall_time: 0-1h\\nlast_install_ts: 1789100771947\\nsince_init_ms: 4617\\nsince_state_init_ms: 4617\",\"is_json\":1}",
+          "method": "POST",
+          "ts": 1789100776749,
+          "url": "https://perr.hola.org/client_cgi/perr?id=be_up&ext_ver=1.258.557&product=cws&browser=chrome&uuid=b48ba6b74956dd3c84a7e15540f54769"
+        },
+        {
+          "body": "{\"info\":\"{\\\"name\\\":\\\"hola\\\",\\\"check_name\\\":\\\"ccgi_check\\\",\\\"urls\\\":[\\\"client.hola.org/client_cgi/conn_test\\\"],\\\"mode\\\":\\\"parallel\\\"}\",\"ver\":\"1.258.557\",\"build\":\"version: 1.258.557\\nlocal_ts: Fri Sep 11 2026 04:26:16 GMT+0000 (Coordinated Universal Time)\\nsrc_country: undefined\\nlocale: en-US\\nlocales: en-US,en\\nmanifest_version: 1.258.557\\nmanifest_ver: 3\\nconf_stamp: 0\\next.active: false\\next.suspended: \\nconf_ver: 45\\nab_test: \\nactive_tab: 1322401321\\nunblocking_mode: tab\\nproduct_type: cws\\nid: gkojfkhlekighikafcpjkiklfbnlmeio\\nbrowser: chrome 151\\nbrowser_build: chrome\\nplatform: Linux x86_64\\nuser_agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36\\ninstall_ms: 4607\\ninstall_time: 0-1h\\nlast_install_ts: 1789100771947\\nsince_init_ms: 4620\\nsince_state_init_ms: 4620\",\"is_json\":1}",
+          "method": "POST",
+          "ts": 1789100776750,
+          "url": "https://perr.hola.org/client_cgi/perr?id=be_connectivity_check_success&ext_ver=1.258.557&product=cws&browser=chrome&uuid=b48ba6b74956dd3c84a7e15540f54769"
+        },
+        {
+          "body": "{\"info\":\"{\\\"new_mode\\\":\\\"ext\\\"}\",\"ver\":\"1.258.557\",\"build\":\"version: 1.258.557\\nlocal_ts: Fri Sep 11 2026 04:26:16 GMT+0000 (Coordinated Universal Time)\\nsrc_country: US\\nlocale: en-US\\nlocales: en-US,en\\nmanifest_version: 1.258.557\\nmanifest_ver: 3\\nconf_stamp: 0\\next.active: true\\next.suspended: \\next_conflict: false\\nsession_key: 1723498281\\nconf_ver: 45\\nab_test: \\nactive_tab: 1322401321\\nunblocking_mode: tab\\nproduct_type: cws\\nid: gkojfkhlekighikafcpjkiklfbnlmeio\\nbrowser: chrome 151\\nbrowser_build: chrome\\nplatform: Linux x86_64\\nuser_agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36\\ninstall_ms: 4771\\ninstall_time: 0-1h\\nlast_install_ts: 1789100771947\\nsince_init_ms: 4784\\nsince_state_init_ms: 4784\",\"is_json\":1}",
+          "method": "POST",
+          "ts": 1789100776750,
+          "url": "https://perr.hola.org/client_cgi/perr?id=be_mode_change&ext_ver=1.258.557&product=cws&browser=chrome&uuid=b48ba6b74956dd3c84a7e15540f54769"
+        },
+        {
+          "body": "{\"info\":\"{\\\"diff\\\":4711}\",\"ver\":\"1.258.557\",\"build\":\"version: 1.258.557\\nlocal_ts: Fri Sep 11 2026 04:26:16 GMT+0000 (Coordinated Universal Time)\\nsrc_country: US\\nlocale: en-US\\nlocales: en-US,en\\nmanifest_version: 1.258.557\\nmanifest_ver: 3\\nconf_stamp: 0\\next.active: true\\next.suspended: \\next_conflict: false\\nsession_key: 1723498281\\nconf_ver: 45\\nab_test: \\nactive_tab: 1322401321\\nunblocking_mode: tab\\nproduct_type: cws\\nid: gkojfkhlekighikafcpjkiklfbnlmeio\\nbrowser: chrome 151\\nbrowser_build: chrome\\nplatform: Linux x86_64\\nuser_agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36\\ninstall_ms: 4772\\ninstall_time: 0-1h\\nlast_install_ts: 1789100771947\\nsince_init_ms: 4785\\nsince_state_init_ms: 4785\",\"is_json\":1}",
+          "method": "POST",
+          "ts": 1789100776751,
+          "url": "https://perr.hola.org/client_cgi/perr?id=be_background_init_ok&ext_ver=1.258.557&product=cws&browser=chrome&uuid=b48ba6b74956dd3c84a7e15540f54769"
+        },
+        {
+          "body": "{\"info\":\"{\\\"name\\\":\\\"hola\\\",\\\"check_name\\\":\\\"perr_check\\\",\\\"urls\\\":[\\\"perr.hola.org/client_cgi/perr/conn_test\\\"],\\\"mode\\\":\\\"parallel\\\"}\",\"ver\":\"1.258.557\",\"build\":\"version: 1.258.557\\nlocal_ts: Fri Sep 11 2026 04:26:16 GMT+0000 (Coordinated Universal Time)\\nsrc_country: US\\nlocale: en-US\\nlocales: en-US,en\\nmanifest_version: 1.258.557\\nmanifest_ver: 3\\nconf_stamp: 0\\next.active: true\\next.suspended: \\next_conflict: false\\nsession_key: 1723498281\\nconf_ver: 45\\nab_test: \\nactive_tab: 1322401321\\nunblocking_mode: tab\\nproduct_type: cws\\nid: gkojfkhlekighikafcpjkiklfbnlmeio\\nbrowser: chrome 151\\nbrowser_build: chrome\\nplatform: Linux x86_64\\nuser_agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36\\ninstall_ms: 4810\\ninstall_time: 0-1h\\nlast_install_ts: 1789100771947\\nsince_init_ms: 4823\\nsince_state_init_ms: 4823\",\"is_json\":1}",
+          "method": "POST",
+          "ts": 1789100776758,
+          "url": "https://perr.hola.org/client_cgi/perr?id=be_connectivity_check_success&ext_ver=1.258.557&product=cws&browser=chrome&uuid=b48ba6b74956dd3c84a7e15540f54769"
+        },
+        {
+          "body": "{\"info\":\"{\\\"name\\\":\\\"hola\\\",\\\"check_name\\\":\\\"hola_check\\\",\\\"urls\\\":[\\\"hola.org/conn_test\\\"],\\\"mode\\\":\\\"parallel\\\"}\",\"ver\":\"1.258.557\",\"build\":\"version: 1.258.557\\nlocal_ts: Fri Sep 11 2026 04:26:16 GMT+0000 (Coordinated Universal Time)\\nsrc_country: US\\nlocale: en-US\\nlocales: en-US,en\\nmanifest_version: 1.258.557\\nmanifest_ver: 3\\nconf_stamp: 0\\next.active: true\\next.suspended: \\next_conflict: false\\nsession_key: 1723498281\\nconf_ver: 45\\nab_test: \\nactive_tab: 1322401321\\nunblocking_mode: tab\\nproduct_type: cws\\nid: gkojfkhlekighikafcpjkiklfbnlmeio\\nbrowser: chrome 151\\nbrowser_build: chrome\\nplatform: Linux x86_64\\nuser_agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36\\ninstall_ms: 4894\\ninstall_time: 0-1h\\nlast_install_ts: 1789100771947\\nsince_init_ms: 4907\\nsince_state_init_ms: 4907\",\"is_json\":1}",
+          "method": "POST",
+          "ts": 1789100776841,
+          "url": "https://perr.hola.org/client_cgi/perr?id=be_connectivity_check_success&ext_ver=1.258.557&product=cws&browser=chrome&uuid=b48ba6b74956dd3c84a7e15540f54769"
+        },
+        {
+          "body": "{\"info\":\"{\\\"name\\\":\\\"hola\\\",\\\"check_name\\\":\\\"ccgi_cdn_check\\\",\\\"urls\\\":[\\\"client-cdn4.hola.org/client_cgi/conn_test\\\"],\\\"mode\\\":\\\"parallel\\\"}\",\"ver\":\"1.258.557\",\"build\":\"version: 1.258.557\\nlocal_ts: Fri Sep 11 2026 04:26:16 GMT+0000 (Coordinated Universal Time)\\nsrc_country: US\\nlocale: en-US\\nlocales: en-US,en\\nmanifest_version: 1.258.557\\nmanifest_ver: 3\\nconf_stamp: 0\\nsvc_version: null\\nsvc_appid: \\ncampaign: \\nsvc_uuid: \\next.active: true\\next.suspended: \\next_conflict: false\\nsession_key: 1723498281\\nconf_ver: 45\\nab_test: \\nactive_tab: 1322401321\\nunblocking_mode: tab\\nproduct_type: cws\\nid: gkojfkhlekighikafcpjkiklfbnlmeio\\nbrowser: chrome 151\\nbrowser_build: chrome\\nplatform: Linux x86_64\\nuser_agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36\\ninstall_ms: 4950\\ninstall_time: 0-1h\\nlast_install_ts: 1789100771947\\nsince_init_ms: 4963\\nsince_state_init_ms: 4963\",\"is_json\":1}",
+          "method": "POST",
+          "ts": 1789100776897,
+          "url": "https://perr.hola.org/client_cgi/perr?id=be_connectivity_check_success&ext_ver=1.258.557&product=cws&browser=chrome&uuid=b48ba6b74956dd3c84a7e15540f54769"
+        },
+        {
+          "body": "{\"info\":\"{\\\"log_tail\\\":\\\"starting svc detection\\\\nsm exec callback undefined undefined\\\"}\",\"ver\":\"1.258.557\",\"build\":\"version: 1.258.557\\nlocal_ts: Fri Sep 11 2026 04:26:16 GMT+0000 (Coordinated Universal Time)\\nsrc_country: US\\nlocale: en-US\\nlocales: en-US,en\\nmanifest_version: 1.258.557\\nmanifest_ver: 3\\nconf_stamp: 0\\nsvc_version: null\\nsvc_appid: \\ncampaign: \\nsvc_uuid: \\next.active: true\\next.suspended: \\next_conflict: false\\nsession_key: 1723498281\\nconf_ver: 45\\nab_test: \\nactive_tab: 1322401321\\nunblocking_mode: tab\\nproduct_type: cws\\nid: gkojfkhlekighikafcpjkiklfbnlmeio\\nbrowser: chrome 151\\nbrowser_build: chrome\\nplatform: Linux x86_64\\nuser_agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36\\ninstall_ms: 4953\\ninstall_time: 0-1h\\nlast_install_ts: 1789100771947\\nsince_init_ms: 4966\\nsince_state_init_ms: 4966\",\"is_json\":1}",
+          "method": "POST",
+          "ts": 1789100776901,
+          "url": "https://perr.hola.org/client_cgi/perr?id=be_svc_monitor_exec.callback&ext_ver=1.258.557&product=cws&browser=chrome&uuid=b48ba6b74956dd3c84a7e15540f54769"
+        },
+        {
+          "body": "{\"info\":\"{\\\"log_tail\\\":\\\"starting svc detection\\\\nsm exec callback undefined undefined\\\\nsm exec callback undefined undefined\\\"}\",\"ver\":\"1.258.557\",\"build\":\"version: 1.258.557\\nlocal_ts: Fri Sep 11 2026 04:26:17 GMT+0000 (Coordinated Universal Time)\\nsrc_country: US\\nlocale: en-US\\nlocales: en-US,en\\nmanifest_version: 1.258.557\\nmanifest_ver: 3\\nconf_stamp: 1788961167351\\nsvc_version: null\\nsvc_appid: \\ncampaign: \\nsvc_uuid: \\next.active: true\\next.suspended: \\next_conflict: false\\nis_premium: false\\nhola_uid_id: \\nsession_key: 1723498281\\nconf_ver: 45\\nab_test: test_limited_currencies_555_on,test_send_chrome_headers_off\\nactive_tab: 1322401321\\nunblocking_mode: tab\\nproduct_type: cws\\nid: gkojfkhlekighikafcpjkiklfbnlmeio\\nbrowser: chrome 151\\nbrowser_build: chrome\\nplatform: Linux x86_64\\nuser_agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36\\ninstall_ms: 5105\\ninstall_time: 0-1h\\nlast_install_ts: 1789100771947\\nsince_init_ms: 5118\\nsince_state_init_ms: 5118\",\"is_json\":1}",
+          "method": "POST",
+          "ts": 1789100777052,
+          "url": "https://perr.hola.org/client_cgi/perr?id=be_svc_monitor_exec.callback&ext_ver=1.258.557&product=cws&browser=chrome&uuid=b48ba6b74956dd3c84a7e15540f54769"
+        },
+        {
+          "body": "{\"info\":\"{\\\"log_tail\\\":\\\"starting svc detection\\\\nsm exec callback undefined undefined\\\\nsm exec callback undefined undefined\\\\nsm exec callback undefined undefined\\\"}\",\"ver\":\"1.258.557\",\"build\":\"version: 1.258.557\\nlocal_ts: Fri Sep 11 2026 04:26:17 GMT+0000 (Coordinated Universal Time)\\nsrc_country: US\\nlocale: en-US\\nlocales: en-US,en\\nmanifest_version: 1.258.557\\nmanifest_ver: 3\\nconf_stamp: 1788961167351\\nsvc_version: null\\nsvc_appid: \\ncampaign: \\nsvc_uuid: \\next.active: true\\next.suspended: \\next_conflict: false\\nis_premium: false\\nhola_uid_id: \\nsession_key: 1723498281\\nconf_ver: 45\\nab_test: test_limited_currencies_555_on,test_send_chrome_headers_off\\nactive_tab: 1322401321\\nunblocking_mode: tab\\nproduct_type: cws\\nid: gkojfkhlekighikafcpjkiklfbnlmeio\\nbrowser: chrome 151\\nbrowser_build: chrome\\nplatform: Linux x86_64\\nuser_agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36\\ninstall_ms: 5106\\ninstall_time: 0-1h\\nlast_install_ts: 1789100771947\\nsince_init_ms: 5119\\nsince_state_init_ms: 5119\",\"is_json\":1}",
+          "method": "POST",
+          "ts": 1789100777053,
+          "url": "https://perr.hola.org/client_cgi/perr?id=be_svc_monitor_exec.callback&ext_ver=1.258.557&product=cws&browser=chrome&uuid=b48ba6b74956dd3c84a7e15540f54769"
+        },
+        {
+          "body": "{\"info\":\"{\\\"permissions\\\":[\\\"proxy\\\",\\\"webRequest\\\",\\\"storage\\\",\\\"tabs\\\",\\\"webNavigation\\\",\\\"cookies\\\",\\\"scripting\\\",\\\"webRequestAuthProvider\\\",\\\"declarativeNetRequest\\\"],\\\"new_uuid\\\":true}\",\"ver\":\"1.258.557\",\"build\":\"version: 1.258.557\\nlocal_ts: Fri Sep 11 2026 04:26:17 GMT+0000 (Coordinated Universal Time)\\nsrc_country: US\\nlocale: en-US\\nlocales: en-US,en\\nmanifest_version: 1.258.557\\nmanifest_ver: 3\\nconf_stamp: 1788961167351\\nsvc_version: null\\nsvc_appid: \\ncampaign: \\nsvc_uuid: \\next.active: true\\next.suspended: \\next_conflict: false\\nis_premium: false\\nhola_uid_id: \\nsession_key: 1723498281\\nconf_ver: 45\\nab_test: test_limited_currencies_555_on,test_send_chrome_headers_off\\nactive_tab: 1322401322\\nunblocking_mode: tab\\nproduct_type: cws\\nid: gkojfkhlekighikafcpjkiklfbnlmeio\\nbrowser: chrome 151\\nbrowser_build: chrome\\nplatform: Linux x86_64\\nuser_agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36\\ninstall_ms: 5147\\ninstall_time: 0-1h\\nlast_install_ts: 1789100771947\\nsince_init_ms: 5160\\nsince_state_init_ms: 5160\\nundefined: undefined\",\"is_json\":1}",
+          "method": "POST",
+          "ts": 1789100777094,
+          "url": "https://perr.hola.org/client_cgi/perr?id=be_install&ext_ver=1.258.557&product=cws&browser=chrome&uuid=b48ba6b74956dd3c84a7e15540f54769"
+        },
+        {
+          "body": "{\"info\":\"{\\\"test_name\\\":\\\"test_limited_currencies_555\\\",\\\"state\\\":{\\\"rand\\\":0.7902744334104476,\\\"ver\\\":1,\\\"value\\\":\\\"on\\\"}}\",\"ver\":\"1.258.557\",\"build\":\"version: 1.258.557\\nlocal_ts: Fri Sep 11 2026 04:26:17 GMT+0000 (Coordinated Universal Time)\\nsrc_country: US\\nlocale: en-US\\nlocales: en-US,en\\nmanifest_version: 1.258.557\\nmanifest_ver: 3\\nconf_stamp: 1788961167351\\nsvc_version: null\\nsvc_appid: \\ncampaign: \\nsvc_uuid: \\next.active: true\\next.suspended: \\next_conflict: false\\nis_premium: false\\nhola_uid_id: \\nsession_key: 1723498281\\nconf_ver: 45\\nab_test: test_limited_currencies_555_on,test_send_chrome_headers_off\\nactive_tab: 1322401322\\nunblocking_mode: tab\\nproduct_type: cws\\nid: gkojfkhlekighikafcpjkiklfbnlmeio\\nbrowser: chrome 151\\nbrowser_build: chrome\\nplatform: Linux x86_64\\nuser_agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36\\ninstall_ms: 5148\\ninstall_time: 0-1h\\nlast_install_ts: 1789100771947\\nsince_init_ms: 5161\\nsince_state_init_ms: 5161\",\"is_json\":1}",
+          "method": "POST",
+          "ts": 1789100777095,
+          "url": "https://perr.hola.org/client_cgi/perr?id=be_ab_test_selected&ext_ver=1.258.557&product=cws&browser=chrome&uuid=b48ba6b74956dd3c84a7e15540f54769"
+        },
+        {
+          "body": "{\"info\":\"{\\\"test_name\\\":\\\"test_send_chrome_headers\\\",\\\"state\\\":{\\\"rand\\\":0.6735004376088691,\\\"ver\\\":2,\\\"value\\\":\\\"off\\\"}}\",\"ver\":\"1.258.557\",\"build\":\"version: 1.258.557\\nlocal_ts: Fri Sep 11 2026 04:26:17 GMT+0000 (Coordinated Universal Time)\\nsrc_country: US\\nlocale: en-US\\nlocales: en-US,en\\nmanifest_version: 1.258.557\\nmanifest_ver: 3\\nconf_stamp: 1788961167351\\nsvc_version: null\\nsvc_appid: \\ncampaign: \\nsvc_uuid: \\next.active: true\\next.suspended: \\next_conflict: false\\nis_premium: false\\nhola_uid_id: \\nsession_key: 1723498281\\nconf_ver: 45\\nab_test: test_limited_currencies_555_on,test_send_chrome_headers_off\\nactive_tab: 1322401322\\nunblocking_mode: tab\\nproduct_type: cws\\nid: gkojfkhlekighikafcpjkiklfbnlmeio\\nbrowser: chrome 151\\nbrowser_build: chrome\\nplatform: Linux x86_64\\nuser_agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36\\ninstall_ms: 5149\\ninstall_time: 0-1h\\nlast_install_ts: 1789100771947\\nsince_init_ms: 5162\\nsince_state_init_ms: 5162\",\"is_json\":1}",
+          "method": "POST",
+          "ts": 1789100777096,
+          "url": "https://perr.hola.org/client_cgi/perr?id=be_ab_test_selected&ext_ver=1.258.557&product=cws&browser=chrome&uuid=b48ba6b74956dd3c84a7e15540f54769"
+        },
+        {
+          "body": "{\"info\":\"{\\\"name\\\":\\\"build_agents\\\",\\\"check_name\\\":\\\"agents_check\\\",\\\"mode\\\":\\\"syq\\\",\\\"host\\\":\\\"zagent2690.hola.org\\\"}\",\"ver\":\"1.258.557\",\"build\":\"version: 1.258.557\\nlocal_ts: Fri Sep 11 2026 04:26:17 GMT+0000 (Coordinated Universal Time)\\nsrc_country: US\\nlocale: en-US\\nlocales: en-US,en\\nmanifest_version: 1.258.557\\nmanifest_ver: 3\\nconf_stamp: 1788961167351\\nsvc_version: null\\nsvc_appid: \\ncampaign: \\nsvc_uuid: \\next.active: true\\next.suspended: \\next_conflict: false\\nis_premium: false\\nhola_uid_id: \\nsession_key: 1723498281\\nconf_ver: 45\\nab_test: test_limited_currencies_555_on,test_send_chrome_headers_off\\nactive_tab: 1322401322\\nunblocking_mode: tab\\nproduct_type: cws\\nid: gkojfkhlekighikafcpjkiklfbnlmeio\\nbrowser: chrome 151\\nbrowser_build: chrome\\nplatform: Linux x86_64\\nuser_agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36\\ninstall_ms: 5350\\ninstall_time: 0-1h\\nlast_install_ts: 1789100771947\\nsince_init_ms: 5363\\nsince_state_init_ms: 5363\",\"is_json\":1}",
+          "method": "POST",
+          "ts": 1789100777297,
+          "url": "https://perr.hola.org/client_cgi/perr?id=be_connectivity_check_failed_agent&ext_ver=1.258.557&product=cws&browser=chrome&uuid=b48ba6b74956dd3c84a7e15540f54769"
+        },
+        {
+          "body": "{\"info\":\"{\\\"name\\\":\\\"build_agents\\\",\\\"check_name\\\":\\\"agents_check\\\",\\\"mode\\\":\\\"syq\\\",\\\"urls\\\":[\\\"client.hola.org/client_cgi/conn_test\\\"],\\\"success\\\":\\\"https://client.hola.org/client_cgi/conn_test\\\"}\",\"ver\":\"1.258.557\",\"build\":\"version: 1.258.557\\nlocal_ts: Fri Sep 11 2026 04:26:17 GMT+0000 (Coordinated Universal Time)\\nsrc_country: US\\nlocale: en-US\\nlocales: en-US,en\\nmanifest_version: 1.258.557\\nmanifest_ver: 3\\nconf_stamp: 1788961167351\\nsvc_version: null\\nsvc_appid: \\ncampaign: \\nsvc_uuid: \\next.active: true\\next.suspended: \\next_conflict: false\\nis_premium: false\\nhola_uid_id: \\nsession_key: 1723498281\\nconf_ver: 45\\nab_test: test_limited_currencies_555_on,test_send_chrome_headers_off\\nactive_tab: 1322401322\\nunblocking_mode: tab\\nproduct_type: cws\\nid: gkojfkhlekighikafcpjkiklfbnlmeio\\nbrowser: chrome 151\\nbrowser_build: chrome\\nplatform: Linux x86_64\\nuser_agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36\\ninstall_ms: 5351\\ninstall_time: 0-1h\\nlast_install_ts: 1789100771947\\nsince_init_ms: 5364\\nsince_state_init_ms: 5364\",\"is_json\":1}",
+          "method": "POST",
+          "ts": 1789100777298,
+          "url": "https://perr.hola.org/client_cgi/perr?id=be_connectivity_check_success&ext_ver=1.258.557&product=cws&browser=chrome&uuid=b48ba6b74956dd3c84a7e15540f54769"
+        },
+        {
+          "body": "{\"info\":\"{\\\"agent\\\":{\\\"ip\\\":\\\"146.190.72.110\\\",\\\"port\\\":\\\"22224\\\",\\\"host\\\":\\\"zagent2690.su89-cdn.net\\\",\\\"fallback_rule\\\":\\\"zagent${n}.su89-cdn.net\\\"}}\",\"ver\":\"1.258.557\",\"build\":\"version: 1.258.557\\nlocal_ts: Fri Sep 11 2026 04:26:17 GMT+0000 (Coordinated Universal Time)\\nsrc_country: US\\nlocale: en-US\\nlocales: en-US,en\\nmanifest_version: 1.258.557\\nmanifest_ver: 3\\nconf_stamp: 1788961167351\\nsvc_version: null\\nsvc_appid: \\ncampaign: \\nsvc_uuid: \\next.active: true\\next.suspended: \\next_conflict: false\\nis_premium: false\\nhola_uid_id: \\nsession_key: 1723498281\\nconf_ver: 45\\nab_test: test_limited_currencies_555_on,test_send_chrome_headers_off\\nactive_tab: 1322401322\\nunblocking_mode: tab\\nproduct_type: cws\\nid: gkojfkhlekighikafcpjkiklfbnlmeio\\nbrowser: chrome 151\\nbrowser_build: chrome\\nplatform: Linux x86_64\\nuser_agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36\\ninstall_ms: 5351\\ninstall_time: 0-1h\\nlast_install_ts: 1789100771947\\nsince_init_ms: 5364\\nsince_state_init_ms: 5364\",\"is_json\":1}",
+          "method": "POST",
+          "ts": 1789100777298,
+          "url": "https://perr.hola.org/client_cgi/perr?id=be_agent_domain_fallback&ext_ver=1.258.557&product=cws&browser=chrome&uuid=b48ba6b74956dd3c84a7e15540f54769"
+        },
+        {
+          "body": "{\"info\":\"{\\\"log_tail\\\":\\\"starting svc detection\\\\nsm exec callback undefined undefined\\\\nsm exec callback undefined undefined\\\\nsm exec callback undefined undefined\\\\nsm exec callback undefined undefined\\\"}\",\"ver\":\"1.258.557\",\"build\":\"version: 1.258.557\\nlocal_ts: Fri Sep 11 2026 04:26:17 GMT+0000 (Coordinated Universal Time)\\nsrc_country: US\\nlocale: en-US\\nlocales: en-US,en\\nmanifest_version: 1.258.557\\nmanifest_ver: 3\\nconf_stamp: 1788961167351\\nsvc_version: null\\nsvc_appid: \\ncampaign: \\nsvc_uuid: \\next.active: true\\next.suspended: \\next_conflict: false\\nis_premium: false\\nhola_uid_id: \\nsession_key: 1723498281\\nconf_ver: 45\\nab_test: test_limited_currencies_555_on,test_send_chrome_headers_off\\nactive_tab: 1322401322\\nunblocking_mode: tab\\nproduct_type: cws\\nid: gkojfkhlekighikafcpjkiklfbnlmeio\\nbrowser: chrome 151\\nbrowser_build: chrome\\nplatform: Linux x86_64\\nuser_agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36\\ninstall_ms: 5861\\ninstall_time: 0-1h\\nlast_install_ts: 1789100771947\\nsince_init_ms: 5874\\nsince_state_init_ms: 5874\",\"is_json\":1}",
+          "method": "POST",
+          "ts": 1789100777808,
+          "url": "https://perr.hola.org/client_cgi/perr?id=be_svc_monitor_exec.callback&ext_ver=1.258.557&product=cws&browser=chrome&uuid=b48ba6b74956dd3c84a7e15540f54769"
+        }
+      ],
+      "passive_window_seconds": 8,
+      "run": 1,
+      "target_url": "https://example.com/?sr_marker=SCANDAL_RADAR_HOLA_1_632504A31EA412271FCC0973"
     },
     {
-      "error": "Error('Worker.evaluate: ReferenceError: XMLHttpRequest is not defined\\n    at eval (eval at evaluate (:311:30), <anonymous>:3:27)\\n    at UtilityScript.evaluate (<anonymous>:318:18)\\n    at UtilityScript.<anonymous> (<anonymous>:1:44)')",
-      "ok": false,
-      "run": 2
+      "active_url_observed_by_extension": "https://example.com/?sr_marker=SCANDAL_RADAR_HOLA_2_6866FD1D9F5970C5052520D4",
+      "canary_in_browser_request": false,
+      "canary_in_instrumented_fetch": false,
+      "controlled_invocation_unix": 1789100799.392928,
+      "identity": {
+        "has_bg_main": true,
+        "has_fetch": true,
+        "has_rule": true,
+        "has_sender": true,
+        "runtime_id": "gkojfkhlekighikafcpjkiklfbnlmeio",
+        "version": "1.258.557"
+      },
+      "invoked_browser_requests": [
+        {
+          "method": "POST",
+          "post_data": "{\"info\":\"{\\\"src_country\\\":\\\"us\\\",\\\"url\\\":\\\"https://hola.org/welcome?ext_ver=1.258.557&uuid=d998cb2ab80689eb197c029d7391dd62\\\",\\\"proxy_country\\\":\\\"us\\\",\\\"hola_uid\\\":null,\\\"src\\\":\\\"scandal-radar-controlled\\\",\\\"name\\\":\\\"example.com\\\",\\\"type\\\":\\\"site\\\"}\",\"ver\":\"1.258.557\",\"build\":\"version: 1.258.557\\nlocal_ts: Fri Sep 11 2026 04:26:39 GMT+0000 (Coordinated Universal Time)\\nsrc_country: US\\nlocale: en-US\\nlocales: en-US,en\\nmanifest_version: 1.258.557\\nmanifest_ver: 3\\nconf_stamp: 1788961167351\\nsvc_version: null\\nsvc_appid: \\ncampaign: \\nsvc_uuid: \\next.active: true\\next.suspended: \\next_conflict: false\\nis_premium: false\\nhola_uid_id: \\nsession_key: 39147137\\nconf_ver: 45\\nab_test: test_limited_currencies_555_off,test_send_chrome_headers_off\\nactive_tab: 1245103246\\nunblocking_mode: tab\\nproduct_type: cws\\nid: gkojfkhlekighikafcpjkiklfbnlmeio\\nbrowser: chrome 151\\nbrowser_build: chrome\\nplatform: Linux x86_64\\nuser_agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36\\ninstall_ms: 8670\\ninstall_time: 0-1h\\nlast_install_ts: 1789100790724\\nsince_init_ms: 8683\\nsince_state_init_ms: 8683\",\"is_json\":1}",
+          "resource_type": "fetch",
+          "url": "https://perr.hola.org/client_cgi/perr?id=be_vpn_ok&ext_ver=1.258.557&product=cws&browser=chrome&uuid=d998cb2ab80689eb197c029d7391dd62"
+        }
+      ],
+      "invoked_perr_fetches": [
+        {
+          "body": "{\"info\":\"{\\\"src_country\\\":\\\"us\\\",\\\"url\\\":\\\"https://hola.org/welcome?ext_ver=1.258.557&uuid=d998cb2ab80689eb197c029d7391dd62\\\",\\\"proxy_country\\\":\\\"us\\\",\\\"hola_uid\\\":null,\\\"src\\\":\\\"scandal-radar-controlled\\\",\\\"name\\\":\\\"example.com\\\",\\\"type\\\":\\\"site\\\"}\",\"ver\":\"1.258.557\",\"build\":\"version: 1.258.557\\nlocal_ts: Fri Sep 11 2026 04:26:39 GMT+0000 (Coordinated Universal Time)\\nsrc_country: US\\nlocale: en-US\\nlocales: en-US,en\\nmanifest_version: 1.258.557\\nmanifest_ver: 3\\nconf_stamp: 1788961167351\\nsvc_version: null\\nsvc_appid: \\ncampaign: \\nsvc_uuid: \\next.active: true\\next.suspended: \\next_conflict: false\\nis_premium: false\\nhola_uid_id: \\nsession_key: 39147137\\nconf_ver: 45\\nab_test: test_limited_currencies_555_off,test_send_chrome_headers_off\\nactive_tab: 1245103246\\nunblocking_mode: tab\\nproduct_type: cws\\nid: gkojfkhlekighikafcpjkiklfbnlmeio\\nbrowser: chrome 151\\nbrowser_build: chrome\\nplatform: Linux x86_64\\nuser_agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36\\ninstall_ms: 8670\\ninstall_time: 0-1h\\nlast_install_ts: 1789100790724\\nsince_init_ms: 8683\\nsince_state_init_ms: 8683\",\"is_json\":1}",
+          "method": "POST",
+          "ts": 1789100799394,
+          "url": "https://perr.hola.org/client_cgi/perr?id=be_vpn_ok&ext_ver=1.258.557&product=cws&browser=chrome&uuid=d998cb2ab80689eb197c029d7391dd62"
+        }
+      ],
+      "marker": "SCANDAL_RADAR_HOLA_2_6866FD1D9F5970C5052520D4",
+      "ok": true,
+      "parsed_invoked_events": [
+        {
+          "body": {
+            "build": "version: 1.258.557\nlocal_ts: Fri Sep 11 2026 04:26:39 GMT+0000 (Coordinated Universal Time)\nsrc_country: US\nlocale: en-US\nlocales: en-US,en\nmanifest_version: 1.258.557\nmanifest_ver: 3\nconf_stamp: 1788961167351\nsvc_version: null\nsvc_appid: \ncampaign: \nsvc_uuid: \next.active: true\next.suspended: \next_conflict: false\nis_premium: false\nhola_uid_id: \nsession_key: 39147137\nconf_ver: 45\nab_test: test_limited_currencies_555_off,test_send_chrome_headers_off\nactive_tab: 1245103246\nunblocking_mode: tab\nproduct_type: cws\nid: gkojfkhlekighikafcpjkiklfbnlmeio\nbrowser: chrome 151\nbrowser_build: chrome\nplatform: Linux x86_64\nuser_agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36\ninstall_ms: 8670\ninstall_time: 0-1h\nlast_install_ts: 1789100790724\nsince_init_ms: 8683\nsince_state_init_ms: 8683",
+            "info": "{\"src_country\":\"us\",\"url\":\"https://hola.org/welcome?ext_ver=1.258.557&uuid=d998cb2ab80689eb197c029d7391dd62\",\"proxy_country\":\"us\",\"hola_uid\":null,\"src\":\"scandal-radar-controlled\",\"name\":\"example.com\",\"type\":\"site\"}",
+            "is_json": 1,
+            "ver": "1.258.557"
+          },
+          "contains_marker": false,
+          "info": {
+            "hola_uid": null,
+            "name": "example.com",
+            "proxy_country": "us",
+            "src": "scandal-radar-controlled",
+            "src_country": "us",
+            "type": "site",
+            "url": "https://hola.org/welcome?ext_ver=1.258.557&uuid=d998cb2ab80689eb197c029d7391dd62"
+          },
+          "method": "POST",
+          "url": "https://perr.hola.org/client_cgi/perr?id=be_vpn_ok&ext_ver=1.258.557&product=cws&browser=chrome&uuid=d998cb2ab80689eb197c029d7391dd62"
+        }
+      ],
+      "passive_browser_requests": [
+        {
+          "method": "GET",
+          "post_data": null,
+          "resource_type": "fetch",
+          "url": "https://perr.hola.org/client_cgi/perr/conn_test"
+        },
+        {
+          "method": "POST",
+          "post_data": "{\"info\":\"{}\",\"ver\":\"1.258.557\",\"build\":\"version: 1.258.557\\nlocal_ts: Fri Sep 11 2026 04:26:30 GMT+0000 (Coordinated Universal Time)\\nsrc_country: undefined\\nlocale: en-US\\nlocales: en-US,en\\nmanifest_version: 1.258.557\\nmanifest_ver: 3\\nconf_stamp: 0\\next.active: false\\next.suspended: \\nconf_ver: 45\\nab_test: \\nactive_tab: 1245103245\\nunblocking_mode: tab\\nproduct_type: cws\\nid: gkojfkhlekighikafcpjkiklfbnlmeio\\nbrowser: chrome 151\\nbrowser_build: chrome\\nplatform: Linux x86_64\\nuser_agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36\\ninstall_ms: 61\\ninstall_time: 0-1h\\nlast_install_ts: 1789100790724\\nsince_init_ms: 74\\nsince_state_init_ms: 74\",\"is_json\":1}",
+          "resource_type": "fetch",
+          "url": "https://perr.hola.org/client_cgi/perr?id=be_up&ext_ver=1.258.557&product=cws&browser=chrome&uuid=d998cb2ab80689eb197c029d7391dd62"
+        },
+        {
+          "method": "POST",
+          "post_data": "{\"info\":\"{\\\"name\\\":\\\"hola\\\",\\\"check_name\\\":\\\"ccgi_check\\\",\\\"urls\\\":[\\\"client.hola.org/client_cgi/conn_test\\\"],\\\"mode\\\":\\\"parallel\\\"}\",\"ver\":\"1.258.557\",\"build\":\"version: 1.258.557\\nlocal_ts: Fri Sep 11 2026 04:26:30 GMT+0000 (Coordinated Universal Time)\\nsrc_country: undefined\\nlocale: en-US\\nlocales: en-US,en\\nmanifest_version: 1.258.557\\nmanifest_ver: 3\\nconf_stamp: 0\\next.active: false\\next.suspended: \\nconf_ver: 45\\nab_test: \\nactive_tab: 1245103245\\nunblocking_mode: tab\\nproduct_type: cws\\nid: gkojfkhlekighikafcpjkiklfbnlmeio\\nbrowser: chrome 151\\nbrowser_build: chrome\\nplatform: Linux x86_64\\nuser_agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36\\ninstall_ms: 237\\ninstall_time: 0-1h\\nlast_install_ts: 1789100790724\\nsince_init_ms: 250\\nsince_state_init_ms: 250\",\"is_json\":1}",
+          "resource_type": "fetch",
+          "url": "https://perr.hola.org/client_cgi/perr?id=be_connectivity_check_success&ext_ver=1.258.557&product=cws&browser=chrome&uuid=d998cb2ab80689eb197c029d7391dd62"
+        },
+        {
+          "method": "POST",
+          "post_data": "{\"info\":\"{\\\"name\\\":\\\"hola\\\",\\\"check_name\\\":\\\"perr_check\\\",\\\"urls\\\":[\\\"perr.hola.org/client_cgi/perr/conn_test\\\"],\\\"mode\\\":\\\"parallel\\\"}\",\"ver\":\"1.258.557\",\"build\":\"version: 1.258.557\\nlocal_ts: Fri Sep 11 2026 04:26:30 GMT+0000 (Coordinated Universal Time)\\nsrc_country: undefined\\nlocale: en-US\\nlocales: en-US,en\\nmanifest_version: 1.258.557\\nmanifest_ver: 3\\nconf_stamp: 0\\next.active: false\\next.suspended: \\nconf_ver: 45\\nab_test: \\nactive_tab: 1245103245\\nunblocking_mode: tab\\nproduct_type: cws\\nid: gkojfkhlekighikafcpjkiklfbnlmeio\\nbrowser: chrome 151\\nbrowser_build: chrome\\nplatform: Linux x86_64\\nuser_agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36\\ninstall_ms: 242\\ninstall_time: 0-1h\\nlast_install_ts: 1789100790724\\nsince_init_ms: 255\\nsince_state_init_ms: 255\",\"is_json\":1}",
+          "resource_type": "fetch",
+          "url": "https://perr.hola.org/client_cgi/perr?id=be_connectivity_check_success&ext_ver=1.258.557&product=cws&browser=chrome&uuid=d998cb2ab80689eb197c029d7391dd62"
+        },
+        {
+          "method": "POST",
+          "post_data": "{\"info\":\"{\\\"new_mode\\\":\\\"ext\\\"}\",\"ver\":\"1.258.557\",\"build\":\"version: 1.258.557\\nlocal_ts: Fri Sep 11 2026 04:26:31 GMT+0000 (Coordinated Universal Time)\\nsrc_country: US\\nlocale: en-US\\nlocales: en-US,en\\nmanifest_version: 1.258.557\\nmanifest_ver: 3\\nconf_stamp: 1788961167351\\next.active: true\\next.suspended: \\next_conflict: false\\nsession_key: 39147137\\nconf_ver: 45\\nab_test: \\nactive_tab: 1245103245\\nunblocking_mode: tab\\nproduct_type: cws\\nid: gkojfkhlekighikafcpjkiklfbnlmeio\\nbrowser: chrome 151\\nbrowser_build: chrome\\nplatform: Linux x86_64\\nuser_agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36\\ninstall_ms: 485\\ninstall_time: 0-1h\\nlast_install_ts: 1789100790724\\nsince_init_ms: 498\\nsince_state_init_ms: 498\",\"is_json\":1}",
+          "resource_type": "fetch",
+          "url": "https://perr.hola.org/client_cgi/perr?id=be_mode_change&ext_ver=1.258.557&product=cws&browser=chrome&uuid=d998cb2ab80689eb197c029d7391dd62"
+        },
+        {
+          "method": "POST",
+          "post_data": "{\"info\":\"{\\\"diff\\\":319}\",\"ver\":\"1.258.557\",\"build\":\"version: 1.258.557\\nlocal_ts: Fri Sep 11 2026 04:26:31 GMT+0000 (Coordinated Universal Time)\\nsrc_country: US\\nlocale: en-US\\nlocales: en-US,en\\nmanifest_version: 1.258.557\\nmanifest_ver: 3\\nconf_stamp: 1788961167351\\next.active: true\\next.suspended: \\next_conflict: false\\nsession_key: 39147137\\nconf_ver: 45\\nab_test: \\nactive_tab: 1245103245\\nunblocking_mode: tab\\nproduct_type: cws\\nid: gkojfkhlekighikafcpjkiklfbnlmeio\\nbrowser: chrome 151\\nbrowser_build: chrome\\nplatform: Linux x86_64\\nuser_agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36\\ninstall_ms: 487\\ninstall_time: 0-1h\\nlast_install_ts: 1789100790724\\nsince_init_ms: 500\\nsince_state_init_ms: 500\",\"is_json\":1}",
+          "resource_type": "fetch",
+          "url": "https://perr.hola.org/client_cgi/perr?id=be_background_init_ok&ext_ver=1.258.557&product=cws&browser=chrome&uuid=d998cb2ab80689eb197c029d7391dd62"
+        },
+        {
+          "method": "POST",
+          "post_data": "{\"info\":\"{\\\"name\\\":\\\"hola\\\",\\\"check_name\\\":\\\"ccgi_cdn_check\\\",\\\"urls\\\":[\\\"client-cdn4.hola.org/client_cgi/conn_test\\\"],\\\"mode\\\":\\\"parallel\\\"}\",\"ver\":\"1.258.557\",\"build\":\"version: 1.258.557\\nlocal_ts: Fri Sep 11 2026 04:26:31 GMT+0000 (Coordinated Universal Time)\\nsrc_country: US\\nlocale: en-US\\nlocales: en-US,en\\nmanifest_version: 1.258.557\\nmanifest_ver: 3\\nconf_stamp: 1788961167351\\next.active: true\\next.suspended: \\next_conflict: false\\nsession_key: 39147137\\nconf_ver: 45\\nab_test: \\nactive_tab: 1245103245\\nunblocking_mode: tab\\nproduct_type: cws\\nid: gkojfkhlekighikafcpjkiklfbnlmeio\\nbrowser: chrome 151\\nbrowser_build: chrome\\nplatform: Linux x86_64\\nuser_agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36\\ninstall_ms: 488\\ninstall_time: 0-1h\\nlast_install_ts: 1789100790724\\nsince_init_ms: 501\\nsince_state_init_ms: 501\",\"is_json\":1}",
+          "resource_type": "fetch",
+          "url": "https://perr.hola.org/client_cgi/perr?id=be_connectivity_check_success&ext_ver=1.258.557&product=cws&browser=chrome&uuid=d998cb2ab80689eb197c029d7391dd62"
+        },
+        {
+          "method": "POST",
+          "post_data": "{\"info\":\"{\\\"name\\\":\\\"hola\\\",\\\"check_name\\\":\\\"hola_check\\\",\\\"urls\\\":[\\\"hola.org/conn_test\\\"],\\\"mode\\\":\\\"parallel\\\"}\",\"ver\":\"1.258.557\",\"build\":\"version: 1.258.557\\nlocal_ts: Fri Sep 11 2026 04:26:31 GMT+0000 (Coordinated Universal Time)\\nsrc_country: US\\nlocale: en-US\\nlocales: en-US,en\\nmanifest_version: 1.258.557\\nmanifest_ver: 3\\nconf_stamp: 1788961167351\\next.active: true\\next.suspended: \\next_conflict: false\\nsession_key: 39147137\\nconf_ver: 45\\nab_test: \\nactive_tab: 1245103245\\nunblocking_mode: tab\\nproduct_type: cws\\nid: gkojfkhlekighikafcpjkiklfbnlmeio\\nbrowser: chrome 151\\nbrowser_build: chrome\\nplatform: Linux x86_64\\nuser_agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36\\ninstall_ms: 538\\ninstall_time: 0-1h\\nlast_install_ts: 1789100790724\\nsince_init_ms: 551\\nsince_state_init_ms: 551\",\"is_json\":1}",
+          "resource_type": "fetch",
+          "url": "https://perr.hola.org/client_cgi/perr?id=be_connectivity_check_success&ext_ver=1.258.557&product=cws&browser=chrome&uuid=d998cb2ab80689eb197c029d7391dd62"
+        },
+        {
+          "method": "POST",
+          "post_data": "{\"info\":\"{\\\"log_tail\\\":\\\"starting svc detection\\\\nsm exec callback undefined undefined\\\"}\",\"ver\":\"1.258.557\",\"build\":\"version: 1.258.557\\nlocal_ts: Fri Sep 11 2026 04:26:31 GMT+0000 (Coordinated Universal Time)\\nsrc_country: US\\nlocale: en-US\\nlocales: en-US,en\\nmanifest_version: 1.258.557\\nmanifest_ver: 3\\nconf_stamp: 1788961167351\\nsvc_version: null\\nsvc_appid: \\ncampaign: \\nsvc_uuid: \\next.active: true\\next.suspended: \\next_conflict: false\\nsession_key: 39147137\\nconf_ver: 45\\nab_test: \\nactive_tab: 1245103245\\nunblocking_mode: tab\\nproduct_type: cws\\nid: gkojfkhlekighikafcpjkiklfbnlmeio\\nbrowser: chrome 151\\nbrowser_build: chrome\\nplatform: Linux x86_64\\nuser_agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36\\ninstall_ms: 598\\ninstall_time: 0-1h\\nlast_install_ts: 1789100790724\\nsince_init_ms: 611\\nsince_state_init_ms: 611\",\"is_json\":1}",
+          "resource_type": "fetch",
+          "url": "https://perr.hola.org/client_cgi/perr?id=be_svc_monitor_exec.callback&ext_ver=1.258.557&product=cws&browser=chrome&uuid=d998cb2ab80689eb197c029d7391dd62"
+        },
+        {
+          "method": "POST",
+          "post_data": "{\"info\":\"{\\\"log_tail\\\":\\\"starting svc detection\\\\nsm exec callback undefined undefined\\\\nsm exec callback undefined undefined\\\"}\",\"ver\":\"1.258.557\",\"build\":\"version: 1.258.557\\nlocal_ts: Fri Sep 11 2026 04:26:31 GMT+0000 (Coordinated Universal Time)\\nsrc_country: US\\nlocale: en-US\\nlocales: en-US,en\\nmanifest_version: 1.258.557\\nmanifest_ver: 3\\nconf_stamp: 1788961167351\\nsvc_version: null\\nsvc_appid: \\ncampaign: \\nsvc_uuid: \\next.active: true\\next.suspended: \\next_conflict: false\\nis_premium: false\\nhola_uid_id: \\nsession_key: 39147137\\nconf_ver: 45\\nab_test: test_limited_currencies_555_off,test_send_chrome_headers_off\\nactive_tab: 1245103245\\nunblocking_mode: tab\\nproduct_type: cws\\nid: gkojfkhlekighikafcpjkiklfbnlmeio\\nbrowser: chrome 151\\nbrowser_build: chrome\\nplatform: Linux x86_64\\nuser_agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36\\ninstall_ms: 664\\ninstall_time: 0-1h\\nlast_install_ts: 1789100790724\\nsince_init_ms: 677\\nsince_state_init_ms: 677\",\"is_json\":1}",
+          "resource_type": "fetch",
+          "url": "https://perr.hola.org/client_cgi/perr?id=be_svc_monitor_exec.callback&ext_ver=1.258.557&product=cws&browser=chrome&uuid=d998cb2ab80689eb197c029d7391dd62"
+        },
+        {
+          "method": "POST",
+          "post_data": "{\"info\":\"{\\\"log_tail\\\":\\\"starting svc detection\\\\nsm exec callback undefined undefined\\\\nsm exec callback undefined undefined\\\\nsm exec callback undefined undefined\\\"}\",\"ver\":\"1.258.557\",\"build\":\"version: 1.258.557\\nlocal_ts: Fri Sep 11 2026 04:26:31 GMT+0000 (Coordinated Universal Time)\\nsrc_country: US\\nlocale: en-US\\nlocales: en-US,en\\nmanifest_version: 1.258.557\\nmanifest_ver: 3\\nconf_stamp: 1788961167351\\nsvc_version: null\\nsvc_appid: \\ncampaign: \\nsvc_uuid: \\next.active: true\\next.suspended: \\next_conflict: false\\nis_premium: false\\nhola_uid_id: \\nsession_key: 39147137\\nconf_ver: 45\\nab_test: test_limited_currencies_555_off,test_send_chrome_headers_off\\nactive_tab: 1245103245\\nunblocking_mode: tab\\nproduct_type: cws\\nid: gkojfkhlekighikafcpjkiklfbnlmeio\\nbrowser: chrome 151\\nbrowser_build: chrome\\nplatform: Linux x86_64\\nuser_agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36\\ninstall_ms: 665\\ninstall_time: 0-1h\\nlast_install_ts: 1789100790724\\nsince_init_ms: 678\\nsince_state_init_ms: 678\",\"is_json\":1}",
+          "resource_type": "fetch",
+          "url": "https://perr.hola.org/client_cgi/perr?id=be_svc_monitor_exec.callback&ext_ver=1.258.557&product=cws&browser=chrome&uuid=d998cb2ab80689eb197c029d7391dd62"
+        },
+        {
+          "method": "POST",
+          "post_data": "{\"info\":\"{\\\"permissions\\\":[\\\"proxy\\\",\\\"webRequest\\\",\\\"storage\\\",\\\"tabs\\\",\\\"webNavigation\\\",\\\"cookies\\\",\\\"scripting\\\",\\\"webRequestAuthProvider\\\",\\\"declarativeNetRequest\\\"],\\\"new_uuid\\\":true}\",\"ver\":\"1.258.557\",\"build\":\"version: 1.258.557\\nlocal_ts: Fri Sep 11 2026 04:26:31 GMT+0000 (Coordinated Universal Time)\\nsrc_country: US\\nlocale: en-US\\nlocales: en-US,en\\nmanifest_version: 1.258.557\\nmanifest_ver: 3\\nconf_stamp: 1788961167351\\nsvc_version: null\\nsvc_appid: \\ncampaign: \\nsvc_uuid: \\next.active: true\\next.suspended: \\next_conflict: false\\nis_premium: false\\nhola_uid_id: \\nsession_key: 39147137\\nconf_ver: 45\\nab_test: test_limited_currencies_555_off,test_send_chrome_headers_off\\nactive_tab: 1245103246\\nunblocking_mode: tab\\nproduct_type: cws\\nid: gkojfkhlekighikafcpjkiklfbnlmeio\\nbrowser: chrome 151\\nbrowser_build: chrome\\nplatform: Linux x86_64\\nuser_agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36\\ninstall_ms: 702\\ninstall_time: 0-1h\\nlast_install_ts: 1789100790724\\nsince_init_ms: 715\\nsince_state_init_ms: 715\\nundefined: undefined\",\"is_json\":1}",
+          "resource_type": "fetch",
+          "url": "https://perr.hola.org/client_cgi/perr?id=be_install&ext_ver=1.258.557&product=cws&browser=chrome&uuid=d998cb2ab80689eb197c029d7391dd62"
+        },
+        {
+          "method": "POST",
+          "post_data": "{\"info\":\"{\\\"test_name\\\":\\\"test_limited_currencies_555\\\",\\\"state\\\":{\\\"rand\\\":0.2073838039449798,\\\"ver\\\":1,\\\"value\\\":\\\"off\\\"}}\",\"ver\":\"1.258.557\",\"build\":\"version: 1.258.557\\nlocal_ts: Fri Sep 11 2026 04:26:31 GMT+0000 (Coordinated Universal Time)\\nsrc_country: US\\nlocale: en-US\\nlocales: en-US,en\\nmanifest_version: 1.258.557\\nmanifest_ver: 3\\nconf_stamp: 1788961167351\\nsvc_version: null\\nsvc_appid: \\ncampaign: \\nsvc_uuid: \\next.active: true\\next.suspended: \\next_conflict: false\\nis_premium: false\\nhola_uid_id: \\nsession_key: 39147137\\nconf_ver: 45\\nab_test: test_limited_currencies_555_off,test_send_chrome_headers_off\\nactive_tab: 1245103246\\nunblocking_mode: tab\\nproduct_type: cws\\nid: gkojfkhlekighikafcpjkiklfbnlmeio\\nbrowser: chrome 151\\nbrowser_build: chrome\\nplatform: Linux x86_64\\nuser_agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36\\ninstall_ms: 703\\ninstall_time: 0-1h\\nlast_install_ts: 1789100790724\\nsince_init_ms: 716\\nsince_state_init_ms: 716\",\"is_json\":1}",
+          "resource_type": "fetch",
+          "url": "https://perr.hola.org/client_cgi/perr?id=be_ab_test_selected&ext_ver=1.258.557&product=cws&browser=chrome&uuid=d998cb2ab80689eb197c029d7391dd62"
+        },
+        {
+          "method": "POST",
+          "post_data": "{\"info\":\"{\\\"test_name\\\":\\\"test_send_chrome_headers\\\",\\\"state\\\":{\\\"rand\\\":0.675261819051783,\\\"ver\\\":2,\\\"value\\\":\\\"off\\\"}}\",\"ver\":\"1.258.557\",\"build\":\"version: 1.258.557\\nlocal_ts: Fri Sep 11 2026 04:26:31 GMT+0000 (Coordinated Universal Time)\\nsrc_country: US\\nlocale: en-US\\nlocales: en-US,en\\nmanifest_version: 1.258.557\\nmanifest_ver: 3\\nconf_stamp: 1788961167351\\nsvc_version: null\\nsvc_appid: \\ncampaign: \\nsvc_uuid: \\next.active: true\\next.suspended: \\next_conflict: false\\nis_premium: false\\nhola_uid_id: \\nsession_key: 39147137\\nconf_ver: 45\\nab_test: test_limited_currencies_555_off,test_send_chrome_headers_off\\nactive_tab: 1245103246\\nunblocking_mode: tab\\nproduct_type: cws\\nid: gkojfkhlekighikafcpjkiklfbnlmeio\\nbrowser: chrome 151\\nbrowser_build: chrome\\nplatform: Linux x86_64\\nuser_agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36\\ninstall_ms: 704\\ninstall_time: 0-1h\\nlast_install_ts: 1789100790724\\nsince_init_ms: 717\\nsince_state_init_ms: 717\",\"is_json\":1}",
+          "resource_type": "fetch",
+          "url": "https://perr.hola.org/client_cgi/perr?id=be_ab_test_selected&ext_ver=1.258.557&product=cws&browser=chrome&uuid=d998cb2ab80689eb197c029d7391dd62"
+        },
+        {
+          "method": "POST",
+          "post_data": null,
+          "resource_type": "xhr",
+          "url": "https://perr.hola.org/client_cgi/perr?id=www_welcome_loading&info=%7B%7D&uuid=d998cb2ab80689eb197c029d7391dd62&ver=1.258.953&browser=chrome&build=version%3A+1.258.953%0Amakeflags%3A+%0Aproduct_type%3A+unknown%0Aid%3A+undefined%0Abrowser%3A+chrome%0Abrowser_build%3A+undefined%0Aplatform%3A+Linux+x86_64%0Auser_agent%3A+Mozilla%2F5.0+(X11%3B+Linux+x86_64)+AppleWebKit%2F537.36+(KHTML%2C+like+Gecko)+Chrome%2F151.0.0.0+Safari%2F537.36%0Aurl%3A+https%3A%2F%2Fhola.org%2Fwelcome%3Fext_ver%3D1.258.557%26uuid%3Dd998cb2ab80689eb197c029d7391dd62%0Areferrer%3A+%0Ah_visitor_id%3A+www-4dc453b1-59ec-4fbb-a520-a982314d3061%0Awww_visitor_id%3A+www-4dc453b1-59ec-4fbb-a520-a982314d3061"
+        },
+        {
+          "method": "POST",
+          "post_data": "build=os%3A+linux%0Aplatform%3A+Linux+x86_64%0Azua%3A+Mozilla%2F5.0+(X11%3B+Linux+x86_64)+AppleWebKit%2F537.36+(KHTML%2C+like+Gecko)+Chrome%2F151.0.0.0+Safari%2F537.36%0Alocation_href%3A+https%3A%2F%2Fhola.org%2Fwelcome%3Fext_ver%3D1.258.557%26uuid%3Dd998cb2ab80689eb197c029d7391dd62%0Ah_visitor_id%3A+www-4dc453b1-59ec-4fbb-a520-a982314d3061%0Awww_visitor_id%3A+www-4dc453b1-59ec-4fbb-a520-a982314d3061%0Agdpr_agreed%3A+true%0Awww_version%3A+1.258.953%0Auser_type%3A+2%0Ahas_ext%3A+true%0Aproduct%3A+hola_vpn_win%0Atest_sdklp_afterdlui_001%3A+true%0Atest_onb_popup%3A+true%0Atest_checkout_text%3A+true%0Auits%3A+747%0Adoc_ts%3A+408%0Aeffective_type%3A+4g%0Adownlink%3A+10%0Ascreen%3A+lg%0Ascreen_width%3A+1280%0Ascreen_height%3A+720%0Atheme_name%3A+hola2023&info=%7B%22url%22%3A%22https%3A%2F%2Fhola.org%2Fwelcome%3Fext_ver%3D1.258.557%26uuid%3Dd998cb2ab80689eb197c029d7391dd62%22%2C%22referrer%22%3A%22%22%2C%22ext_info%22%3A%7B%22uuid%22%3A%22d998cb2ab80689eb197c029d7391dd62%22%7D%7D&bt=&filehead=&is_json=1",
+          "resource_type": "fetch",
+          "url": "https://perr.hola.org/be_client_cgi/perr?uuid=d998cb2ab80689eb197c029d7391dd62&tid=mtwgf2a2.z131fk&browser=chrome&id=www_welcome_visit&ver=1.258.953"
+        },
+        {
+          "method": "POST",
+          "post_data": "build=os%3A+linux%0Aplatform%3A+Linux+x86_64%0Azua%3A+Mozilla%2F5.0+(X11%3B+Linux+x86_64)+AppleWebKit%2F537.36+(KHTML%2C+like+Gecko)+Chrome%2F151.0.0.0+Safari%2F537.36%0Alocation_href%3A+https%3A%2F%2Fhola.org%2Fwelcome%3Fext_ver%3D1.258.557%26uuid%3Dd998cb2ab80689eb197c029d7391dd62%0Ah_visitor_id%3A+www-4dc453b1-59ec-4fbb-a520-a982314d3061%0Awww_visitor_id%3A+www-4dc453b1-59ec-4fbb-a520-a982314d3061%0Agdpr_agreed%3A+true%0Awww_version%3A+1.258.953%0Auser_type%3A+2%0Aproduct%3A+hola_vpn_win%0Atest_sdklp_afterdlui_001%3A+true%0Atest_onb_popup%3A+true%0Atest_checkout_text%3A+true%0Auits%3A+750%0Aeffective_type%3A+4g%0Adownlink%3A+10%0Ascreen%3A+lg%0Ascreen_width%3A+1280%0Ascreen_height%3A+720%0Atheme_name%3A+hola2023&info=%7B%22urls%22%3A%5B%7B%22id%22%3A%22util%22%2C%22types%22%3A%5B%22js%22%2C%22cdn4%22%5D%2C%22url%22%3A%22https%3A%2F%2Fcdn4.hola.org%2Fwww%2Flocale%2Fpub%2Flanguages_ext.js%3Fver%3D1.258.953%22%2C%22ms%22%3A66.60000000003492%2C%22pathname%22%3A%22%2Fwww%2Flocale%2Fpub%2Flanguages_ext.js%22%7D%5D%2C%22types%22%3A%7B%22js%22%3A%7B%22max%22%3A111.70000000001164%2C%22item%22%3A%7B%22types%22%3A%5B%22js%22%2C%22cdn4%22%5D%2C%22url%22%3A%22https%3A%2F%2Fcdn4.hola.org%2Fwww%2Fhola%2Fpub%2Ff3adabbb80ea5f70d8186f17500c8247.1.258.953.chunk.js%3Fver%3D1.258.953%22%2C%22ms%22%3A111.70000000001164%2C%22pathname%22%3A%22%2Fwww%2Fhola%2Fpub%2Ff3adabbb80ea5f70d8186f17500c8247.1.258.953.chunk.js%22%7D%7D%2C%22css%22%3A%7B%22max%22%3A3.900000000023283%2C%22item%22%3A%7B%22types%22%3A%5B%22css%22%2C%22cdn4%22%5D%2C%22url%22%3A%22https%3A%2F%2Fcdn4.hola.org%2Fwww%2Fhola%2Fpub%2Fpkg_www_hola_pub_pages_hola_org_welcome_module_less-pkg_www_hola_pub_pages_hola_org_welcome_e-9d4e5a.bundle.css%3Fver%3D1.258.953%22%2C%22ms%22%3A3.900000000023283%2C%22pathname%22%3A%22%2Fwww%2Fhola%2Fpub%2Fpkg_www_hola_pub_pages_hola_org_welcome_module_less-pkg_www_hola_pub_pages_hola_org_welcome_e-9d4e5a.bundle.css%22%7D%7D%2C%22cdn4%22%3A%7B%22max%22%3A3.900000000023283%2C%22item%22%3A%7B%22types%22%3A%5B%22css%22%2C%22cdn4%22%5D%2C%22url%22%3A%22https%3A%2F%2Fcdn4.hola.org%2Fwww%2Fhola%2Fpub%2Fpkg_www_hola_pub_pages_hola_org_welcome_module_less-pkg_www_hola_pub_pages_hola_org_welcome_e-9d4e5a.bundle.css%3Fver%3D1.258.953%22%2C%22ms%22%3A3.900000000023283%2C%22pathname%22%3A%22%2Fwww%2Fhola%2Fpub%2Fpkg_www_hola_pub_pages_hola_org_welcome_module_less-pkg_www_hola_pub_pages_hola_org_welcome_e-9d4e5a.bundle.css%22%7D%7D%7D%2C%22now%22%3A749.8000000000466%7D&bt=&filehead=&is_json=1",
+          "resource_type": "fetch",
+          "url": "https://perr.hola.org/be_client_cgi/perr?uuid=d998cb2ab80689eb197c029d7391dd62&tid=mtwgf2a2.z131fk&browser=chrome&id=www_timing&ver=1.258.953"
+        },
+        {
+          "method": "POST",
+          "post_data": "build=os%3A+linux%0Aplatform%3A+Linux+x86_64%0Azua%3A+Mozilla%2F5.0+(X11%3B+Linux+x86_64)+AppleWebKit%2F537.36+(KHTML%2C+like+Gecko)+Chrome%2F151.0.0.0+Safari%2F537.36%0Alocation_href%3A+https%3A%2F%2Fhola.org%2Fwelcome%3Fext_ver%3D1.258.557%26uuid%3Dd998cb2ab80689eb197c029d7391dd62%0Ah_visitor_id%3A+www-4dc453b1-59ec-4fbb-a520-a982314d3061%0Awww_visitor_id%3A+www-4dc453b1-59ec-4fbb-a520-a982314d3061%0Agdpr_agreed%3A+true%0Awww_version%3A+1.258.953%0Auser_type%3A+2%0Aproduct%3A+hola_vpn_win%0Atest_sdklp_afterdlui_001%3A+true%0Atest_onb_popup%3A+true%0Atest_checkout_text%3A+true%0Auits%3A+752%0Aeffective_type%3A+4g%0Adownlink%3A+10%0Ascreen%3A+lg%0Ascreen_width%3A+1280%0Ascreen_height%3A+720%0Atheme_name%3A+hola2023&info=%7B%7D&bt=&filehead=&is_json=1",
+          "resource_type": "fetch",
+          "url": "https://perr.hola.org/be_client_cgi/perr?uuid=d998cb2ab80689eb197c029d7391dd62&tid=mtwgf2a2.z131fk&browser=chrome&id=www_cookie_consent_show&ver=1.258.953"
+        },
+        {
+          "method": "POST",
+          "post_data": "{\"info\":\"{\\\"log_tail\\\":\\\"starting svc detection\\\\nsm exec callback undefined undefined\\\\nsm exec callback undefined undefined\\\\nsm exec callback undefined undefined\\\\nsm exec callback undefined undefined\\\"}\",\"ver\":\"1.258.557\",\"build\":\"version: 1.258.557\\nlocal_ts: Fri Sep 11 2026 04:26:32 GMT+0000 (Coordinated Universal Time)\\nsrc_country: US\\nlocale: en-US\\nlocales: en-US,en\\nmanifest_version: 1.258.557\\nmanifest_ver: 3\\nconf_stamp: 1788961167351\\nsvc_version: null\\nsvc_appid: \\ncampaign: \\nsvc_uuid: \\next.active: true\\next.suspended: \\next_conflict: false\\nis_premium: false\\nhola_uid_id: \\nsession_key: 39147137\\nconf_ver: 45\\nab_test: test_limited_currencies_555_off,test_send_chrome_headers_off\\nactive_tab: 1245103246\\nunblocking_mode: tab\\nproduct_type: cws\\nid: gkojfkhlekighikafcpjkiklfbnlmeio\\nbrowser: chrome 151\\nbrowser_build: chrome\\nplatform: Linux x86_64\\nuser_agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36\\ninstall_ms: 1531\\ninstall_time: 0-1h\\nlast_install_ts: 1789100790724\\nsince_init_ms: 1544\\nsince_state_init_ms: 1544\",\"is_json\":1}",
+          "resource_type": "fetch",
+          "url": "https://perr.hola.org/client_cgi/perr?id=be_svc_monitor_exec.callback&ext_ver=1.258.557&product=cws&browser=chrome&uuid=d998cb2ab80689eb197c029d7391dd62"
+        },
+        {
+          "method": "POST",
+          "post_data": "{\"info\":\"{\\\"name\\\":\\\"build_agents\\\",\\\"check_name\\\":\\\"agents_check\\\",\\\"mode\\\":\\\"syq\\\",\\\"host\\\":\\\"zagent2706.x-cdn-static.com\\\"}\",\"ver\":\"1.258.557\",\"build\":\"version: 1.258.557\\nlocal_ts: Fri Sep 11 2026 04:26:33 GMT+0000 (Coordinated Universal Time)\\nsrc_country: US\\nlocale: en-US\\nlocales: en-US,en\\nmanifest_version: 1.258.557\\nmanifest_ver: 3\\nconf_stamp: 1788961167351\\nsvc_version: null\\nsvc_appid: \\ncampaign: \\nsvc_uuid: \\next.active: true\\next.suspended: \\next_conflict: false\\nis_premium: false\\nhola_uid_id: \\nsession_key: 39147137\\nconf_ver: 45\\nab_test: test_limited_currencies_555_off,test_send_chrome_headers_off\\nactive_tab: 1245103246\\nunblocking_mode: tab\\nproduct_type: cws\\nid: gkojfkhlekighikafcpjkiklfbnlmeio\\nbrowser: chrome 151\\nbrowser_build: chrome\\nplatform: Linux x86_64\\nuser_agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36\\ninstall_ms: 2648\\ninstall_time: 0-1h\\nlast_install_ts: 1789100790724\\nsince_init_ms: 2661\\nsince_state_init_ms: 2661\",\"is_json\":1}",
+          "resource_type": "fetch",
+          "url": "https://perr.hola.org/client_cgi/perr?id=be_connectivity_check_failed_agent&ext_ver=1.258.557&product=cws&browser=chrome&uuid=d998cb2ab80689eb197c029d7391dd62"
+        },
+        {
+          "method": "POST",
+          "post_data": "{\"info\":\"{\\\"name\\\":\\\"build_agents\\\",\\\"check_name\\\":\\\"agents_check\\\",\\\"mode\\\":\\\"syq\\\",\\\"urls\\\":[\\\"client.hola.org/client_cgi/conn_test\\\"],\\\"success\\\":\\\"https://client.hola.org/client_cgi/conn_test\\\"}\",\"ver\":\"1.258.557\",\"build\":\"version: 1.258.557\\nlocal_ts: Fri Sep 11 2026 04:26:33 GMT+0000 (Coordinated Universal Time)\\nsrc_country: US\\nlocale: en-US\\nlocales: en-US,en\\nmanifest_version: 1.258.557\\nmanifest_ver: 3\\nconf_stamp: 1788961167351\\nsvc_version: null\\nsvc_appid: \\ncampaign: \\nsvc_uuid: \\next.active: true\\next.suspended: \\next_conflict: false\\nis_premium: false\\nhola_uid_id: \\nsession_key: 39147137\\nconf_ver: 45\\nab_test: test_limited_currencies_555_off,test_send_chrome_headers_off\\nactive_tab: 1245103246\\nunblocking_mode: tab\\nproduct_type: cws\\nid: gkojfkhlekighikafcpjkiklfbnlmeio\\nbrowser: chrome 151\\nbrowser_build: chrome\\nplatform: Linux x86_64\\nuser_agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36\\ninstall_ms: 2650\\ninstall_time: 0-1h\\nlast_install_ts: 1789100790724\\nsince_init_ms: 2663\\nsince_state_init_ms: 2663\",\"is_json\":1}",
+          "resource_type": "fetch",
+          "url": "https://perr.hola.org/client_cgi/perr?id=be_connectivity_check_success&ext_ver=1.258.557&product=cws&browser=chrome&uuid=d998cb2ab80689eb197c029d7391dd62"
+        }
+      ],
+      "passive_canary_observed": false,
+      "passive_perr_fetches": [
+        {
+          "body": null,
+          "method": "GET",
+          "ts": 1789100790786,
+          "url": "https://perr.hola.org/client_cgi/perr/conn_test"
+        },
+        {
+          "body": "{\"info\":\"{}\",\"ver\":\"1.258.557\",\"build\":\"version: 1.258.557\\nlocal_ts: Fri Sep 11 2026 04:26:30 GMT+0000 (Coordinated Universal Time)\\nsrc_country: undefined\\nlocale: en-US\\nlocales: en-US,en\\nmanifest_version: 1.258.557\\nmanifest_ver: 3\\nconf_stamp: 0\\next.active: false\\next.suspended: \\nconf_ver: 45\\nab_test: \\nactive_tab: 1245103245\\nunblocking_mode: tab\\nproduct_type: cws\\nid: gkojfkhlekighikafcpjkiklfbnlmeio\\nbrowser: chrome 151\\nbrowser_build: chrome\\nplatform: Linux x86_64\\nuser_agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36\\ninstall_ms: 61\\ninstall_time: 0-1h\\nlast_install_ts: 1789100790724\\nsince_init_ms: 74\\nsince_state_init_ms: 74\",\"is_json\":1}",
+          "method": "POST",
+          "ts": 1789100790960,
+          "url": "https://perr.hola.org/client_cgi/perr?id=be_up&ext_ver=1.258.557&product=cws&browser=chrome&uuid=d998cb2ab80689eb197c029d7391dd62"
+        },
+        {
+          "body": "{\"info\":\"{\\\"name\\\":\\\"hola\\\",\\\"check_name\\\":\\\"ccgi_check\\\",\\\"urls\\\":[\\\"client.hola.org/client_cgi/conn_test\\\"],\\\"mode\\\":\\\"parallel\\\"}\",\"ver\":\"1.258.557\",\"build\":\"version: 1.258.557\\nlocal_ts: Fri Sep 11 2026 04:26:30 GMT+0000 (Coordinated Universal Time)\\nsrc_country: undefined\\nlocale: en-US\\nlocales: en-US,en\\nmanifest_version: 1.258.557\\nmanifest_ver: 3\\nconf_stamp: 0\\next.active: false\\next.suspended: \\nconf_ver: 45\\nab_test: \\nactive_tab: 1245103245\\nunblocking_mode: tab\\nproduct_type: cws\\nid: gkojfkhlekighikafcpjkiklfbnlmeio\\nbrowser: chrome 151\\nbrowser_build: chrome\\nplatform: Linux x86_64\\nuser_agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36\\ninstall_ms: 237\\ninstall_time: 0-1h\\nlast_install_ts: 1789100790724\\nsince_init_ms: 250\\nsince_state_init_ms: 250\",\"is_json\":1}",
+          "method": "POST",
+          "ts": 1789100790961,
+          "url": "https://perr.hola.org/client_cgi/perr?id=be_connectivity_check_success&ext_ver=1.258.557&product=cws&browser=chrome&uuid=d998cb2ab80689eb197c029d7391dd62"
+        },
+        {
+          "body": "{\"info\":\"{\\\"name\\\":\\\"hola\\\",\\\"check_name\\\":\\\"perr_check\\\",\\\"urls\\\":[\\\"perr.hola.org/client_cgi/perr/conn_test\\\"],\\\"mode\\\":\\\"parallel\\\"}\",\"ver\":\"1.258.557\",\"build\":\"version: 1.258.557\\nlocal_ts: Fri Sep 11 2026 04:26:30 GMT+0000 (Coordinated Universal Time)\\nsrc_country: undefined\\nlocale: en-US\\nlocales: en-US,en\\nmanifest_version: 1.258.557\\nmanifest_ver: 3\\nconf_stamp: 0\\next.active: false\\next.suspended: \\nconf_ver: 45\\nab_test: \\nactive_tab: 1245103245\\nunblocking_mode: tab\\nproduct_type: cws\\nid: gkojfkhlekighikafcpjkiklfbnlmeio\\nbrowser: chrome 151\\nbrowser_build: chrome\\nplatform: Linux x86_64\\nuser_agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36\\ninstall_ms: 242\\ninstall_time: 0-1h\\nlast_install_ts: 1789100790724\\nsince_init_ms: 255\\nsince_state_init_ms: 255\",\"is_json\":1}",
+          "method": "POST",
+          "ts": 1789100790966,
+          "url": "https://perr.hola.org/client_cgi/perr?id=be_connectivity_check_success&ext_ver=1.258.557&product=cws&browser=chrome&uuid=d998cb2ab80689eb197c029d7391dd62"
+        },
+        {
+          "body": "{\"info\":\"{\\\"new_mode\\\":\\\"ext\\\"}\",\"ver\":\"1.258.557\",\"build\":\"version: 1.258.557\\nlocal_ts: Fri Sep 11 2026 04:26:31 GMT+0000 (Coordinated Universal Time)\\nsrc_country: US\\nlocale: en-US\\nlocales: en-US,en\\nmanifest_version: 1.258.557\\nmanifest_ver: 3\\nconf_stamp: 1788961167351\\next.active: true\\next.suspended: \\next_conflict: false\\nsession_key: 39147137\\nconf_ver: 45\\nab_test: \\nactive_tab: 1245103245\\nunblocking_mode: tab\\nproduct_type: cws\\nid: gkojfkhlekighikafcpjkiklfbnlmeio\\nbrowser: chrome 151\\nbrowser_build: chrome\\nplatform: Linux x86_64\\nuser_agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36\\ninstall_ms: 485\\ninstall_time: 0-1h\\nlast_install_ts: 1789100790724\\nsince_init_ms: 498\\nsince_state_init_ms: 498\",\"is_json\":1}",
+          "method": "POST",
+          "ts": 1789100791210,
+          "url": "https://perr.hola.org/client_cgi/perr?id=be_mode_change&ext_ver=1.258.557&product=cws&browser=chrome&uuid=d998cb2ab80689eb197c029d7391dd62"
+        },
+        {
+          "body": "{\"info\":\"{\\\"diff\\\":319}\",\"ver\":\"1.258.557\",\"build\":\"version: 1.258.557\\nlocal_ts: Fri Sep 11 2026 04:26:31 GMT+0000 (Coordinated Universal Time)\\nsrc_country: US\\nlocale: en-US\\nlocales: en-US,en\\nmanifest_version: 1.258.557\\nmanifest_ver: 3\\nconf_stamp: 1788961167351\\next.active: true\\next.suspended: \\next_conflict: false\\nsession_key: 39147137\\nconf_ver: 45\\nab_test: \\nactive_tab: 1245103245\\nunblocking_mode: tab\\nproduct_type: cws\\nid: gkojfkhlekighikafcpjkiklfbnlmeio\\nbrowser: chrome 151\\nbrowser_build: chrome\\nplatform: Linux x86_64\\nuser_agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36\\ninstall_ms: 487\\ninstall_time: 0-1h\\nlast_install_ts: 1789100790724\\nsince_init_ms: 500\\nsince_state_init_ms: 500\",\"is_json\":1}",
+          "method": "POST",
+          "ts": 1789100791211,
+          "url": "https://perr.hola.org/client_cgi/perr?id=be_background_init_ok&ext_ver=1.258.557&product=cws&browser=chrome&uuid=d998cb2ab80689eb197c029d7391dd62"
+        },
+        {
+          "body": "{\"info\":\"{\\\"name\\\":\\\"hola\\\",\\\"check_name\\\":\\\"ccgi_cdn_check\\\",\\\"urls\\\":[\\\"client-cdn4.hola.org/client_cgi/conn_test\\\"],\\\"mode\\\":\\\"parallel\\\"}\",\"ver\":\"1.258.557\",\"build\":\"version: 1.258.557\\nlocal_ts: Fri Sep 11 2026 04:26:31 GMT+0000 (Coordinated Universal Time)\\nsrc_country: US\\nlocale: en-US\\nlocales: en-US,en\\nmanifest_version: 1.258.557\\nmanifest_ver: 3\\nconf_stamp: 1788961167351\\next.active: true\\next.suspended: \\next_conflict: false\\nsession_key: 39147137\\nconf_ver: 45\\nab_test: \\nactive_tab: 1245103245\\nunblocking_mode: tab\\nproduct_type: cws\\nid: gkojfkhlekighikafcpjkiklfbnlmeio\\nbrowser: chrome 151\\nbrowser_build: chrome\\nplatform: Linux x86_64\\nuser_agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36\\ninstall_ms: 488\\ninstall_time: 0-1h\\nlast_install_ts: 1789100790724\\nsince_init_ms: 501\\nsince_state_init_ms: 501\",\"is_json\":1}",
+          "method": "POST",
+          "ts": 1789100791213,
+          "url": "https://perr.hola.org/client_cgi/perr?id=be_connectivity_check_success&ext_ver=1.258.557&product=cws&browser=chrome&uuid=d998cb2ab80689eb197c029d7391dd62"
+        },
+        {
+          "body": "{\"info\":\"{\\\"name\\\":\\\"hola\\\",\\\"check_name\\\":\\\"hola_check\\\",\\\"urls\\\":[\\\"hola.org/conn_test\\\"],\\\"mode\\\":\\\"parallel\\\"}\",\"ver\":\"1.258.557\",\"build\":\"version: 1.258.557\\nlocal_ts: Fri Sep 11 2026 04:26:31 GMT+0000 (Coordinated Universal Time)\\nsrc_country: US\\nlocale: en-US\\nlocales: en-US,en\\nmanifest_version: 1.258.557\\nmanifest_ver: 3\\nconf_stamp: 1788961167351\\next.active: true\\next.suspended: \\next_conflict: false\\nsession_key: 39147137\\nconf_ver: 45\\nab_test: \\nactive_tab: 1245103245\\nunblocking_mode: tab\\nproduct_type: cws\\nid: gkojfkhlekighikafcpjkiklfbnlmeio\\nbrowser: chrome 151\\nbrowser_build: chrome\\nplatform: Linux x86_64\\nuser_agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36\\ninstall_ms: 538\\ninstall_time: 0-1h\\nlast_install_ts: 1789100790724\\nsince_init_ms: 551\\nsince_state_init_ms: 551\",\"is_json\":1}",
+          "method": "POST",
+          "ts": 1789100791262,
+          "url": "https://perr.hola.org/client_cgi/perr?id=be_connectivity_check_success&ext_ver=1.258.557&product=cws&browser=chrome&uuid=d998cb2ab80689eb197c029d7391dd62"
+        },
+        {
+          "body": "{\"info\":\"{\\\"log_tail\\\":\\\"starting svc detection\\\\nsm exec callback undefined undefined\\\"}\",\"ver\":\"1.258.557\",\"build\":\"version: 1.258.557\\nlocal_ts: Fri Sep 11 2026 04:26:31 GMT+0000 (Coordinated Universal Time)\\nsrc_country: US\\nlocale: en-US\\nlocales: en-US,en\\nmanifest_version: 1.258.557\\nmanifest_ver: 3\\nconf_stamp: 1788961167351\\nsvc_version: null\\nsvc_appid: \\ncampaign: \\nsvc_uuid: \\next.active: true\\next.suspended: \\next_conflict: false\\nsession_key: 39147137\\nconf_ver: 45\\nab_test: \\nactive_tab: 1245103245\\nunblocking_mode: tab\\nproduct_type: cws\\nid: gkojfkhlekighikafcpjkiklfbnlmeio\\nbrowser: chrome 151\\nbrowser_build: chrome\\nplatform: Linux x86_64\\nuser_agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36\\ninstall_ms: 598\\ninstall_time: 0-1h\\nlast_install_ts: 1789100790724\\nsince_init_ms: 611\\nsince_state_init_ms: 611\",\"is_json\":1}",
+          "method": "POST",
+          "ts": 1789100791322,
+          "url": "https://perr.hola.org/client_cgi/perr?id=be_svc_monitor_exec.callback&ext_ver=1.258.557&product=cws&browser=chrome&uuid=d998cb2ab80689eb197c029d7391dd62"
+        },
+        {
+          "body": "{\"info\":\"{\\\"log_tail\\\":\\\"starting svc detection\\\\nsm exec callback undefined undefined\\\\nsm exec callback undefined undefined\\\"}\",\"ver\":\"1.258.557\",\"build\":\"version: 1.258.557\\nlocal_ts: Fri Sep 11 2026 04:26:31 GMT+0000 (Coordinated Universal Time)\\nsrc_country: US\\nlocale: en-US\\nlocales: en-US,en\\nmanifest_version: 1.258.557\\nmanifest_ver: 3\\nconf_stamp: 1788961167351\\nsvc_version: null\\nsvc_appid: \\ncampaign: \\nsvc_uuid: \\next.active: true\\next.suspended: \\next_conflict: false\\nis_premium: false\\nhola_uid_id: \\nsession_key: 39147137\\nconf_ver: 45\\nab_test: test_limited_currencies_555_off,test_send_chrome_headers_off\\nactive_tab: 1245103245\\nunblocking_mode: tab\\nproduct_type: cws\\nid: gkojfkhlekighikafcpjkiklfbnlmeio\\nbrowser: chrome 151\\nbrowser_build: chrome\\nplatform: Linux x86_64\\nuser_agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36\\ninstall_ms: 664\\ninstall_time: 0-1h\\nlast_install_ts: 1789100790724\\nsince_init_ms: 677\\nsince_state_init_ms: 677\",\"is_json\":1}",
+          "method": "POST",
+          "ts": 1789100791388,
+          "url": "https://perr.hola.org/client_cgi/perr?id=be_svc_monitor_exec.callback&ext_ver=1.258.557&product=cws&browser=chrome&uuid=d998cb2ab80689eb197c029d7391dd62"
+        },
+        {
+          "body": "{\"info\":\"{\\\"log_tail\\\":\\\"starting svc detection\\\\nsm exec callback undefined undefined\\\\nsm exec callback undefined undefined\\\\nsm exec callback undefined undefined\\\"}\",\"ver\":\"1.258.557\",\"build\":\"version: 1.258.557\\nlocal_ts: Fri Sep 11 2026 04:26:31 GMT+0000 (Coordinated Universal Time)\\nsrc_country: US\\nlocale: en-US\\nlocales: en-US,en\\nmanifest_version: 1.258.557\\nmanifest_ver: 3\\nconf_stamp: 1788961167351\\nsvc_version: null\\nsvc_appid: \\ncampaign: \\nsvc_uuid: \\next.active: true\\next.suspended: \\next_conflict: false\\nis_premium: false\\nhola_uid_id: \\nsession_key: 39147137\\nconf_ver: 45\\nab_test: test_limited_currencies_555_off,test_send_chrome_headers_off\\nactive_tab: 1245103245\\nunblocking_mode: tab\\nproduct_type: cws\\nid: gkojfkhlekighikafcpjkiklfbnlmeio\\nbrowser: chrome 151\\nbrowser_build: chrome\\nplatform: Linux x86_64\\nuser_agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36\\ninstall_ms: 665\\ninstall_time: 0-1h\\nlast_install_ts: 1789100790724\\nsince_init_ms: 678\\nsince_state_init_ms: 678\",\"is_json\":1}",
+          "method": "POST",
+          "ts": 1789100791389,
+          "url": "https://perr.hola.org/client_cgi/perr?id=be_svc_monitor_exec.callback&ext_ver=1.258.557&product=cws&browser=chrome&uuid=d998cb2ab80689eb197c029d7391dd62"
+        },
+        {
+          "body": "{\"info\":\"{\\\"permissions\\\":[\\\"proxy\\\",\\\"webRequest\\\",\\\"storage\\\",\\\"tabs\\\",\\\"webNavigation\\\",\\\"cookies\\\",\\\"scripting\\\",\\\"webRequestAuthProvider\\\",\\\"declarativeNetRequest\\\"],\\\"new_uuid\\\":true}\",\"ver\":\"1.258.557\",\"build\":\"version: 1.258.557\\nlocal_ts: Fri Sep 11 2026 04:26:31 GMT+0000 (Coordinated Universal Time)\\nsrc_country: US\\nlocale: en-US\\nlocales: en-US,en\\nmanifest_version: 1.258.557\\nmanifest_ver: 3\\nconf_stamp: 1788961167351\\nsvc_version: null\\nsvc_appid: \\ncampaign: \\nsvc_uuid: \\next.active: true\\next.suspended: \\next_conflict: false\\nis_premium: false\\nhola_uid_id: \\nsession_key: 39147137\\nconf_ver: 45\\nab_test: test_limited_currencies_555_off,test_send_chrome_headers_off\\nactive_tab: 1245103246\\nunblocking_mode: tab\\nproduct_type: cws\\nid: gkojfkhlekighikafcpjkiklfbnlmeio\\nbrowser: chrome 151\\nbrowser_build: chrome\\nplatform: Linux x86_64\\nuser_agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36\\ninstall_ms: 702\\ninstall_time: 0-1h\\nlast_install_ts: 1789100790724\\nsince_init_ms: 715\\nsince_state_init_ms: 715\\nundefined: undefined\",\"is_json\":1}",
+          "method": "POST",
+          "ts": 1789100791426,
+          "url": "https://perr.hola.org/client_cgi/perr?id=be_install&ext_ver=1.258.557&product=cws&browser=chrome&uuid=d998cb2ab80689eb197c029d7391dd62"
+        },
+        {
+          "body": "{\"info\":\"{\\\"test_name\\\":\\\"test_limited_currencies_555\\\",\\\"state\\\":{\\\"rand\\\":0.2073838039449798,\\\"ver\\\":1,\\\"value\\\":\\\"off\\\"}}\",\"ver\":\"1.258.557\",\"build\":\"version: 1.258.557\\nlocal_ts: Fri Sep 11 2026 04:26:31 GMT+0000 (Coordinated Universal Time)\\nsrc_country: US\\nlocale: en-US\\nlocales: en-US,en\\nmanifest_version: 1.258.557\\nmanifest_ver: 3\\nconf_stamp: 1788961167351\\nsvc_version: null\\nsvc_appid: \\ncampaign: \\nsvc_uuid: \\next.active: true\\next.suspended: \\next_conflict: false\\nis_premium: false\\nhola_uid_id: \\nsession_key: 39147137\\nconf_ver: 45\\nab_test: test_limited_currencies_555_off,test_send_chrome_headers_off\\nactive_tab: 1245103246\\nunblocking_mode: tab\\nproduct_type: cws\\nid: gkojfkhlekighikafcpjkiklfbnlmeio\\nbrowser: chrome 151\\nbrowser_build: chrome\\nplatform: Linux x86_64\\nuser_agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36\\ninstall_ms: 703\\ninstall_time: 0-1h\\nlast_install_ts: 1789100790724\\nsince_init_ms: 716\\nsince_state_init_ms: 716\",\"is_json\":1}",
+          "method": "POST",
+          "ts": 1789100791427,
+          "url": "https://perr.hola.org/client_cgi/perr?id=be_ab_test_selected&ext_ver=1.258.557&product=cws&browser=chrome&uuid=d998cb2ab80689eb197c029d7391dd62"
+        },
+        {
+          "body": "{\"info\":\"{\\\"test_name\\\":\\\"test_send_chrome_headers\\\",\\\"state\\\":{\\\"rand\\\":0.675261819051783,\\\"ver\\\":2,\\\"value\\\":\\\"off\\\"}}\",\"ver\":\"1.258.557\",\"build\":\"version: 1.258.557\\nlocal_ts: Fri Sep 11 2026 04:26:31 GMT+0000 (Coordinated Universal Time)\\nsrc_country: US\\nlocale: en-US\\nlocales: en-US,en\\nmanifest_version: 1.258.557\\nmanifest_ver: 3\\nconf_stamp: 1788961167351\\nsvc_version: null\\nsvc_appid: \\ncampaign: \\nsvc_uuid: \\next.active: true\\next.suspended: \\next_conflict: false\\nis_premium: false\\nhola_uid_id: \\nsession_key: 39147137\\nconf_ver: 45\\nab_test: test_limited_currencies_555_off,test_send_chrome_headers_off\\nactive_tab: 1245103246\\nunblocking_mode: tab\\nproduct_type: cws\\nid: gkojfkhlekighikafcpjkiklfbnlmeio\\nbrowser: chrome 151\\nbrowser_build: chrome\\nplatform: Linux x86_64\\nuser_agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36\\ninstall_ms: 704\\ninstall_time: 0-1h\\nlast_install_ts: 1789100790724\\nsince_init_ms: 717\\nsince_state_init_ms: 717\",\"is_json\":1}",
+          "method": "POST",
+          "ts": 1789100791428,
+          "url": "https://perr.hola.org/client_cgi/perr?id=be_ab_test_selected&ext_ver=1.258.557&product=cws&browser=chrome&uuid=d998cb2ab80689eb197c029d7391dd62"
+        },
+        {
+          "body": "{\"info\":\"{\\\"log_tail\\\":\\\"starting svc detection\\\\nsm exec callback undefined undefined\\\\nsm exec callback undefined undefined\\\\nsm exec callback undefined undefined\\\\nsm exec callback undefined undefined\\\"}\",\"ver\":\"1.258.557\",\"build\":\"version: 1.258.557\\nlocal_ts: Fri Sep 11 2026 04:26:32 GMT+0000 (Coordinated Universal Time)\\nsrc_country: US\\nlocale: en-US\\nlocales: en-US,en\\nmanifest_version: 1.258.557\\nmanifest_ver: 3\\nconf_stamp: 1788961167351\\nsvc_version: null\\nsvc_appid: \\ncampaign: \\nsvc_uuid: \\next.active: true\\next.suspended: \\next_conflict: false\\nis_premium: false\\nhola_uid_id: \\nsession_key: 39147137\\nconf_ver: 45\\nab_test: test_limited_currencies_555_off,test_send_chrome_headers_off\\nactive_tab: 1245103246\\nunblocking_mode: tab\\nproduct_type: cws\\nid: gkojfkhlekighikafcpjkiklfbnlmeio\\nbrowser: chrome 151\\nbrowser_build: chrome\\nplatform: Linux x86_64\\nuser_agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36\\ninstall_ms: 1531\\ninstall_time: 0-1h\\nlast_install_ts: 1789100790724\\nsince_init_ms: 1544\\nsince_state_init_ms: 1544\",\"is_json\":1}",
+          "method": "POST",
+          "ts": 1789100792256,
+          "url": "https://perr.hola.org/client_cgi/perr?id=be_svc_monitor_exec.callback&ext_ver=1.258.557&product=cws&browser=chrome&uuid=d998cb2ab80689eb197c029d7391dd62"
+        },
+        {
+          "body": "{\"info\":\"{\\\"name\\\":\\\"build_agents\\\",\\\"check_name\\\":\\\"agents_check\\\",\\\"mode\\\":\\\"syq\\\",\\\"host\\\":\\\"zagent2706.x-cdn-static.com\\\"}\",\"ver\":\"1.258.557\",\"build\":\"version: 1.258.557\\nlocal_ts: Fri Sep 11 2026 04:26:33 GMT+0000 (Coordinated Universal Time)\\nsrc_country: US\\nlocale: en-US\\nlocales: en-US,en\\nmanifest_version: 1.258.557\\nmanifest_ver: 3\\nconf_stamp: 1788961167351\\nsvc_version: null\\nsvc_appid: \\ncampaign: \\nsvc_uuid: \\next.active: true\\next.suspended: \\next_conflict: false\\nis_premium: false\\nhola_uid_id: \\nsession_key: 39147137\\nconf_ver: 45\\nab_test: test_limited_currencies_555_off,test_send_chrome_headers_off\\nactive_tab: 1245103246\\nunblocking_mode: tab\\nproduct_type: cws\\nid: gkojfkhlekighikafcpjkiklfbnlmeio\\nbrowser: chrome 151\\nbrowser_build: chrome\\nplatform: Linux x86_64\\nuser_agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36\\ninstall_ms: 2648\\ninstall_time: 0-1h\\nlast_install_ts: 1789100790724\\nsince_init_ms: 2661\\nsince_state_init_ms: 2661\",\"is_json\":1}",
+          "method": "POST",
+          "ts": 1789100793373,
+          "url": "https://perr.hola.org/client_cgi/perr?id=be_connectivity_check_failed_agent&ext_ver=1.258.557&product=cws&browser=chrome&uuid=d998cb2ab80689eb197c029d7391dd62"
+        },
+        {
+          "body": "{\"info\":\"{\\\"name\\\":\\\"build_agents\\\",\\\"check_name\\\":\\\"agents_check\\\",\\\"mode\\\":\\\"syq\\\",\\\"urls\\\":[\\\"client.hola.org/client_cgi/conn_test\\\"],\\\"success\\\":\\\"https://client.hola.org/client_cgi/conn_test\\\"}\",\"ver\":\"1.258.557\",\"build\":\"version: 1.258.557\\nlocal_ts: Fri Sep 11 2026 04:26:33 GMT+0000 (Coordinated Universal Time)\\nsrc_country: US\\nlocale: en-US\\nlocales: en-US,en\\nmanifest_version: 1.258.557\\nmanifest_ver: 3\\nconf_stamp: 1788961167351\\nsvc_version: null\\nsvc_appid: \\ncampaign: \\nsvc_uuid: \\next.active: true\\next.suspended: \\next_conflict: false\\nis_premium: false\\nhola_uid_id: \\nsession_key: 39147137\\nconf_ver: 45\\nab_test: test_limited_currencies_555_off,test_send_chrome_headers_off\\nactive_tab: 1245103246\\nunblocking_mode: tab\\nproduct_type: cws\\nid: gkojfkhlekighikafcpjkiklfbnlmeio\\nbrowser: chrome 151\\nbrowser_build: chrome\\nplatform: Linux x86_64\\nuser_agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36\\ninstall_ms: 2650\\ninstall_time: 0-1h\\nlast_install_ts: 1789100790724\\nsince_init_ms: 2663\\nsince_state_init_ms: 2663\",\"is_json\":1}",
+          "method": "POST",
+          "ts": 1789100793374,
+          "url": "https://perr.hola.org/client_cgi/perr?id=be_connectivity_check_success&ext_ver=1.258.557&product=cws&browser=chrome&uuid=d998cb2ab80689eb197c029d7391dd62"
+        }
+      ],
+      "passive_window_seconds": 8,
+      "run": 2,
+      "target_url": "https://example.com/?sr_marker=SCANDAL_RADAR_HOLA_2_6866FD1D9F5970C5052520D4"
     }
   ]
 }
