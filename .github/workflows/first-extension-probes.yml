@@ -37,12 +37,35 @@ jobs:
           python-version: "3.12"
       - name: Install probe dependencies
         run: python -m pip install --disable-pip-version-check selenium mitmproxy
+      - name: Install matched Chrome for Testing and ChromeDriver
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/cft
+          python - <<'PY'
+          import json, pathlib, urllib.request, zipfile
+          meta=json.load(urllib.request.urlopen('https://googlechromelabs.github.io/chrome-for-testing/last-known-good-versions-with-downloads.json'))
+          stable=meta['channels']['Stable']
+          def get(kind):
+              return next(x['url'] for x in stable['downloads'][kind] if x['platform']=='linux64')
+          for kind in ('chrome','chromedriver'):
+              data=urllib.request.urlopen(get(kind)).read()
+              p=pathlib.Path('/tmp/cft')/f'{kind}.zip'
+              p.write_bytes(data)
+              with zipfile.ZipFile(p) as z: z.extractall('/tmp/cft')
+          pathlib.Path('/tmp/cft/version.txt').write_text(stable['version']+'\n')
+          PY
+          chmod +x /tmp/cft/chrome-linux64/chrome /tmp/cft/chromedriver-linux64/chromedriver
+          echo "CFT_BINARY=/tmp/cft/chrome-linux64/chrome" >> "$GITHUB_ENV"
+          echo "/tmp/cft/chromedriver-linux64" >> "$GITHUB_PATH"
+          /tmp/cft/chrome-linux64/chrome --version
+          /tmp/cft/chromedriver-linux64/chromedriver --version
       - name: Record environment and canaries
         shell: bash
         run: |
           set -euo pipefail
           mkdir -p "work/${{ matrix.slug }}" "publish/${{ matrix.slug }}"
-          google-chrome --version | tee "work/${{ matrix.slug }}/chrome-version.txt"
+          "$CFT_BINARY" --version | tee "work/${{ matrix.slug }}/chrome-version.txt"
           TOKENS=$(python - <<'PY'
           import secrets
           tags = ["URL", "BODY", "INPUT", "TITLE"]
@@ -51,11 +74,11 @@ jobs:
           )
           echo "SCANDAL_RADAR_CANARIES=$TOKENS" >> "$GITHUB_ENV"
           echo "$TOKENS" > "work/${{ matrix.slug }}/canaries.txt"
-      - name: Fetch exact current CRX and run static audit
+      - name: Fetch exact current CRX and prepare original identity
         shell: bash
         run: |
           set -euo pipefail
-          VER=$(google-chrome --version | grep -oE '[0-9]+(\.[0-9]+){3}' | head -1)
+          VER=$(cat /tmp/cft/version.txt)
           python lab/fetch_extension.py \
             --id "${{ matrix.extension_id }}" \
             --chrome-version "$VER" \
@@ -82,6 +105,7 @@ jobs:
             --profile "/tmp/scandal-radar-baseline-${{ matrix.slug }}" \
             --out "work/${{ matrix.slug }}/baseline-browser.json" \
             --proxy "http://127.0.0.1:8080" \
+            --chrome-binary "$CFT_BINARY" \
             --idle-seconds 20
           kill $MPID 2>/dev/null || true
           wait $MPID 2>/dev/null || true
@@ -90,24 +114,27 @@ jobs:
       - name: Run verified extension-present passive probe
         shell: bash
         run: |
-          set -euo pipefail
+          set -uo pipefail
           export SCANDAL_RADAR_PROXY_LOG="$PWD/work/${{ matrix.slug }}/extension-proxy.jsonl"
           mitmdump -q -p 8081 -s lab/mitm_addon.py >"work/${{ matrix.slug }}/extension-mitm.log" 2>&1 &
           MPID=$!
-          trap 'kill $MPID 2>/dev/null || true' EXIT
           sleep 2
           xvfb-run -a python lab/probe_browser.py \
             --profile "/tmp/scandal-radar-extension-${{ matrix.slug }}" \
             --out "work/${{ matrix.slug }}/extension-browser.json" \
             --proxy "http://127.0.0.1:8081" \
+            --chrome-binary "$CFT_BINARY" \
             --extension-dir "$PWD/work/${{ matrix.slug }}/runtime-extension" \
             --expected-extension-id "${{ matrix.extension_id }}" \
             --idle-seconds 30
+          STATUS=$?
           kill $MPID 2>/dev/null || true
           wait $MPID 2>/dev/null || true
-          trap - EXIT
-          cp "work/${{ matrix.slug }}/extension-browser.json" "publish/${{ matrix.slug }}/extension-browser.json"
+          cat "work/${{ matrix.slug }}/extension-browser.json" || true
+          cp "work/${{ matrix.slug }}/extension-browser.json" "publish/${{ matrix.slug }}/extension-browser.json" 2>/dev/null || true
+          exit $STATUS
       - name: Summarize differential observations
+        if: success()
         shell: bash
         run: |
           set -euo pipefail
@@ -119,42 +146,22 @@ jobs:
             --out "publish/${{ matrix.slug }}/summary.json"
           python - <<'PY'
           import json, pathlib
-          slug = "${{ matrix.slug }}"
-          name = "${{ matrix.name }}"
-          expected = "${{ matrix.extension_id }}"
+          slug = "${{ matrix.slug }}"; name = "${{ matrix.name }}"; expected = "${{ matrix.extension_id }}"
           p = pathlib.Path("publish") / slug
-          s = json.loads((p / "summary.json").read_text())
-          st = json.loads((p / "static.json").read_text())
-          br = json.loads((p / "extension-browser.json").read_text())
-          ids = br.get("installed_extension_ids") or []
-          verified = br.get("ok") is True and expected in ids
-          lines = [
-              f"# {name} — corrected first-pass test",
-              "",
-              "Status: automated static audit + verified-ID passive differential canary test. This is not a finding of wrongdoing.",
-              "",
-              f"- Web Store version archived: `{st.get('version')}`",
-              f"- CRX SHA-256: `{st.get('crx_sha256')}`",
-              f"- Chrome reported expected extension ID as loaded: `{verified}`",
-              f"- Chrome extension IDs observed: `{', '.join(ids) or 'none'}`",
-              f"- Baseline requests observed: `{s.get('baseline_request_count')}`",
-              f"- Extension-present requests observed: `{s.get('extension_request_count')}`",
-              f"- Differential canary-bearing request events: `{len(s.get('differential_canary_request_events', []))}`",
-              f"- Hosts seen only with extension present: `{', '.join(s.get('hosts_only_seen_with_extension', [])) or 'none'}`",
-              "",
-              "## Interpretation boundary",
-              "",
-              "A differential canary event is an E1 lead only. No canary match does not prove absence of collection: a code path may require activation/login/a supported site, or traffic may use a transport that this proxy cannot inspect.",
-          ]
-          (p / "README.md").write_text("\n".join(lines) + "\n")
+          s=json.loads((p/"summary.json").read_text()); st=json.loads((p/"static.json").read_text()); br=json.loads((p/"extension-browser.json").read_text())
+          ids=br.get("installed_extension_ids") or []; verified=br.get("ok") is True and expected in ids
+          lines=[f"# {name} — corrected first-pass test","","Status: static audit + verified-ID passive differential canary test. This is not a finding of wrongdoing.","",f"- Web Store version archived: `{st.get('version')}`",f"- CRX SHA-256: `{st.get('crx_sha256')}`",f"- Expected extension ID loaded: `{verified}`",f"- Chrome extension IDs observed: `{', '.join(ids) or 'none'}`",f"- Baseline requests observed: `{s.get('baseline_request_count')}`",f"- Extension-present requests observed: `{s.get('extension_request_count')}`",f"- Differential canary-bearing request events: `{len(s.get('differential_canary_request_events', []))}`",f"- Hosts seen only with extension present: `{', '.join(s.get('hosts_only_seen_with_extension', [])) or 'none'}`","","A differential canary event is an E1 lead only. No canary match does not prove absence of collection: a code path may require activation/login/a supported site, or traffic may use a transport this proxy cannot inspect."]
+          (p/"README.md").write_text("\n".join(lines)+"\n")
           PY
       - name: Upload full evidence artifact
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: corrected-evidence-${{ matrix.slug }}
           path: work/${{ matrix.slug }}
           retention-days: 30
       - name: Upload publishable result
+        if: success()
         uses: actions/upload-artifact@v4
         with:
           name: corrected-publish-${{ matrix.slug }}
@@ -171,19 +178,19 @@ jobs:
         with:
           pattern: corrected-publish-*
           path: /tmp/publish
-      - name: Replace first-pass results
+      - name: Replace dynamic first-pass results while preserving live config
         shell: bash
         run: |
           set -euo pipefail
-          rm -rf results/2026-09-10-first-pass
-          mkdir -p results/2026-09-10-first-pass
           for d in /tmp/publish/corrected-publish-*; do
             slug="${d##*/corrected-publish-}"
             mkdir -p "results/2026-09-10-first-pass/$slug"
+            find "results/2026-09-10-first-pass/$slug" -maxdepth 1 -type f -delete
             cp -R "$d"/* "results/2026-09-10-first-pass/$slug/"
           done
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A results/2026-09-10-first-pass
-          git commit -m "Correct first extension probes with verified Web Store IDs" || exit 0
+          git commit -m "Correct first extension probes using Chrome for Testing" || exit 0
+          git pull --rebase origin main
           git push
