@@ -3,7 +3,7 @@
 
 The probe uses only synthetic URLs. It first observes the exact extension while idle on
 an example.com canary URL, then invokes the production `send_vpn_work_report` function
-inside the extension service worker and records XMLHttpRequest construction plus any
+inside the extension service worker and records the MV3 fetch construction plus any
 browser-observed request to perr.hola.org.
 
 The internal invocation validates the production transport path but is NOT represented
@@ -17,7 +17,7 @@ import json
 import secrets
 import time
 from pathlib import Path
-from urllib.parse import parse_qs, urlparse
+from urllib.parse import urlparse
 
 from playwright.async_api import async_playwright
 
@@ -92,40 +92,36 @@ async def one_run(browser_type, extension_dir: Path, run_no: int, headed: bool) 
                 has_bg_main: !!self.be_bg_main,
                 has_rule: !!(self.be_bg_main && self.be_bg_main.be_rule),
                 has_sender: !!(self.be_bg_main && self.be_bg_main.be_rule &&
-                    self.be_bg_main.be_rule.send_vpn_work_report)
+                    self.be_bg_main.be_rule.send_vpn_work_report),
+                has_fetch: typeof self.fetch === 'function'
             })"""
         )
         if identity.get("runtime_id") != EXPECTED_ID:
             raise RuntimeError(f"Unexpected runtime ID: {identity}")
-        if not identity.get("has_sender"):
-            raise RuntimeError(f"Production sender unavailable: {identity}")
+        if not identity.get("has_sender") or not identity.get("has_fetch"):
+            raise RuntimeError(f"Production sender/fetch unavailable: {identity}")
 
-        # Instrument the exact production XMLHttpRequest constructor. We do not replace
-        # or suppress the request; this is a spy on method/URL/body arguments.
+        # MV3 uses the bundled fetch-based ajax module. Spy on the service worker's
+        # global fetch without suppressing or rewriting requests.
         await worker.evaluate(
             """() => {
-                self.__scandal_radar_xhrs = [];
-                const p = XMLHttpRequest.prototype;
-                if (!p.__scandal_radar_patched) {
-                    const originalOpen = p.open;
-                    const originalSend = p.send;
-                    p.open = function(method, url, ...rest) {
-                        this.__scandal_radar_meta = {method: String(method), url: String(url)};
-                        return originalOpen.call(this, method, url, ...rest);
-                    };
-                    p.send = function(body) {
-                        const m = this.__scandal_radar_meta || {};
-                        if (String(m.url || '').includes('perr.hola.org')) {
-                            self.__scandal_radar_xhrs.push({
-                                method: m.method || null,
-                                url: m.url || null,
-                                body: body == null ? null : String(body),
+                self.__scandal_radar_fetches = [];
+                if (!self.__scandal_radar_original_fetch) {
+                    self.__scandal_radar_original_fetch = self.fetch.bind(self);
+                    self.fetch = function(input, init) {
+                        let url = '';
+                        try { url = typeof input === 'string' ? input : String(input.url || input); }
+                        catch (e) { url = String(input); }
+                        if (url.includes('perr.hola.org')) {
+                            self.__scandal_radar_fetches.push({
+                                url,
+                                method: init && init.method ? String(init.method) : 'GET',
+                                body: init && init.body != null ? String(init.body) : null,
                                 ts: Date.now()
                             });
                         }
-                        return originalSend.call(this, body);
+                        return self.__scandal_radar_original_fetch(input, init);
                     };
-                    p.__scandal_radar_patched = true;
                 }
             }"""
         )
@@ -138,7 +134,7 @@ async def one_run(browser_type, extension_dir: Path, run_no: int, headed: bool) 
 
         # Passive observation window: extension present, no feature invocation.
         await asyncio.sleep(8)
-        passive_xhrs = await worker.evaluate("() => self.__scandal_radar_xhrs.slice()")
+        passive_fetches = await worker.evaluate("() => self.__scandal_radar_fetches.slice()")
         passive_browser = list(browser_requests)
 
         # Controlled internal invocation of the exact production function. This proves
@@ -151,25 +147,32 @@ async def one_run(browser_type, extension_dir: Path, run_no: int, headed: bool) 
             })"""
         )
         await asyncio.sleep(5)
-        all_xhrs = await worker.evaluate("() => self.__scandal_radar_xhrs.slice()")
+        all_fetches = await worker.evaluate("() => self.__scandal_radar_fetches.slice()")
 
-        invoked_xhrs = all_xhrs[len(passive_xhrs):]
+        invoked_fetches = all_fetches[len(passive_fetches):]
         invoked_browser = browser_requests[len(passive_browser):]
-        canary_in_xhr = any(marker in json.dumps(x, sort_keys=True) for x in invoked_xhrs)
+        canary_in_fetch = any(marker in json.dumps(x, sort_keys=True) for x in invoked_fetches)
         canary_in_browser_request = any(marker in json.dumps(x, sort_keys=True) for x in invoked_browser)
-        passive_canary = any(marker in json.dumps(x, sort_keys=True) for x in passive_xhrs + passive_browser)
+        passive_canary = any(marker in json.dumps(x, sort_keys=True) for x in passive_fetches + passive_browser)
 
-        # Parse form body for compact evidence without relying on log formatting.
         parsed_events = []
-        for item in invoked_xhrs:
-            body = item.get("body") or ""
-            parsed = parse_qs(body, keep_blank_values=True)
-            info = parsed.get("info", [None])[0]
+        for item in invoked_fetches:
+            raw_body = item.get("body") or ""
+            try:
+                body = json.loads(raw_body)
+            except Exception:
+                body = None
+            raw_info = body.get("info") if isinstance(body, dict) else None
+            try:
+                info = json.loads(raw_info) if isinstance(raw_info, str) else raw_info
+            except Exception:
+                info = raw_info
             parsed_events.append({
                 "url": item.get("url"),
                 "method": item.get("method"),
+                "body": body,
                 "info": info,
-                "contains_marker": marker in (info or ""),
+                "contains_marker": marker in json.dumps(info, sort_keys=True) if info is not None else False,
             })
 
         return {
@@ -180,14 +183,14 @@ async def one_run(browser_type, extension_dir: Path, run_no: int, headed: bool) 
             "active_url_observed_by_extension": active_url,
             "identity": identity,
             "passive_window_seconds": 8,
-            "passive_perr_xhrs": passive_xhrs,
+            "passive_perr_fetches": passive_fetches,
             "passive_browser_requests": passive_browser,
             "passive_canary_observed": passive_canary,
             "controlled_invocation_unix": invoke_started,
-            "invoked_perr_xhrs": invoked_xhrs,
+            "invoked_perr_fetches": invoked_fetches,
             "invoked_browser_requests": invoked_browser,
             "parsed_invoked_events": parsed_events,
-            "canary_in_instrumented_xhr": canary_in_xhr,
+            "canary_in_instrumented_fetch": canary_in_fetch,
             "canary_in_browser_request": canary_in_browser_request,
         }
     finally:
@@ -210,7 +213,7 @@ async def run(args) -> int:
             "results": results,
             "all_runs_ok": all(r.get("ok") for r in results),
             "all_invoked_canaries_captured": all(
-                r.get("ok") and r.get("canary_in_instrumented_xhr") for r in results
+                r.get("ok") and r.get("canary_in_instrumented_fetch") for r in results
             ),
         }
         args.out.parent.mkdir(parents=True, exist_ok=True)
