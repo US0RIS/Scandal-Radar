@@ -1,0 +1,41 @@
+{
+  "all_runs_ok": false,
+  "natural_ui_marker_transmissions": 0,
+  "probe": "hola-real-popup-ui",
+  "repetitions": 2,
+  "results": [
+    {
+      "identity": {
+        "id": "gkojfkhlekighikafcpjkiklfbnlmeio",
+        "version": "1.258.557"
+      },
+      "ok": false,
+      "page_urls": [
+        "about:blank",
+        "https://hola.org/welcome?ext_ver=1.258.557&uuid=e449b14510fe35421ed4ea66524e4736",
+        "https://example.com/?sr_ui_marker=SCANDAL_RADAR_HOLA_UI_1_4CB4E135631D43B1812C16CF"
+      ],
+      "popup_open_result": {
+        "ok": true
+      },
+      "run": 1
+    },
+    {
+      "identity": {
+        "id": "gkojfkhlekighikafcpjkiklfbnlmeio",
+        "version": "1.258.557"
+      },
+      "ok": false,
+      "page_urls": [
+        "about:blank",
+        "https://hola.org/welcome?ext_ver=1.258.557&uuid=864b560e2141339641d4a7fd27b798d8",
+        "https://example.com/?sr_ui_marker=SCANDAL_RADAR_HOLA_UI_2_F373D932FFCA816E8722AE7D"
+      ],
+      "popup_open_result": {
+        "ok": true
+      },
+      "run": 2
+    }
+  ],
+  "working_prompt_clicks": 0
+}
