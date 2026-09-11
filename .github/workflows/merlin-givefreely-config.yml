@@ -1,0 +1,78 @@
+name: Merlin Give Freely config audit
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/merlin-givefreely-config.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fetch live public Give Freely configuration
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/gf results/2026-09-10-first-pass/merlin-ai/live-config
+          curl --fail --silent --show-error --location \
+            https://cdn.givefreely.com/data/behavioral/global.json \
+            -o /tmp/gf/global.json
+          curl --fail --silent --show-error --location \
+            https://cdn.givefreely.com/data/behavioral/merlinprod.json \
+            -o /tmp/gf/merlinprod.json
+          python - <<'PY'
+          import datetime, hashlib, json, pathlib
+          root = pathlib.Path('/tmp/gf')
+          out = pathlib.Path('results/2026-09-10-first-pass/merlin-ai/live-config')
+          g = json.loads((root/'global.json').read_text())
+          p = json.loads((root/'merlinprod.json').read_text())
+
+          def merge(a,b):
+              if not isinstance(a,dict) or not isinstance(b,dict): return b
+              r=dict(a)
+              for k,v in b.items():
+                  r[k]=merge(r[k],v) if k in r and isinstance(r[k],dict) and isinstance(v,dict) else v
+              return r
+          m=merge(g,p)
+          interesting = {
+              'captured_at_utc': datetime.datetime.now(datetime.timezone.utc).isoformat(),
+              'global_sha256': hashlib.sha256((root/'global.json').read_bytes()).hexdigest(),
+              'partner_sha256': hashlib.sha256((root/'merlinprod.json').read_bytes()).hexdigest(),
+              'partner_key': 'merlinprod',
+              'merged_flags': {
+                  'popupEnabled': m.get('popupEnabled'),
+                  'countAppearances': m.get('countAppearances'),
+                  'anonymousActiveDomainLogging': m.get('anonymousActiveDomainLogging'),
+                  'enhancedLogging': m.get('enhancedLogging'),
+                  'shouldCheckSiteMatches': m.get('shouldCheckSiteMatches'),
+                  'siteMatchesRegex': m.get('siteMatchesRegex'),
+                  'partnerSerpBox': m.get('partnerSerpBox'),
+                  'eventsUrl': m.get('eventsUrl'),
+                  'apiCommissionUrl': m.get('apiCommissionUrl'),
+                  'configRefreshInterval': m.get('configRefreshInterval'),
+              },
+              'global_top_level_keys': sorted(g),
+              'partner_top_level_keys': sorted(p),
+          }
+          (out/'relevant.json').write_text(json.dumps(interesting,indent=2,sort_keys=True)+'\n')
+          # Preserve the public configs for reproducibility. They contain configuration,
+          # not user data, credentials, cookies, or captured browsing activity.
+          (out/'global.json').write_bytes((root/'global.json').read_bytes())
+          (out/'merlinprod.json').write_bytes((root/'merlinprod.json').read_bytes())
+          print(json.dumps(interesting,indent=2,sort_keys=True))
+          PY
+      - name: Commit configuration snapshot
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add results/2026-09-10-first-pass/merlin-ai/live-config
+          git commit -m "Snapshot Merlin Give Freely production config" || exit 0
+          git push
